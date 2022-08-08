@@ -12,7 +12,7 @@ function Header() {
                 rounded={true}
                 className="shadow-lg"
             >
-                <Navbar.Brand href="https://flowbite.com/">
+                <Navbar.Brand href="/">
                     <img
                         src={logo}
                         className="mr-3 h-6 sm:h-9 rounded-full"
