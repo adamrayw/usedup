@@ -8,7 +8,7 @@ export default function Home() {
             <img className='md:block hidden' src={Banner} alt="Banner" />
             <section>
                 <div className="container max-w-6xl mx-auto md:px-0 px-4">
-                    <div className="featured mt-10 md:px-4 px-0">
+                    <div className="featured mt-10">
                         <div className='text-left mb-4'>
                             <h2 className='font-bold text-4xl text-black'>Barang Baru!</h2>
                         </div>
