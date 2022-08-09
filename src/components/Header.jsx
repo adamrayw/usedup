@@ -66,11 +66,11 @@ function Header() {
                 <Navbar.Collapse>
                     <Search />
                     <div className="btn mt-4 md:hidden flex space-x-4 justify-end ">
-                        <Link to="/login">
+                        <a href="/login">
                             <Button color="dark">
                                 Login
                             </Button>
-                        </Link>
+                        </a>
                         <Button color="light">
                             Jual
                         </Button>
