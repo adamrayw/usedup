@@ -3,6 +3,7 @@ import { Navbar, Button } from "flowbite-react"
 import logo from '../logo.png'
 import Categories from "./Categories"
 import Search from "./Search"
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
@@ -24,9 +25,11 @@ function Header() {
                 </Navbar.Brand>
                 <div className="flex md:order-2">
                     <div className="btn md:flex space-x-4 hidden">
-                        <Button color="dark">
-                            Login
-                        </Button>
+                        <Link to="/login">
+                            <Button color="dark">
+                                Login
+                            </Button>
+                        </Link>
                         <Button color="light">
                             Jual
                         </Button>
@@ -63,9 +66,11 @@ function Header() {
                 <Navbar.Collapse>
                     <Search />
                     <div className="btn mt-4 md:hidden flex space-x-4 justify-end ">
-                        <Button color="dark">
-                            Login
-                        </Button>
+                        <Link to="/login">
+                            <Button color="dark">
+                                Login
+                            </Button>
+                        </Link>
                         <Button color="light">
                             Jual
                         </Button>
