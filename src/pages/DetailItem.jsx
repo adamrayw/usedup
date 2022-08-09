@@ -84,7 +84,7 @@ function DetailItem() {
                             </div>
                         </Card>
                         <div>
-                            <button className='border border-gray-300 shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'>
+                            <button className='border border-gray-300 text-gray-400 hover:bg-gray-50 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'>
                                 <FaRegHeart className='mr-2' />
                                 Tambah ke Favorit
                             </button>
