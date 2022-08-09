@@ -29,7 +29,7 @@ function CardItem() {
                     </>)}
 
                 </div>
-                <Link to="/">
+                <Link to="/dijual-hyundai-stargazer-baru">
                     <Card
                         imgAlt="Image Item"
                         imgSrc={Produk}

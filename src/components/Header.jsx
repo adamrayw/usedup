@@ -4,7 +4,7 @@ import logo from '../logo.png'
 import Categories from "./Categories"
 import Search from "./Search"
 import { Link } from 'react-router-dom'
-import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
+// import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
 
 function Header() {
     return (
