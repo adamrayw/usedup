@@ -61,7 +61,7 @@ function DetailItem() {
                     </div>
                     <div className='profil-penjual'>
                         <Card>
-                            <div className='flex items-center text-left'>
+                            <div className='flex items-start justify-start text-left'>
                                 <div>
                                     <Avatar size="lg" />
                                 </div>
