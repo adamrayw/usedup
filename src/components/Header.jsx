@@ -83,9 +83,11 @@ function Header() {
                                 Login
                             </Button>
                         </a>
-                        <Button color="light">
-                            Jual
-                        </Button>
+                        <Link to="/jual/pilih-kategori">
+                            <Button color="light">
+                                Jual
+                            </Button>
+                        </Link>
                     </div>
                 </Navbar.Collapse>
             </Navbar>
