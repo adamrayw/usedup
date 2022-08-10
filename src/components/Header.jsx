@@ -30,9 +30,11 @@ function Header() {
                                 Login
                             </Button>
                         </Link>
-                        <Button color="light">
-                            Jual
-                        </Button>
+                        <Link to="/jual/pilih-kategori">
+                            <Button color="light">
+                                Jual
+                            </Button>
+                        </Link>
                     </div>
                     {/* <div className="text-left">
                         <Dropdown
