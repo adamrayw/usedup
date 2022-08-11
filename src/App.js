@@ -8,7 +8,10 @@ import Register from './pages/auth/Register';
 import PageNotFound from './pages/PageNotFound';
 import DetailItem from './pages/DetailItem';
 import PilihKategori from './pages/PilihKategori';
-import FormMobilBekas from './pages/FormMobilBekas';
+import FormMobilBekas from './pages/form-jual/FormMobilBekas';
+import FormMotorBekas from './pages/form-jual/FormMotorBekas';
+import FormProperty from './pages/form-jual/FormProperty';
+import FormElektronik from './pages/form-jual/FormElektronik';
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path='/dijual-hyundai-stargazer-baru' element={<DetailItem />} />
         <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
         <Route path='/jual/mobil-bekas' element={<FormMobilBekas />} />
+        <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
+        <Route path='/jual/property' element={<FormProperty />} />
+        <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
       </Routes>
       <FooterComponent />
     </div>

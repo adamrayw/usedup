@@ -15,24 +15,19 @@ function PilihKategori() {
                             Mobil Bekas
                         </div>
                     </Link>
-                    <Link to="/jual?category=Mobil Bekas">
+                    <Link to="/jual/motor-bekas">
                         <div className='w-full p-4 border border-black hover:bg-gray-50 transition'>
                             Motor Bekas
                         </div>
                     </Link>
-                    <Link to="/jual?category=Mobil Bekas">
+                    <Link to="/jual/property">
                         <div className='w-full p-4 border border-black hover:bg-gray-50 transition'>
                             Property
                         </div>
                     </Link>
-                    <Link to="/jual?category=Mobil Bekas">
+                    <Link to="/jual/elektronik-gadget">
                         <div className='w-full p-4 border border-black hover:bg-gray-50 transition'>
                             Elektronik & Gadget
-                        </div>
-                    </Link>
-                    <Link to="/jual?category=Mobil Bekas">
-                        <div className='w-full p-4 border border-black hover:bg-gray-50 transition'>
-                            TV & Audio, Video
                         </div>
                     </Link>
                 </Card>
