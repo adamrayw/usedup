@@ -36,9 +36,16 @@ function Header() {
                 </Navbar.Brand>
                 <div className="flex md:order-2">
                     {user ? (
-                        <div className="text-left">
+                        <div className="text-left flex md:space-x-4 space-x-0">
+                            <div className="md:block hidden">
+                                <Link to="/jual/pilih-kategori">
+                                    <Button color="light">
+                                        Jual
+                                    </Button>
+                                </Link>
+                            </div>
                             <Dropdown
-                                arrowIcon={false}
+                                arrowIcon={true}
                                 inline={true}
                                 label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
                             >
@@ -94,16 +101,26 @@ function Header() {
                 <Navbar.Collapse>
                     <Search />
                     <div className="btn mt-4 md:hidden flex space-x-4 justify-end ">
-                        <a href="/login">
-                            <Button color="dark">
-                                Login
-                            </Button>
-                        </a>
-                        <Link to="/jual/pilih-kategori">
-                            <Button color="light">
-                                Jual
-                            </Button>
-                        </Link>
+                        {user ? (
+                            <>
+                                <Link to="/jual/pilih-kategori">
+                                    <Button color="light">
+                                        Jual
+                                    </Button>
+                                </Link>
+                            </>
+                        ) : (<>
+                            <a href="/login">
+                                <Button color="dark">
+                                    Login
+                                </Button>
+                            </a>
+                            <Link to="/jual/pilih-kategori">
+                                <Button color="light">
+                                    Jual
+                                </Button>
+                            </Link>
+                        </>)}
                     </div>
                 </Navbar.Collapse>
             </Navbar>
