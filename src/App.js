@@ -12,6 +12,8 @@ import FormMobilBekas from './pages/form-jual/FormMobilBekas';
 import FormMotorBekas from './pages/form-jual/FormMotorBekas';
 import FormProperty from './pages/form-jual/FormProperty';
 import FormElektronik from './pages/form-jual/FormElektronik';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path='/jual/property' element={<FormProperty />} />
         <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
       </Routes>
+      <ToastContainer />
       <FooterComponent />
     </div>
   );
