@@ -1,7 +1,7 @@
 {
   "name": "usedup",
   "version": "0.1.0",
-  "proxy": "http://localhost:8080/",
+  "proxy": "https://usedup.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.4",
