@@ -59,7 +59,7 @@ function Login() {
 
     return (
         <>
-            <div className="login-container h-screen pt-10 px-4">
+            <div className="login-container h-full py-10 px-4">
                 <div className="max-w-sm mx-auto text-left">
                     <Card>
                         <div>

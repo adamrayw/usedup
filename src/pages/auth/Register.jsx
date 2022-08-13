@@ -51,7 +51,7 @@ function Register() {
 
     return (
         <>
-            <div className="login-container h-screen pt-10 px-4">
+            <div className="login-container h-full py-10 px-4">
                 <div className="max-w-sm mx-auto text-left">
                     <Card>
                         <div>
@@ -111,19 +111,7 @@ function Register() {
                                     required={true}
                                 />
                             </div>
-                            {/* <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="confirmPassword"
-                                        value="Konfirmasi Password"
-                                    />
-                                </div>
-                                <TextInput
-                                    id="confirmPassword"
-                                    type="password"
-                                    required={true}
-                                />
-                            </div> */}
+
                             {isLoading ? (
                                 <Button color='dark'>
                                     <div className="mr-3">
