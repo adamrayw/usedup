@@ -15,7 +15,7 @@ function CardItem() {
     return (
         <>
             <div className="max-w-sm relative">
-                <div className="absolute top-0 right-0 pt-4 pr-4 z-50">
+                <div className="absolute top-0 right-0 pt-4 pr-4">
                     {favorite ? (<>
                         <button className='p-2 border bg-red-400 rounded-full' onClick={onFavorite}>
 
