@@ -36,8 +36,8 @@ function Header() {
                 </Navbar.Brand>
                 <div className="flex md:order-2">
                     {user ? (
-                        <div className="text-left flex md:space-x-4 space-x-0">
-                            <div className="md:block hidden">
+                        <div className="text-left flex">
+                            <div className="md:block hidden pr-4">
                                 <Link to="/jual/pilih-kategori">
                                     <Button color="light">
                                         Jual
