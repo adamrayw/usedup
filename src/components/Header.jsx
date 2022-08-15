@@ -110,7 +110,7 @@ function Header() {
                                 </Link>
                             </>
                         ) : (<>
-                            <Link href="/login">
+                            <Link to="/login">
                                 <Button color="dark">
                                     Login
                                 </Button>
