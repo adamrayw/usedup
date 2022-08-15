@@ -141,19 +141,19 @@ function FormMobilBekas() {
                                             value="Sertifikasi"
                                         />
                                     </div>
-                                    <div class="flex items-center mb-4">
+                                    <div className="flex items-center mb-4">
                                         <input id="sertifikat-hak-milik" type="radio" name="sertifikasi" value="Sertifikat Hak Milik" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="sertifikat-hak-milik" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                             Sertifikat Hak Milik
                                         </label>
                                     </div>
-                                    <div class="flex items-center mb-4">
+                                    <div className="flex items-center mb-4">
                                         <input id="hak-guna-bangun" type="radio" name="sertifikasi" value="Hak Guna Bangun" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="hak-guna-bangun" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                             Hak Guna Bangun
                                         </label>
                                     </div>
-                                    <div class="flex items-center mb-4">
+                                    <div className="flex items-center mb-4">
                                         <input id="lainnya" type="radio" name="sertifikasi" value="Lainnya (PPJB, Girik, Adat, dll)" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="lainnya" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                             Lainnya (PPJB, Girik, Adat, dll)
