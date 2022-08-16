@@ -2,26 +2,18 @@ import { Label, TextInput, Textarea, Button, Spinner } from 'flowbite-react'
 import { FaPlus, FaCloudUploadAlt, FaCheck, FaMapMarkerAlt } from 'react-icons/fa'
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { formMobilBekas, reset } from '../../features/form/formSlice'
+import { formMobilBekas, reset, resetUpload } from '../../features/form/formSlice'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import UploadFoto from '../../components/UploadFoto';
 
 function FormMobilBekas() {
-
-    const { isError, isSuccess, isLoading, message } = useSelector((state) => state.form)
+    const [selectedImage, setSelectedImage] = useState([])
+    const [imageClouded, setImageClouded] = useState([])
+    const [isLoadingUpload, setIsLoadingUpload] = useState(false)
+    const [provinsiData, setProvinsiData] = useState([])
     const { user } = useSelector((state) => state.auth)
-
-    useEffect(() => {
-        if (isError) {
-            toast.error(message)
-        }
-
-        getProvinsi()
-
-        dispatch(reset())
-    }, [isError, isSuccess])
-
-
     const [formData, setFormData] = useState({
         userId: user ? user.id : 0,
         merk: '',
@@ -33,15 +25,33 @@ function FormMobilBekas() {
         judul_iklan: '',
         deskripsi: '',
         alamat: '',
-        provinsi: '',
+        provinsiId: '',
         kategori: '',
     })
-    const [selectedImage, setSelectedImage] = useState([])
-    const [imageClouded, setImageClouded] = useState([])
-    const [isLoadingUpload, setIsLoadingUpload] = useState(false)
-    const [provinsiData, setProvinsiData] = useState([])
 
-    const { userId, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsi, harga, kategori } = formData
+    const { isError, isSuccess, isLoading, message, foto } = useSelector((state) => state.form)
+    const { merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga } = formData
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+
+        if (isSuccess) {
+            navigate('/success')
+            dispatch(resetUpload())
+
+        }
+
+        setSelectedImage(foto)
+
+        getProvinsi()
+
+        dispatch(reset())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isError, isSuccess, message, foto])
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -51,14 +61,6 @@ function FormMobilBekas() {
 
     }
 
-    const dispatch = useDispatch()
-
-    function selectImage(e) {
-        if (e.target.files && e.target.files.length > 0) {
-            setSelectedImage([...selectedImage, e.target.files[0]]);
-        }
-    }
-
     const onSubmit = async (e) => {
         const formData = new FormData()
 
@@ -66,8 +68,6 @@ function FormMobilBekas() {
             toast.error('Wajib meng-upload foto!')
             return
         } else {
-
-
             for (let i = 0; i < selectedImage.length; i++) {
                 setIsLoadingUpload(true)
                 let file = selectedImage[i]
@@ -79,7 +79,6 @@ function FormMobilBekas() {
                     const response = await axios.post('https://api.cloudinary.com/v1_1/darlzojqc/image/upload', formData)
                     const parsed = response.data
                     setImageClouded((prevState) => [...prevState, parsed])
-                    // console.log(parsed)
                 } catch (e) {
                     alert(e)
                 }
@@ -90,25 +89,29 @@ function FormMobilBekas() {
 
     }
 
+
     const onInput = (e) => {
         e.preventDefault()
 
-        const data = {
-            userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsi, harga, kategori: 'mobil-bekas', foto: imageClouded
-        }
+        if (imageClouded.length < 1) {
+            return
+        } else {
+            const data = {
+                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategori: 'mobil-bekas', foto: imageClouded
+            }
 
-        dispatch(formMobilBekas(data))
-        setSelectedImage([])
-        setImageClouded([])
-        setFormData([])
-        console.log(data)
+            dispatch(formMobilBekas(data))
+            setSelectedImage([])
+            setImageClouded([])
+            setFormData([])
+        }
     }
 
     const getProvinsi = async () => {
         try {
-            const res = await axios.get(`https://api.binderbyte.com/wilayah/provinsi?api_key=b47c1b91594b21c23ce0633dd738acdbaef7c26b94e77b7c81035d5b0819bbd2
+            const res = await axios.get(`http://localhost:8080/api/provinsi
             `)
-            setProvinsiData(res.data.value)
+            setProvinsiData(res.data)
         } catch (e) {
             alert(e)
         }
@@ -329,11 +332,11 @@ function FormMobilBekas() {
                             </div>
                             <div>
                                 <label htmlFor="provinsi" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Provinsi</label>
-                                <select id="provinsi" name='provinsi' onChange={onChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="provinsi" name='provinsiId' onChange={onChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option>Pilih Provinsi</option>
                                     {provinsiData.map((e) => {
                                         return (
-                                            <option key={e.id} value={e.name}>{e.name}</option>
+                                            <option key={e.id} value={e.id}>{e.name}</option>
                                         )
                                     })}
                                 </select>
@@ -374,7 +377,7 @@ function FormMobilBekas() {
                                 </div>
                                 <p id="helper-text-explanation" className="text-xs text-gray-500 dark:text-gray-400">Max 6 foto</p>
                             </div>
-                            <div className='flex flex-wrap space-x-2 items-center'>
+                            <div className='flex flex-wrap items-center'>
                                 {selectedImage.map((e, index) => {
                                     return (
                                         <img
@@ -387,19 +390,13 @@ function FormMobilBekas() {
                                 })}
 
                                 {imageClouded.length > 0 ? '' : (
-                                    <div id="fileUpload" className='flex flex-wrap justify-between'>
-                                        {selectedImage.length === 6 ? '' : (
-                                            <div>
-                                                <label htmlFor="image">
-                                                    <div className='border border-black p-4 inline-block'>
-                                                        <FaPlus />
-                                                    </div>
-                                                </label>
-                                                <input className='hidden' type="file" name="image" id="image" onChange={selectImage} />
-                                            </div>
-                                        )}
-
-                                    </div>
+                                    <>
+                                        {
+                                            selectedImage.length === 6 ? '' : (
+                                                <UploadFoto />
+                                            )
+                                        }
+                                    </>
                                 )}
                             </div>
                             <div className='pt-4'>
