@@ -14,6 +14,7 @@ import FormProperty from './pages/form-jual/FormProperty';
 import FormElektronik from './pages/form-jual/FormElektronik';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SuccessPages from './pages/form-jual/SuccessPages';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
         <Route path='/jual/property' element={<FormProperty />} />
         <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
+        <Route path='/success' element={<SuccessPages />} />
       </Routes>
       <ToastContainer />
       <FooterComponent />
