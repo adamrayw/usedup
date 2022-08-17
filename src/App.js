@@ -27,8 +27,8 @@ function App() {
           <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
           <Route path='/jual/property' element={<FormProperty />} />
           <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
-          <Route path='/' element={<Home />} exact />
         </Route>
+        <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
