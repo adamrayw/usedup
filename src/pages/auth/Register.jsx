@@ -11,10 +11,13 @@ function Register() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        password: '',
+    })
+    const { name, email, password } = formData
+    const [validation, setValidation] = useState({
+        name: '',
         password: ''
     })
-
-    const { name, email, password } = formData
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -31,22 +34,93 @@ function Register() {
         }
 
         dispatch(reset())
-    }, [user, isSuccess, isError, message, navigate, dispatch])
+    }, [user, isSuccess, isError, message, navigate, dispatch, name, email, password])
 
-    const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
+    const onChangeName = (e) => {
+        if (e.target.value.length < 6) {
+            setValidation(prevState => ({ ...prevState, name: "Nama atau Username harus lebih dari 6 karakter" }))
+        } else {
+            setValidation(prevState => ({ ...prevState, name: "" }))
+            setFormData(prevState => ({ ...prevState, name: e.target.value }))
+        }
     }
+
+    const onChangePassword = (e) => {
+        if (e.target.value.length < 6) {
+            setValidation(prevState => ({ ...prevState, password: "Password harus lebih dari 6 karakter" }))
+        } else {
+            setValidation(prevState => ({ ...prevState, password: "" }))
+            setFormData(prevState => ({ ...prevState, password: e.target.value }))
+        }
+    }
+
+    const onChangeEmail = (e) => {
+        setFormData(prevState => ({ ...prevState, email: e.target.value }))
+    }
+
+
 
     const onSubmit = (e) => {
         e.preventDefault()
-        const userData = {
-            name, email, password
-        }
+        if (formData.name.length === '' || formData.email.length === '' || formData.password.length === '' || validation.name !== '' || validation.password !== '') {
+            if (validation.name !== '' && validation.password !== '') {
+                toast.warn(validation.name, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+                toast.warn(validation.password, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } else if (validation.name !== '') {
+                toast.warn(validation.name, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } else if (validation.password !== '') {
+                toast.warn(validation.password, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } else {
+                toast.warn('Form tidak ada yang boleh kosong', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
 
-        dispatch(register(userData))
+        } else {
+            const userData = {
+                name, email, password
+            }
+
+            dispatch(register(userData))
+        }
     }
 
     return (
@@ -69,16 +143,20 @@ function Register() {
                                 <div className="mb-2 block">
                                     <Label
                                         htmlFor="nama"
-                                        value="Nama Lengkap"
+                                        value="Nama atau Username"
                                     />
                                 </div>
                                 <TextInput
                                     id="nama"
                                     type="text"
                                     name='name'
-                                    onChange={onChange}
+                                    onChange={onChangeName}
+                                    color={validation.name.length > 1 ? 'failure' : ''}
                                     required={true}
                                 />
+                                {validation.name.length > 1 ? (<>
+                                    <small className='text-red-400 font-normal'>{validation.name}</small>
+                                </>) : ''}
                             </div>
                             <div>
                                 <div className="mb-2 block">
@@ -91,10 +169,12 @@ function Register() {
                                     id="email1"
                                     type="email"
                                     name='email'
-                                    onChange={onChange}
                                     placeholder="name@usedup.com"
+                                    color='light'
+                                    onChange={onChangeEmail}
                                     required={true}
                                 />
+
                             </div>
                             <div>
                                 <div className="mb-2 block">
@@ -106,10 +186,14 @@ function Register() {
                                 <TextInput
                                     id="password1"
                                     type="password"
+                                    onChange={onChangePassword}
                                     name='password'
-                                    onChange={onChange}
+                                    color={validation.password.length > 1 ? 'failure' : ''}
                                     required={true}
                                 />
+                                {validation.password.length > 1 ? (<>
+                                    <small className='text-red-400 font-normal'>{validation.password}</small>
+                                </>) : ''}
                             </div>
 
                             {isLoading ? (
