@@ -38,7 +38,7 @@ function Register() {
 
     const onChangeName = (e) => {
         if (e.target.value.length < 6) {
-            setValidation(prevState => ({ ...prevState, name: "Nama atau Username harus lebih dari 6 karakter" }))
+            setValidation(prevState => ({ ...prevState, name: "Nama atau Username harus 6 karakter atau lebih" }))
         } else {
             setValidation(prevState => ({ ...prevState, name: "" }))
             setFormData(prevState => ({ ...prevState, name: e.target.value }))
@@ -47,7 +47,7 @@ function Register() {
 
     const onChangePassword = (e) => {
         if (e.target.value.length < 6) {
-            setValidation(prevState => ({ ...prevState, password: "Password harus lebih dari 6 karakter" }))
+            setValidation(prevState => ({ ...prevState, password: "Password harus 6 karakter atau lebih" }))
         } else {
             setValidation(prevState => ({ ...prevState, password: "" }))
             setFormData(prevState => ({ ...prevState, password: e.target.value }))
