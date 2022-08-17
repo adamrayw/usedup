@@ -1,5 +1,5 @@
 import { Label, TextInput, Textarea, Button, Spinner } from 'flowbite-react'
-import { FaPlus, FaCloudUploadAlt, FaCheck, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaCloudUploadAlt, FaCheck, FaMapMarkerAlt } from 'react-icons/fa'
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { formMobilBekas, reset, resetUpload } from '../../features/form/formSlice'
