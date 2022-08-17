@@ -65,6 +65,25 @@ function FormMobilBekas() {
             [e.target.name]: e.target.value
         }))
 
+        if (e.target.name === 'harga') {
+            const value = e.target.value
+            const removedSymbol = value.replace(/,/g, "").split("").join("")
+            setFormData(prevState => ({ ...prevState, harga: removedSymbol }))
+        }
+
+        if (e.target.name === 'kapasitas_mesin') {
+            const value = e.target.value
+            const removedSymbol = value.replace(/,/g, "").split("").join("")
+            setFormData(prevState => ({ ...prevState, kapasitas_mesin: removedSymbol }))
+        }
+
+        if (e.target.name === 'jarak_tempuh') {
+            const value = e.target.value
+            const removedSymbol = value.replace(/,/g, "").split("").join("")
+            setFormData(prevState => ({ ...prevState, jarak_tempuh: removedSymbol }))
+        }
+
+        console.log(formData);
     }
 
     const onSubmit = async (e) => {
@@ -106,6 +125,7 @@ function FormMobilBekas() {
                 userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategori: 'mobil-bekas', foto: imageClouded
             }
 
+            console.log(data);
             dispatch(formMobilBekas(data))
             setSelectedImage([])
             setImageClouded([])
