@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import UploadFoto from '../../components/UploadFoto';
+import NumberFormat from 'react-number-format';
 
 function FormMobilBekas() {
     const [selectedImage, setSelectedImage] = useState([])
@@ -14,6 +15,11 @@ function FormMobilBekas() {
     const [isLoadingUpload, setIsLoadingUpload] = useState(false)
     const [provinsiData, setProvinsiData] = useState([])
     const { user } = useSelector((state) => state.auth)
+    const [formattedValue, setFormattedValue] = useState({
+        kapasitasMesin: '',
+        jarakTempuh: '',
+        formattedHarga: ''
+    })
     const [formData, setFormData] = useState({
         userId: user ? user.id : 0,
         merk: '',
@@ -195,8 +201,14 @@ function FormMobilBekas() {
                                     placeholder='42000'
                                     required={true}
                                     onChange={onChange}
+                                    value={formattedValue.jarakTempuh}
                                     helperText={<><p className='text-xs'>Tanpa simbol titik</p></>}
                                 />
+                                <NumberFormat className="hidden" value={jarak_tempuh} thousandsGroupStyle="thousand" thousandSeparator={true} onValueChange={(values) => {
+                                    const { formattedValue, value } = values
+
+                                    setFormattedValue(prevState => ({ ...prevState, jarakTempuh: formattedValue }))
+                                }} />
                             </div>
                             <div>
                                 <div className="mb-2 block">
@@ -246,8 +258,14 @@ function FormMobilBekas() {
                                         placeholder='1000'
                                         onChange={onChange}
                                         required={true}
+                                        value={formattedValue.kapasitasMesin}
                                         helperText={<><p className='text-xs'>Tanpa simbol titik</p></>}
                                     />
+                                    <NumberFormat className="hidden" value={kapasitas_mesin} thousandsGroupStyle="thousand" thousandSeparator={true} onValueChange={(values) => {
+                                        const { formattedValue, value } = values
+
+                                        setFormattedValue(prevState => ({ ...prevState, kapasitasMesin: formattedValue }))
+                                    }} />
                                 </div>
                             </div>
                         </div>
@@ -309,7 +327,13 @@ function FormMobilBekas() {
                                     addon='Rp'
                                     required={true}
                                     onChange={onChange}
+                                    value={formattedValue.formattedHarga}
                                 />
+                                <NumberFormat className="hidden" value={harga} thousandsGroupStyle="thousand" thousandSeparator={true} onValueChange={(values) => {
+                                    const { formattedValue, value } = values
+
+                                    setFormattedValue(prevState => ({ ...prevState, formattedHarga: formattedValue }))
+                                }} />
                             </div>
                             <div>
                                 <div className="mb-2 block">
