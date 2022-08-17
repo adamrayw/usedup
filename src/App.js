@@ -15,24 +15,28 @@ import FormElektronik from './pages/form-jual/FormElektronik';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SuccessPages from './pages/form-jual/SuccessPages';
+import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route path='/jual/mobil-bekas' element={<FormMobilBekas />} />
+          <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
+          <Route path='/jual/property' element={<FormProperty />} />
+          <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
+          <Route path='/' element={<Home />} exact />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
-        <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dijual-hyundai-stargazer-baru' element={<DetailItem />} />
         <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
-        <Route path='/jual/mobil-bekas' element={<FormMobilBekas />} />
-        <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
-        <Route path='/jual/property' element={<FormProperty />} />
-        <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
         <Route path='/success' element={<SuccessPages />} />
       </Routes>
+
       <ToastContainer />
       <FooterComponent />
     </div>
