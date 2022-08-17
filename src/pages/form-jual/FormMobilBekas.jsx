@@ -192,9 +192,10 @@ function FormMobilBekas() {
                                     type="text"
                                     sizing="md"
                                     name='jarak_tempuh'
-                                    placeholder='42.000'
+                                    placeholder='42000'
                                     required={true}
                                     onChange={onChange}
+                                    helperText={<><p className='text-xs'>Tanpa simbol titik</p></>}
                                 />
                             </div>
                             <div>
@@ -234,7 +235,7 @@ function FormMobilBekas() {
                                     <div className="mb-2 block">
                                         <Label
                                             htmlFor="base"
-                                            value="Kapasitas Mesin (km)"
+                                            value="Kapasitas Mesin (cc)"
                                         />
                                     </div>
                                     <TextInput
@@ -242,9 +243,10 @@ function FormMobilBekas() {
                                         type="text"
                                         sizing="md"
                                         name="kapasitas_mesin"
-                                        placeholder='1.000'
+                                        placeholder='1000'
                                         onChange={onChange}
                                         required={true}
+                                        helperText={<><p className='text-xs'>Tanpa simbol titik</p></>}
                                     />
                                 </div>
                             </div>
