@@ -82,8 +82,6 @@ function FormMobilBekas() {
             const removedSymbol = value.replace(/,/g, "").split("").join("")
             setFormData(prevState => ({ ...prevState, jarak_tempuh: removedSymbol }))
         }
-
-        console.log(formData);
     }
 
     const onSubmit = async (e) => {
@@ -125,7 +123,6 @@ function FormMobilBekas() {
                 userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategori: 'mobil-bekas', foto: imageClouded
             }
 
-            console.log(data);
             dispatch(formMobilBekas(data))
             setSelectedImage([])
             setImageClouded([])
