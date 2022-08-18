@@ -132,7 +132,7 @@ function FormMobilBekas() {
 
     const getProvinsi = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/api/provinsi
+            const res = await axios.get(`https://usedup.vercel.app/api/provinsi
             `)
             setProvinsiData(res.data)
         } catch (e) {
