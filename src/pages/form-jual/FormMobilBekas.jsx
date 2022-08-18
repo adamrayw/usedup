@@ -219,10 +219,9 @@ function FormMobilBekas() {
                                     required={true}
                                     onChange={onChange}
                                     value={formattedValue.jarakTempuh}
-                                    helperText={<><p className='text-xs'>Tanpa simbol titik</p></>}
                                 />
                                 <NumberFormat className="hidden" value={jarak_tempuh} thousandsGroupStyle="thousand" thousandSeparator={true} onValueChange={(values) => {
-                                    const { formattedValue, value } = values
+                                    const { formattedValue } = values
 
                                     setFormattedValue(prevState => ({ ...prevState, jarakTempuh: formattedValue }))
                                 }} />
@@ -276,10 +275,9 @@ function FormMobilBekas() {
                                         onChange={onChange}
                                         required={true}
                                         value={formattedValue.kapasitasMesin}
-                                        helperText={<><p className='text-xs'>Tanpa simbol titik</p></>}
                                     />
                                     <NumberFormat className="hidden" value={kapasitas_mesin} thousandsGroupStyle="thousand" thousandSeparator={true} onValueChange={(values) => {
-                                        const { formattedValue, value } = values
+                                        const { formattedValue } = values
 
                                         setFormattedValue(prevState => ({ ...prevState, kapasitasMesin: formattedValue }))
                                     }} />
@@ -347,7 +345,7 @@ function FormMobilBekas() {
                                     value={formattedValue.formattedHarga}
                                 />
                                 <NumberFormat className="hidden" value={harga} thousandsGroupStyle="thousand" thousandSeparator={true} onValueChange={(values) => {
-                                    const { formattedValue, value } = values
+                                    const { formattedValue } = values
 
                                     setFormattedValue(prevState => ({ ...prevState, formattedHarga: formattedValue }))
                                 }} />
@@ -389,7 +387,10 @@ function FormMobilBekas() {
                             </div>
                             <div className='pb-2'>
                                 <div className='flex justify-between items-start'>
-                                    <p className='font-bold'>UPLOAD FOTO</p>
+                                    <div>
+                                        <p className='font-bold'>UPLOAD FOTO</p>
+                                        <p id="helper-text-explanation" className="text-xs text-gray-500 dark:text-gray-400">Max 6 foto</p>
+                                    </div>
                                     {imageClouded.length === selectedImage.length ? (
                                         <>
                                             {selectedImage.length === 0 ? '' : (
@@ -418,14 +419,14 @@ function FormMobilBekas() {
                                         </>
                                     )}
                                 </div>
-                                <p id="helper-text-explanation" className="text-xs text-gray-500 dark:text-gray-400">Max 6 foto</p>
+
                             </div>
-                            <div className='flex flex-wrap items-center'>
+                            <div className='grid grid-cols-3 justify-between items-center gap-4'>
                                 {selectedImage.map((e, index) => {
                                     return (
                                         <img
                                             key={index}
-                                            className="w-20 h-20"
+                                            className="w-28 h-24 mx-auto shadow-sm p-2 rounded"
                                             src={URL.createObjectURL(e)}
                                             alt="foto-item"
                                         />
