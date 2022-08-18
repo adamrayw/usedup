@@ -19,7 +19,7 @@ function UploadFoto() {
   }
 
   return (
-    <div id="fileUpload" className='flex flex-wrap justify-between'>
+    <div id="fileUpload" className='flex flex-wrap justify-center items-center'>
       <div>
         <label htmlFor="image">
           <div className='border border-black p-4 inline-block'>
