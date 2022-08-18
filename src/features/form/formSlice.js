@@ -11,7 +11,8 @@ const initialState = {
 
 export const formMobilBekas = createAsyncThunk('form/mobil-bekas', async (data, thunkAPI) => {
     try {
-        return await formService.formMobilBekas(data)
+        const token = thunkAPI.getState().auth.user ? thunkAPI.getState().auth.user.token : null
+        return await formService.formMobilBekas(data, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
 
