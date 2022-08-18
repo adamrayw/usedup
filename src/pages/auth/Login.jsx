@@ -83,6 +83,7 @@ function Login() {
                                     id="email1"
                                     type="email"
                                     name='email'
+                                    disabled={isLoading ? true : false}
                                     onChange={onChange}
                                     placeholder="name@usedup.com"
                                     required={true}
@@ -98,20 +99,21 @@ function Login() {
                                 <TextInput
                                     id="password1"
                                     type="password"
+                                    disabled={isLoading ? true : false}
                                     name='password'
                                     onChange={onChange}
                                     required={true}
                                 />
                             </div>
                             {isLoading ? (
-                                <Button color='dark'>
+                                <Button color='dark' disabled={true}>
                                     <div className="mr-3">
                                         <Spinner
                                             size="sm"
                                             light={true}
                                         />
                                     </div>
-                                    Loading ...
+                                    Loggin in ...
                                 </Button>
                             ) : (
                                 <Button type="submit" color="dark">

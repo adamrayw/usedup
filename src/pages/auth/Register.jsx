@@ -150,6 +150,7 @@ function Register() {
                                     id="nama"
                                     type="text"
                                     name='name'
+                                    disabled={isLoading ? true : false}
                                     onChange={onChangeName}
                                     color={validation.name.length > 1 ? 'failure' : ''}
                                     required={true}
@@ -169,6 +170,7 @@ function Register() {
                                     id="email1"
                                     type="email"
                                     name='email'
+                                    disabled={isLoading ? true : false}
                                     placeholder="name@usedup.com"
                                     color='light'
                                     onChange={onChangeEmail}
@@ -188,6 +190,7 @@ function Register() {
                                     type="password"
                                     onChange={onChangePassword}
                                     name='password'
+                                    disabled={isLoading ? true : false}
                                     color={validation.password.length > 1 ? 'failure' : ''}
                                     required={true}
                                 />
@@ -197,14 +200,14 @@ function Register() {
                             </div>
 
                             {isLoading ? (
-                                <Button color='dark'>
+                                <Button color='dark' disabled={true}>
                                     <div className="mr-3">
                                         <Spinner
                                             size="sm"
                                             light={true}
                                         />
                                     </div>
-                                    Loading ...
+                                    Please wait ...
                                 </Button>
                             ) : (
                                 <Button type="submit" color="dark">
