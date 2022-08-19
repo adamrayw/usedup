@@ -1,14 +1,14 @@
 import { Breadcrumb, Tabs, Carousel, Avatar, Card, Button } from 'flowbite-react'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsFillTelephoneFill } from 'react-icons/bs'
 import { IoLogoWhatsapp } from 'react-icons/io'
-import { FaRegHeart } from 'react-icons/fa'
+import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 function DetailItem() {
     const [itemData, setItemData] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const params = useParams()
 
@@ -39,7 +39,7 @@ function DetailItem() {
                         {itemData.judul_iklan}
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <div className='flex md:flex-row flex-col justify-between mt-4 md:space-y-0 space-y-4'>
+                <div className='flex md:flex-row flex-col justify-between md:space-y-0 space-y-4'>
                     <div className='text-left md:w-1/2'>
                         <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
                             {itemData.foto ? (
@@ -76,9 +76,25 @@ function DetailItem() {
                             )}
 
                         </div>
-                        <div className="keterangan space-y-3 mt-6">
-                            <h1 className='font-bold text-4xl'>{itemData.judul_iklan}</h1>
-                            <h3 className='font-bold text-blue-800 text-xl'> Rp {Intl.NumberFormat('id-ID').format(itemData.harga)}</h3>
+                        <div className="keterangan space-y-3 ">
+                            {loading ? (
+
+                                <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
+
+                                    <div class="w-full">
+                                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
+                                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
+                                    <p className='text-sm font-medium w-fit flex items-center text-gray-400 bg-white shadow p-2'><FaMapMarkerAlt className='mr-2' />{itemData.Provinsi ? itemData.Provinsi.name : ''}</p>
+                                    <h1 h1 className='font-bold text-4xl'>{itemData.judul_iklan}</h1>
+                                    <h3 className='font-bold text-blue-600 text-xl'> Rp {Intl.NumberFormat('id-ID').format(itemData.harga)}</h3>
+                                </>
+                            )}
                             <Tabs.Group
                                 aria-label="Tabs with underline"
                                 style='underline'
@@ -108,9 +124,9 @@ function DetailItem() {
                                         </div>
                                     ) : (
 
-                                        <p className='font-semibold text-lg'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
+                                        <p className='font-bold text-lg'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
                                     )}
-                                    <p className='inline-block font-semibold text-xs bg-gray-100 p-2'>Jakarta Barat</p>
+                                    {/* <p className='flex items-center rounded font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p> */}
                                 </div>
                             </div>
                             <div>
