@@ -1,12 +1,9 @@
-import { Card } from 'flowbite-react'
 import { Link } from 'react-router-dom'
-import Produk from '../assets/produk.jpg'
 import { FaHeart } from 'react-icons/fa'
 import { useState } from 'react'
 
-function CardItem() {
+function CardItem(props) {
     const [favorite, setFavorite] = useState(false)
-
 
     const onFavorite = () => {
         setFavorite(!favorite)
@@ -29,21 +26,19 @@ function CardItem() {
                     </>)}
 
                 </div>
-                <Link to="/dijual-hyundai-stargazer-baru">
-                    <Card
-                        imgAlt="Image Item"
-                        imgSrc={Produk}
-                    >
-                        <h5 className="md:text-xl text-sm font-semibold tracking-tight text-gray-900 text-left dark:text-white">
-                            Dijual hyundai stargazer baru
-                        </h5>
-
-                        <div className="flex items-center justify-between">
-                            <span className="md:text-xl text-xs text-left font-bold text-blue-800 dark:text-white">
-                                Rp 320.000.000
-                            </span>
+                <Link to={'/view/' + props.data.id}>
+                    <div className='shadow'>
+                        <img src={props.data.foto.foto[0].url} alt="item" className='w-full md:h-44 h-32 rounded-t bg-auto' />
+                        <div className='px-4 pt-4 pb-4 '>
+                            <h2 className="md:text-xl text-sm font-semibold tracking-tight text-gray-900 text-left dark:text-white">
+                                {props.data.judul_iklan}
+                            </h2>
+                            <h4 className="md:text-lg text-xs mt-1 text-left font-bold text-blue-800 dark:text-white">
+                                Rp {Intl.NumberFormat('id-ID').format(props.data.harga)}
+                            </h4>
+                            <p className='text-right text-xs mt-4 text-gray-400'>{props.data.Provinsi.name}</p>
                         </div>
-                    </Card>
+                    </div>
                 </Link>
             </div>
         </>
