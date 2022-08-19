@@ -17,6 +17,7 @@ function DetailItem() {
         try {
             setLoading(true)
             const response = await axios.get('https://usedup.herokuapp.com/api/' + params.id)
+            // const response = await axios.get('http://localhost:8080/api/' + params.id)
 
             setItemData(response.data)
             setLoading(false)
@@ -27,28 +28,29 @@ function DetailItem() {
 
     useEffect(() => {
         getItemData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <>
             <div className="max-w-6xl pb-10 pt-4 mx-auto md:px-0 px-4">
                 <Breadcrumb aria-label="Default breadcrumb example">
-                    <Breadcrumb.Item href="#">
-                        Mobil Bekas
+                    <Breadcrumb.Item href="/">
+                        <p className='text-xs'>Mobil Bekas</p>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        {itemData.judul_iklan}
+                        <p className='text-xs'>{itemData.judul_iklan}</p>
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <div className='flex md:flex-row flex-col justify-between md:space-y-0 space-y-4'>
-                    <div className='text-left md:w-1/2'>
-                        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+                    <div className='text-left md:w-8/12'>
+                        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 my-5">
                             {itemData.foto ? (
                                 <Carousel
                                     leftControl={<>
-                                        {itemData.foto.foto.length === 1 ? false : (<BsFillArrowLeftCircleFill />)}</>
+                                        {itemData.foto.foto.length === 1 ? false : (<BsFillArrowLeftCircleFill className='text-white' />)}</>
                                     }
                                     rightControl={<>
-                                        {itemData.foto.foto.length === 1 ? false : (<BsFillArrowRightCircleFill />)}</>
+                                        {itemData.foto.foto.length === 1 ? false : (<BsFillArrowRightCircleFill className='text-white' />)}</>
                                     }
                                     indicators={false}
                                 >
@@ -56,7 +58,7 @@ function DetailItem() {
                                     {itemData.foto.foto.map(e => {
                                         return (
 
-                                            <img src={e.url} alt="dwa" className='w-full bg-cover' />
+                                            <img src={e.url} alt="dwa" className='w-full rounded bg-cover' />
                                         )
 
                                     })}
@@ -97,6 +99,7 @@ function DetailItem() {
                             )}
                             <Tabs.Group
                                 aria-label="Tabs with underline"
+                                // eslint-disable-next-line react/style-prop-object
                                 style='underline'
                             >
                                 <Tabs.Item title="Catatan Penjual" >
@@ -126,7 +129,7 @@ function DetailItem() {
 
                                         <p className='font-bold text-lg'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
                                     )}
-                                    {/* <p className='flex items-center rounded font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p> */}
+                                    <p className='flex items-center rounded font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p>
                                 </div>
                             </div>
                             <div>
