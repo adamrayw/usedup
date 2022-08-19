@@ -32,9 +32,9 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/dijual-hyundai-stargazer-baru' element={<DetailItem />} />
         <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
         <Route path='/success' element={<SuccessPages />} />
+        <Route path='/view/:id' element={<DetailItem />} />
       </Routes>
 
       <ToastContainer />
