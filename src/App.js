@@ -12,6 +12,7 @@ import FormMobilBekas from './pages/form-jual/FormMobilBekas';
 import FormMotorBekas from './pages/form-jual/FormMotorBekas';
 import FormProperty from './pages/form-jual/FormProperty';
 import FormElektronik from './pages/form-jual/FormElektronik';
+import CategoryPage from './pages/CategoryPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SuccessPages from './pages/form-jual/SuccessPages';
@@ -27,14 +28,15 @@ function App() {
           <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
           <Route path='/jual/property' element={<FormProperty />} />
           <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
+          <Route path='/success' element={<SuccessPages />} />
         </Route>
         <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
-        <Route path='/success' element={<SuccessPages />} />
         <Route path='/view/:id' element={<DetailItem />} />
+        <Route path='/:slug' element={<CategoryPage />} />
       </Routes>
 
       <ToastContainer />
