@@ -29,7 +29,7 @@ export default function Home() {
                 <div className="container max-w-6xl mx-auto md:px-0 px-4">
                     <div className="featured mt-10">
                         <div className='text-left mb-4'>
-                            <h2 className='font-bold text-4xl text-black'>Barang Baru!</h2>
+                            <h2 className='font-bold md:text-4xl text-xl text-black'>Jangan sampai keduluan!</h2>
                         </div>
                         <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
 
