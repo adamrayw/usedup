@@ -42,7 +42,9 @@ function PilihKategori() {
                         <>
                             {categories.map((e) => {
                                 return (
-                                    <Link key={e.id} to={'/jual/' + e.slug}>
+                                    <Link key={e.id} to={'/jual/' + e.slug} onClick={() => {
+                                        localStorage.setItem('kategoriId', e.id)
+                                    }}>
                                         <div className='w-full p-4 border border-black hover:bg-gray-50 transition'>
                                             {e.name}
                                         </div>
