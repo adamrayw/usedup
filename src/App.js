@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SuccessPages from './pages/form-jual/SuccessPages';
 import PrivateRoutes from './utils/PrivateRoutes';
+import FormJual from './pages/FormJual';
 
 function App() {
   return (
@@ -24,10 +25,7 @@ function App() {
       <Header />
       <Routes>
         <Route element={<PrivateRoutes />}>
-          <Route path='/jual/mobil-bekas' element={<FormMobilBekas />} />
-          <Route path='/jual/motor-bekas' element={<FormMotorBekas />} />
-          <Route path='/jual/property' element={<FormProperty />} />
-          <Route path='/jual/elektronik-gadget' element={<FormElektronik />} />
+          <Route path='/jual/:slug' element={<FormJual />} />
           <Route path='/success' element={<SuccessPages />} />
         </Route>
         <Route path='/' element={<Home />} />
