@@ -14,14 +14,14 @@ function CardItem(props) {
             <div className="max-w-sm relative">
                 <div className="absolute top-0 right-0 pt-4 pr-4">
                     {favorite ? (<>
-                        <button className='p-2 border bg-red-400 rounded-full' onClick={onFavorite}>
+                        <button className='p-1.5 bg-red-400 rounded-full' onClick={onFavorite}>
 
-                            <FaHeart className='text-white' />
+                            <FaHeart className='text-white md:text-sm text-xs' />
                         </button>
 
                     </>) : (<>
-                        <button className='p-2 border bg-white rounded-full' onClick={onFavorite}>
-                            <FaHeart className='text-gray-400' />
+                        <button className='p-1.5 bg-white rounded-full' onClick={onFavorite}>
+                            <FaHeart className='text-gray-400 md:text-sm text-xs' />
                         </button>
                     </>)}
 
@@ -36,7 +36,7 @@ function CardItem(props) {
                             <h4 className="md:text-lg  text-xs mt-1 text-left font-bold text-blue-600 dark:text-white">
                                 Rp {Intl.NumberFormat('id-ID').format(props.data.harga)}
                             </h4>
-                            <p className='text-right text-xs mt-4 text-gray-400'>{props.data.Provinsi.name}</p>
+                            <p className='text-right text-xs mt-4 text-gray-400 line-clamp-1'>{props.data.Provinsi.name}</p>
                         </div>
                     </div>
                 </Link>
