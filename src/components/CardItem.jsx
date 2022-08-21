@@ -33,7 +33,7 @@ function CardItem(props) {
                             <h2 className="md:text-xl text-sm font-semibold tracking-tight text-gray-900 text-left dark:text-white line-clamp-1">
                                 {props.data.judul_iklan}
                             </h2>
-                            <h4 className="md:text-lg text-xs mt-1 text-left font-bold text-blue-800 dark:text-white">
+                            <h4 className="md:text-lg text-xs mt-1 text-left font-bold text-blue-600 dark:text-white">
                                 Rp {Intl.NumberFormat('id-ID').format(props.data.harga)}
                             </h4>
                             <p className='text-right text-xs mt-4 text-gray-400'>{props.data.Provinsi.name}</p>
