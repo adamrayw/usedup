@@ -17,7 +17,8 @@ function CategoryPage() {
 
     const getCategoryItems = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/kategori/' + slug)
+            // const response = await axios.get('http://localhost:8080/api/kategori/' + slug)
+            const response = await axios.get('httpa://usedup.herokuapp.com/api/kategori/' + slug)
             setData(response.data.Iklan)
         } catch (error) {
             console.log(error)
