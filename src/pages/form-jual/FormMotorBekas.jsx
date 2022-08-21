@@ -122,7 +122,6 @@ function FormMotorBekas() {
                 userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategoriId: id, foto: imageClouded
             }
 
-            console.log(data)
             dispatch(formMobilBekas(data))
             setSelectedImage([])
             setImageClouded([])
