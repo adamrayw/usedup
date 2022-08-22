@@ -20,6 +20,7 @@ function DetailItem() {
             // const response = await axios.get('http://localhost:8080/api/' + params.id)
 
             setItemData(response.data)
+            // console.log(response.data)
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -57,8 +58,7 @@ function DetailItem() {
 
                                     {itemData.foto.foto.map(e => {
                                         return (
-
-                                            <img src={e.url} alt="dwa" className='w-full rounded bg-cover' />
+                                            <img key={e.asset_id} src={e.url} alt="dwa" className='w-full rounded bg-cover' />
                                         )
 
                                     })}
@@ -81,19 +81,19 @@ function DetailItem() {
                         <div className="keterangan space-y-3 ">
                             {loading ? (
 
-                                <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
+                                <div role="status" className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
 
-                                    <div class="w-full">
-                                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
-                                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+                                    <div className="w-full">
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
+                                        <div className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
 
                                     </div>
                                 </div>
                             ) : (
                                 <>
                                     <p className='text-sm font-medium w-fit flex items-center text-gray-400 bg-white shadow p-2'><FaMapMarkerAlt className='mr-2' />{itemData.Provinsi ? itemData.Provinsi.name : ''}</p>
-                                    <h1 h1 className='font-bold text-4xl'>{itemData.judul_iklan}</h1>
+                                    <h1 className='font-bold text-4xl'>{itemData.judul_iklan}</h1>
                                     <h3 className='font-bold text-blue-600 text-xl'> Rp {Intl.NumberFormat('id-ID').format(itemData.harga)}</h3>
                                 </>
                             )}
@@ -122,8 +122,8 @@ function DetailItem() {
                                 </div>
                                 <div className='ml-4 space-y-2'>
                                     {loading ? (
-                                        <div role="status" class="max-w-sm animate-pulse">
-                                            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                        <div role="status" className="max-w-sm animate-pulse">
+                                            <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
                                         </div>
                                     ) : (
 
