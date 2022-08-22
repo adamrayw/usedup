@@ -3,6 +3,7 @@ import CardItem from '../components/CardItem'
 import { Button } from 'flowbite-react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import api from '../utils/api'
 
 export default function Home() {
 
@@ -16,8 +17,8 @@ export default function Home() {
 
     const getAllItems = async () => {
         try {
-            const response = await axios.get('https://usedup.herokuapp.com/api/home?result=' + result)
-            // const response = await axios.get('http://localhost:8080/api/home?result=' + result)
+            // const response = await axios.get('https://usedup.herokuapp.com/api/home?result=' + result)
+            const response = await axios.get(api + 'home?result=' + result)
 
             setItems(response.data)
         } catch (error) {

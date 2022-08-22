@@ -3,6 +3,7 @@ import axios from 'axios'
 import CardItem from '../components/CardItem'
 import { Button } from 'flowbite-react'
 import { useParams } from 'react-router-dom'
+import api from '../utils/api'
 
 function CategoryPage() {
     const [data, setData] = useState([])
@@ -17,8 +18,7 @@ function CategoryPage() {
 
     const getCategoryItems = async () => {
         try {
-            // const response = await axios.get('http://localhost:8080/api/kategori/' + slug)
-            const response = await axios.get('https://usedup.herokuapp.com/api/kategori/' + slug)
+            const response = await axios.get(api + 'kategori/' + slug)
             setData(response.data)
         } catch (error) {
             console.log(error)

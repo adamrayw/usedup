@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import UploadFoto from '../../components/UploadFoto';
 import NumberFormat from 'react-number-format';
+import api from '../../utils/api';
 
 function FormMotorBekas() {
     const [selectedImage, setSelectedImage] = useState([])
@@ -131,10 +132,7 @@ function FormMotorBekas() {
 
     const getProvinsi = async () => {
         try {
-            const res = await axios.get(`https://usedup.herokuapp.com/api/provinsi
-            `)
-            // const res = await axios.get(`http://localhost:8080/api/provinsi
-            // `)
+            const res = await axios.get(api + 'provinsi')
             setProvinsiData(res.data)
         } catch (e) {
             alert(e)

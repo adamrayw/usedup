@@ -6,6 +6,7 @@ import { HiHome } from 'react-icons/hi'
 import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import api from '../utils/api'
 
 function DetailItem() {
     const [itemData, setItemData] = useState([])
@@ -17,8 +18,8 @@ function DetailItem() {
     const getItemData = async () => {
         try {
             setLoading(true)
-            const response = await axios.get('https://usedup.herokuapp.com/api/' + params.id)
-            // const response = await axios.get('http://localhost:8080/api/' + params.id)
+            // const response = await axios.get('https://usedup.herokuapp.com/api/' + params.id)
+            const response = await axios.get(api + params.id)
 
             setItemData(response.data)
             setLoading(false)

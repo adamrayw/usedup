@@ -1,6 +1,7 @@
 import axios from 'axios'
+import api from '../../utils/api'
 
-const API_URL = 'https://usedup.herokuapp.com/api/'
+const API_URL = api
 
 const formMobilBekas = async (data, token) => {
 

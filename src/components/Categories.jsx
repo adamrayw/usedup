@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import { toast } from "react-toastify"
+import api from '../utils/api'
 
 function Categories() {
 
@@ -14,8 +15,8 @@ function Categories() {
 
     const getCategories = async () => {
         try {
-            // const response = await axios.get('http://localhost:8080/api/kategori')
-            const response = await axios.get('https://usedup.herokuapp.com/api/kategori')
+            const response = await axios.get(api + 'kategori')
+            // const response = await axios.get('https://usedup.herokuapp.com/api/kategori')
 
             setCategories(response.data)
         } catch (error) {
