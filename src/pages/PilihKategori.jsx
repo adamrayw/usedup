@@ -13,7 +13,8 @@ function PilihKategori() {
 
     const getCategories = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/kategori')
+            // const response = await axios.get('http://localhost:8080/api/kategori')
+            const response = await axios.get('https://usedup.herokuapp.com/api/kategori')
 
             setCategories(response.data)
         } catch (error) {
