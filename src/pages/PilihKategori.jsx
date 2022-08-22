@@ -2,6 +2,7 @@ import { Card } from 'flowbite-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import api from '../utils/api'
 
 function PilihKategori() {
     const [categories, setCategories] = useState([])
@@ -13,8 +14,7 @@ function PilihKategori() {
 
     const getCategories = async () => {
         try {
-            // const response = await axios.get('http://localhost:8080/api/kategori')
-            const response = await axios.get('https://usedup.herokuapp.com/api/kategori')
+            const response = await axios.get(api + 'kategori')
 
             setCategories(response.data)
         } catch (error) {
