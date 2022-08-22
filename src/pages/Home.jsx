@@ -7,15 +7,17 @@ import { useEffect, useState } from 'react'
 export default function Home() {
 
     const [items, setItems] = useState([])
+    const [result, setResult] = useState(8)
+
 
     useEffect(() => {
         getAllItems()
-    }, [])
+    }, [result])
 
     const getAllItems = async () => {
         try {
-            const response = await axios.get('https://usedup.herokuapp.com/api/home?result=8')
-            // const response = await axios.get('http://localhost:8080/api/home?result=8')
+            const response = await axios.get('https://usedup.herokuapp.com/api/home?result=' + result)
+            // const response = await axios.get('http://localhost:8080/api/home?result=' + result)
 
             setItems(response.data)
         } catch (error) {
@@ -97,7 +99,7 @@ export default function Home() {
 
                         </div>
                         <div className='flex justify-center my-6'>
-                            <Button color="dark">Tampilkan lainnya</Button>
+                            <Button color="dark" onClick={() => setResult(result + 8)}>Tampilkan lainnya</Button>
                         </div>
                     </div>
                 </div>
