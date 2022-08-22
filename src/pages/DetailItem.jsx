@@ -2,8 +2,9 @@ import { Breadcrumb, Tabs, Carousel, Avatar, Card, Button } from 'flowbite-react
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsFillTelephoneFill } from 'react-icons/bs'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
+import { HiHome } from 'react-icons/hi'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 function DetailItem() {
@@ -20,7 +21,6 @@ function DetailItem() {
             // const response = await axios.get('http://localhost:8080/api/' + params.id)
 
             setItemData(response.data)
-            // console.log(response.data)
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -35,8 +35,15 @@ function DetailItem() {
         <>
             <div className="max-w-6xl pb-10 pt-4 mx-auto md:px-0 px-4">
                 <Breadcrumb aria-label="Default breadcrumb example">
-                    <Breadcrumb.Item href="/">
-                        <p className='text-xs'>Mobil Bekas</p>
+                    <Breadcrumb.Item>
+                        <Link to='/'>
+                            <HiHome />
+                        </Link>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                        <Link to={itemData.Kategori ? '/' + itemData.Kategori.slug : '/'}>
+                            <p className='text-xs'>{itemData.Kategori ? itemData.Kategori.name : ''}</p>
+                        </Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
                         <p className='text-xs'>{itemData.judul_iklan}</p>
