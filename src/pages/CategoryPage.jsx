@@ -19,7 +19,7 @@ function CategoryPage() {
         try {
             // const response = await axios.get('http://localhost:8080/api/kategori/' + slug)
             const response = await axios.get('https://usedup.herokuapp.com/api/kategori/' + slug)
-            setData(response.data.Iklan)
+            setData(response.data)
         } catch (error) {
             console.log(error)
         }
@@ -31,7 +31,7 @@ function CategoryPage() {
                 <div className="container max-w-6xl mx-auto md:px-0 px-4">
                     <div className="featured mt-10">
                         <div className='text-left mb-4'>
-                            <h2 className='font-bold md:text-4xl text-xl text-black'>Jual Beli Mobil Bekas</h2>
+                            <h2 className='font-bold md:text-4xl text-xl text-black'>Jual Beli {data.name}</h2>
 
                         </div>
                         <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
@@ -88,7 +88,7 @@ function CategoryPage() {
                                 </>
                             ) : (
                                 <>
-                                    {data.map((data, index) => {
+                                    {data.Iklan.map((data, index) => {
                                         return (
                                             <CardItem key={index} data={data} />
                                         )
