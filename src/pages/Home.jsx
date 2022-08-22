@@ -14,8 +14,8 @@ export default function Home() {
 
     const getAllItems = async () => {
         try {
-            const response = await axios.get('https://usedup.herokuapp.com/api/home')
-            // const response = await axios.get('http://localhost:8080/api/home')
+            const response = await axios.get('https://usedup.herokuapp.com/api/home?result=8')
+            // const response = await axios.get('http://localhost:8080/api/home?result=8')
 
             setItems(response.data)
         } catch (error) {
