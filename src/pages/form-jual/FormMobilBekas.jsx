@@ -1,8 +1,8 @@
 import { Label, TextInput, Textarea, Button, Spinner } from 'flowbite-react'
-import { FaCloudUploadAlt, FaCheck, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaCloudUploadAlt, FaCheck, FaMapMarkerAlt, FaTimes } from 'react-icons/fa'
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { formMobilBekas, reset, resetUpload } from '../../features/form/formSlice'
+import { formMobilBekas, reset, resetUpload, removeFoto } from '../../features/form/formSlice'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -40,6 +40,8 @@ function FormMobilBekas() {
     const { merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga } = formData
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    console.log(foto)
 
     useEffect(() => {
         if (isError) {
@@ -432,12 +434,17 @@ function FormMobilBekas() {
                             <div className='grid grid-cols-3 justify-between items-center gap-4'>
                                 {selectedImage.map((e, index) => {
                                     return (
-                                        <img
-                                            key={index}
-                                            className="w-28 h-24 mx-auto shadow-sm p-2 rounded"
-                                            src={URL.createObjectURL(e)}
-                                            alt="foto-item"
-                                        />
+                                        <div className='relative'>
+                                            <div className='absolute bg-white pl-3 pt-2 pb-3 cursor-pointer hover:bg-gray-50 active:bg-gray-100 active:rounded-tr pr-1 shadow right-0 rounded-bl-full rounded-tr' onClick={() => dispatch(removeFoto(e))}>
+                                                <FaTimes className='text-xs text-red-500' />
+                                            </div>
+                                            <img
+                                                key={index}
+                                                className="w-full h-20 mx-auto shadow-md object-fill rounded"
+                                                src={URL.createObjectURL(e)}
+                                                alt="foto-item"
+                                            />
+                                        </div>
                                     )
                                 })}
 
