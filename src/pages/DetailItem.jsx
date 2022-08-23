@@ -56,15 +56,15 @@ function DetailItem() {
                             {itemData.foto ? (
                                 <Carousel
                                     leftControl={<>
-                                        {itemData.foto.foto.length === 1 ? false : (<BsFillArrowLeftCircleFill className='text-white' />)}</>
+                                        {itemData.foto.length === 1 ? false : (<BsFillArrowLeftCircleFill className='text-white' />)}</>
                                     }
                                     rightControl={<>
-                                        {itemData.foto.foto.length === 1 ? false : (<BsFillArrowRightCircleFill className='text-white' />)}</>
+                                        {itemData.foto.length === 1 ? false : (<BsFillArrowRightCircleFill className='text-white' />)}</>
                                     }
                                     indicators={false}
                                 >
 
-                                    {itemData.foto.foto.map(e => {
+                                    {itemData.foto.map(e => {
                                         return (
                                             <img key={e.asset_id} src={e.url} alt="dwa" className='w-full rounded bg-cover' />
                                         )
