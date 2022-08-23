@@ -52,7 +52,7 @@ function DetailItem() {
                 </Breadcrumb>
                 <div className='flex md:flex-row flex-col justify-between md:space-y-0 space-y-4'>
                     <div className='text-left md:w-3/5'>
-                        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 my-2">
+                        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 my-2 2xl:my-4">
                             {itemData.foto ? (
                                 <Carousel
                                     leftControl={<>
