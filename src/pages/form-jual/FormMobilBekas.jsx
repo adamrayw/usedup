@@ -48,8 +48,6 @@ function FormMobilBekas() {
 
         if (isSuccess) {
             navigate('/success')
-            dispatch(resetUpload())
-
         }
 
         setSelectedImage(foto)
@@ -89,7 +87,15 @@ function FormMobilBekas() {
         const formData = new FormData()
 
         if (selectedImage.length < 1) {
-            toast.error('Wajib meng-upload foto!')
+            toast.warn('Wajib meng-upload foto', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
             return
         } else {
             for (let i = 0; i < selectedImage.length; i++) {
@@ -115,16 +121,18 @@ function FormMobilBekas() {
 
 
     const onInput = (e) => {
+        const kategoriId = localStorage.getItem('kategoriId')
         e.preventDefault()
 
         if (imageClouded.length < 1) {
             return
         } else {
             const data = {
-                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategori: 'mobil-bekas', foto: imageClouded
+                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategoriId: kategoriId, foto: imageClouded
             }
 
             dispatch(formMobilBekas(data))
+            dispatch(resetUpload())
             setSelectedImage([])
             setImageClouded([])
             setFormData([])
@@ -445,7 +453,7 @@ function FormMobilBekas() {
                             </div>
                             <div className='pt-4'>
 
-                                {imageClouded.length < 1 ? (<>
+                                {isLoadingUpload ? (<>
                                     <Button color="dark" size='lg' disabled={true}>
                                         JUAL SEKARANG
                                     </Button>
@@ -463,9 +471,15 @@ function FormMobilBekas() {
                                             </Button>
                                         ) : (
                                             <>
-                                                <Button color="dark" size='lg' type='submit'>
-                                                    JUAL SEKARANG
-                                                </Button>
+                                                {imageClouded.length < 1 ? (
+                                                    <Button color="dark" size='lg' disabled={true}>
+                                                        JUAL SEKARANG
+                                                    </Button>
+                                                ) : (
+                                                    <Button color="dark" size='lg' type='submit'>
+                                                        JUAL SEKARANG
+                                                    </Button>
+                                                )}
                                             </>
                                         )}
                                     </>
