@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import formService from './formService'
 
 const initialState = {
@@ -20,13 +20,6 @@ export const formMobilBekas = createAsyncThunk('form/mobil-bekas', async (data, 
     }
 })
 
-// export const uploadFiles = createReducer([], (builder) => {
-//     builder
-//         .addCase('ADD_TODO', (state, action) => {
-//             console.log('add_todo');
-//         })
-// })
-
 export const formSlice = createSlice({
     name: 'form',
     initialState,
@@ -41,7 +34,7 @@ export const formSlice = createSlice({
             state.foto.push(action.payload)
         },
         resetUpload: (state, action) => {
-            state.foto.push([])
+            state.foto = []
         }
     },
     extraReducers: (builder) => {
