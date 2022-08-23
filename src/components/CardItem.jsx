@@ -28,7 +28,7 @@ function CardItem(props) {
                 </div>
                 <Link to={'/view/' + props.data.id}>
                     <div className='shadow'>
-                        <img src={props.data.foto.foto[0].url} alt="item" className='w-full md:h-44 h-24 rounded-t bg-auto' />
+                        <img src={props.data.foto[0].url} alt="item" className='w-full md:h-44 h-24 rounded-t bg-auto' />
                         <div className='md:p-4 p-3'>
                             <h2 className="md:text-2xl text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2">
                                 {props.data.judul_iklan}
