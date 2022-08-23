@@ -35,6 +35,11 @@ export const formSlice = createSlice({
         },
         resetUpload: (state, action) => {
             state.foto = []
+        },
+        removeFoto: (state, action) => {
+            const findIndex = state.foto.findIndex(e => e.name === action.payload.name)
+            state.foto.splice(findIndex, 1)
+            console.log(state.foto)
         }
     },
     extraReducers: (builder) => {
@@ -54,5 +59,5 @@ export const formSlice = createSlice({
     }
 })
 
-export const { reset, uploadFile, resetUpload } = formSlice.actions
+export const { reset, uploadFile, resetUpload, removeFoto } = formSlice.actions
 export default formSlice.reducer
