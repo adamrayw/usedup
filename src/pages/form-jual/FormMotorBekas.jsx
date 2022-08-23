@@ -88,7 +88,15 @@ function FormMotorBekas() {
         const formData = new FormData()
 
         if (selectedImage.length < 1) {
-            toast.error('Wajib meng-upload foto!')
+            toast.warn('Wajib meng-upload foto', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
             return
         } else {
             for (let i = 0; i < selectedImage.length; i++) {
@@ -120,7 +128,7 @@ function FormMotorBekas() {
             return
         } else {
             const data = {
-                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategoriId: id, foto: imageClouded
+                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategori: id, kategoriId: id, foto: imageClouded
             }
 
             dispatch(formMobilBekas(data))
@@ -433,8 +441,7 @@ function FormMotorBekas() {
                                 )}
                             </div>
                             <div className='pt-4'>
-
-                                {imageClouded.length < 1 ? (<>
+                                {isLoadingUpload ? (<>
                                     <Button color="dark" size='lg' disabled={true}>
                                         JUAL SEKARANG
                                     </Button>
@@ -452,9 +459,15 @@ function FormMotorBekas() {
                                             </Button>
                                         ) : (
                                             <>
-                                                <Button color="dark" size='lg' type='submit'>
-                                                    JUAL SEKARANG
-                                                </Button>
+                                                {imageClouded.length < 1 ? (
+                                                    <Button color="dark" size='lg' disabled={true}>
+                                                        JUAL SEKARANG
+                                                    </Button>
+                                                ) : (
+                                                    <Button color="dark" size='lg' type='submit'>
+                                                        JUAL SEKARANG
+                                                    </Button>
+                                                )}
                                             </>
                                         )}
                                     </>
