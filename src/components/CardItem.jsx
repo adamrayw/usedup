@@ -1,12 +1,33 @@
 import { Link } from 'react-router-dom'
 import { FaHeart } from 'react-icons/fa'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 function CardItem(props) {
     const [favorite, setFavorite] = useState(false)
 
     const onFavorite = () => {
         setFavorite(!favorite)
+        if (favorite === false) {
+            toast('Berhasil menambahkan ke favorit!', {
+                icon: <FaHeart className='text-red-400' />,
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            toast('Menghapus dari favorit!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
     }
 
     return (
@@ -14,13 +35,13 @@ function CardItem(props) {
             <div className="max-w-sm relative">
                 <div className="absolute top-0 right-0 pt-4 pr-4">
                     {favorite ? (<>
-                        <button className='p-1.5 bg-red-400 rounded-full' onClick={onFavorite}>
+                        <button className='p-1.5 bg-red-400 rounded-full active:bg-red-600 transition duration-200 ' onClick={onFavorite}>
 
                             <FaHeart className='text-white md:text-sm text-xs' />
                         </button>
 
                     </>) : (<>
-                        <button className='p-1.5 bg-white rounded-full' onClick={onFavorite}>
+                        <button className='p-1.5 bg-white rounded-full active:bg-gray-200 transition duration-200' onClick={onFavorite}>
                             <FaHeart className='text-gray-400 md:text-sm text-xs' />
                         </button>
                     </>)}
@@ -28,7 +49,7 @@ function CardItem(props) {
                 </div>
                 <Link to={'/view/' + props.data.id}>
                     <div className='shadow'>
-                        <img src={props.data.foto[0].url} alt="item" className='w-full md:h-44 h-24 rounded-t bg-auto' />
+                        <img src={props.data.foto[0].url} alt="item" className='w-full md:h-44 h-24 rounded-t object-cover' />
                         <div className='md:p-4 p-3'>
                             <h2 className="md:text-2xl text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2">
                                 {props.data.judul_iklan}
