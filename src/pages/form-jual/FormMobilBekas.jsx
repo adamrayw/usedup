@@ -440,7 +440,7 @@ function FormMobilBekas() {
                                             </div>
                                             <img
                                                 key={index}
-                                                className="w-full h-20 mx-auto shadow-md object-fill rounded"
+                                                className="w-full h-20 mx-auto shadow-md object-cover rounded"
                                                 src={URL.createObjectURL(e)}
                                                 alt="foto-item"
                                             />
