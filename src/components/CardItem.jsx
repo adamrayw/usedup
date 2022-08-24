@@ -51,7 +51,7 @@ function CardItem(props) {
                     <div className='shadow'>
                         <img src={props.data.foto[0].url} alt="item" className='w-full md:h-44 h-24 rounded-t object-cover' />
                         <div className='md:p-4 p-3'>
-                            <h2 className="md:text-2xl text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2">
+                            <h2 className="md:text-xl text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2">
                                 {props.data.judul_iklan}
                             </h2>
                             <h4 className="md:text-lg  text-xs mt-1 text-left font-bold text-blue-600 dark:text-white">
