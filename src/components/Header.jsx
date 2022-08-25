@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
 import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
+import { MdSell } from 'react-icons/md'
 
 function Header() {
     const { user } = useSelector((state) => state.auth)
@@ -40,6 +41,7 @@ function Header() {
                             <div className="md:block hidden pr-4">
                                 <Link to="/jual/pilih-kategori">
                                     <Button color="light">
+                                        <MdSell className="mr-1 text-lg text-gray-800" />
                                         Jual
                                     </Button>
                                 </Link>
@@ -89,6 +91,7 @@ function Header() {
                             </Link>
                             <Link to="/jual/pilih-kategori">
                                 <Button color="light">
+                                    <MdSell className="mr-1 text-lg text-gray-800" />
                                     Jual
                                 </Button>
                             </Link>
@@ -105,6 +108,7 @@ function Header() {
                             <>
                                 <Link to="/jual/pilih-kategori">
                                     <Button color="light">
+                                        <MdSell className="mr-1 text-lg text-gray-800" />
                                         Jual
                                     </Button>
                                 </Link>
@@ -117,6 +121,7 @@ function Header() {
                             </Link>
                             <Link to="/jual/pilih-kategori">
                                 <Button color="light">
+                                    <MdSell className="mr-1 text-lg text-gray-800" />
                                     Jual
                                 </Button>
                             </Link>
