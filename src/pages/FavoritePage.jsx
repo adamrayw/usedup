@@ -64,7 +64,7 @@ function FavoritePage() {
                                 ''
                             )}
                         </div>
-                        {data.length === 0 ? (
+                        {data < 1 ? (
                             <>
                                 <div className="flex flex-col items-center mt-10">
                                     <GoPackage className="text-gray-800 text-6xl" />
