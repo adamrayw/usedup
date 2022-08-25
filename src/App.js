@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SuccessPages from './pages/form-jual/SuccessPages';
 import PrivateRoutes from './utils/PrivateRoutes';
 import FormJual from './pages/FormJual';
+import FavoritePage from './pages/FavoritePage'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path='/jual/:slug' element={<FormJual />} />
           <Route path='/success' element={<SuccessPages />} />
+          <Route path='/favorit-saya' element={<FavoritePage />} />
         </Route>
         <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />

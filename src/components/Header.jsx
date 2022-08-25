@@ -70,9 +70,11 @@ function Header() {
                                     </div>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
-                                    <div className="flex items-center">
-                                        <FaHeart className="mr-2" /> Favorit Saya
-                                    </div>
+                                    <Link to='/favorit-saya'>
+                                        <div className="flex items-center">
+                                            <FaHeart className="mr-2" /> Favorit Saya
+                                        </div>
+                                    </Link>
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item>
