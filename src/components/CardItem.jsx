@@ -1,6 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import { Link } from 'react-router-dom'
-import { FaHeart } from 'react-icons/fa'
+import { FaHeart, FaGhost } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import { MdOutlineRemoveCircle } from 'react-icons/md'
 import { toast } from 'react-toastify'
@@ -17,29 +17,26 @@ function CardItem(props) {
     useEffect(() => {
         // check userid in localstorage and userId from props
         // eslint-disable-next-line array-callback-return
-        props.data.Favorit.map((e) => {
-            if (e.userId === userId.id) {
-                setFavorite(true)
-                setFavoriteId(e.id)
-            } else {
-                setFavorite(false)
-                setFavoriteId('')
-            }
-        })
+        if (userId) {
+
+            props.data.Favorit.map((e) => {
+                if (e.userId === userId.id) {
+                    setFavorite(true)
+                    setFavoriteId(e.id)
+                } else {
+                    setFavorite(false)
+                    setFavoriteId('')
+                }
+            })
+        }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const tambahFavorit = async (id) => {
-        try {
-            setFavoriteLoading(true)
-            const response = await axios.post(api + '/tambah/favorite', {
-                userId: userId.id,
-                iklanId: id
-            })
-
-            toast('Berhasil menambahkan ke favorit!', {
-                icon: <FaHeart className='text-red-400' />,
+        if (!userId) {
+            toast('Eitss! login atau register dulu yaa', {
+                icon: <FaGhost className='text-red-400' />,
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: true,
@@ -47,12 +44,32 @@ function CardItem(props) {
                 draggable: true,
                 progress: undefined,
             });
-            setFavorite(true)
-            setFavoriteId(response.data.message.id)
-            setFavoriteLoading(false)
-        } catch (error) {
-            alert(error)
+            return
+        } else {
+            try {
+                setFavoriteLoading(true)
+                const response = await axios.post(api + '/tambah/favorite', {
+                    userId: userId.id,
+                    iklanId: id
+                })
+
+                toast('Berhasil menambahkan ke favorit!', {
+                    icon: <FaHeart className='text-red-400' />,
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setFavorite(true)
+                setFavoriteId(response.data.message.id)
+                setFavoriteLoading(false)
+            } catch (error) {
+                alert(error)
+            }
         }
+
     }
 
     const hapusFavorit = async () => {
