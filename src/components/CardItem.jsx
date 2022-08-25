@@ -19,6 +19,7 @@ function CardItem(props) {
         // eslint-disable-next-line array-callback-return
         if (userId) {
 
+            // eslint-disable-next-line array-callback-return
             props.data.Favorit.map((e) => {
                 if (e.userId === userId.id) {
                     setFavorite(true)
