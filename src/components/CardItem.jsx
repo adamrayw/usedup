@@ -4,13 +4,14 @@ import { FaHeart } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import { MdOutlineRemoveCircle } from 'react-icons/md'
 import { toast } from 'react-toastify'
-import { Tooltip } from 'flowbite-react'
+import { Tooltip, Spinner } from 'flowbite-react'
 import api from '../utils/api'
 import axios from 'axios'
 
 function CardItem(props) {
     const [favorite, setFavorite] = useState(false)
     const [favoriteId, setFavoriteId] = useState('')
+    const [favoriteLoading, setFavoriteLoading] = useState(false)
     const userId = JSON.parse(localStorage.getItem('user'))
 
     useEffect(() => {
@@ -26,10 +27,12 @@ function CardItem(props) {
             }
         })
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const tambahFavorit = async (id) => {
         try {
+            setFavoriteLoading(true)
             const response = await axios.post(api + '/tambah/favorite', {
                 userId: userId.id,
                 iklanId: id
@@ -46,6 +49,7 @@ function CardItem(props) {
             });
             setFavorite(true)
             setFavoriteId(response.data.message.id)
+            setFavoriteLoading(false)
         } catch (error) {
             alert(error)
         }
@@ -53,7 +57,8 @@ function CardItem(props) {
 
     const hapusFavorit = async () => {
         try {
-            const response = await axios.delete(api + '/hapus/favorite', { data: { id: favoriteId } })
+            setFavoriteLoading(true)
+            await axios.delete(api + '/hapus/favorite', { data: { id: favoriteId } })
             toast('Menghapus dari favorit!', {
                 icon: <MdOutlineRemoveCircle className='text-red-400' />,
                 position: "top-right",
@@ -66,8 +71,9 @@ function CardItem(props) {
 
             setFavorite(false)
             setFavoriteId('')
+            setFavoriteLoading(false)
         } catch (error) {
-            alert(error)
+            toast.error(error)
         }
     }
 
@@ -75,30 +81,39 @@ function CardItem(props) {
         <>
             <div className="max-w-sm relative">
                 <div className="absolute top-0 right-0 pt-4 pr-4">
-                    {favorite ? (
+                    {favoriteLoading ? (
+                        <Spinner
+                            aria-label="Extra small spinner example"
+                            size="xs"
+                        />
+                    ) : (
                         <>
-                            <Tooltip
-                                content="Hapus dari favorit"
-                                animation="duration-300"
-                                style='light'
-                            >
-                                <button className='p-1.5 bg-red-400 rounded-full active:bg-red-600 transition duration-200' onClick={() => hapusFavorit(favoriteId)}>
-                                    <FaHeart className='text-white md:text-sm text-xs' />
-                                </button>
-                            </Tooltip>
+                            {favorite ? (
+                                <>
+                                    <Tooltip
+                                        content="Hapus dari favorit"
+                                        animation="duration-300"
+                                        style='light'
+                                    >
+                                        <button className='p-1.5 bg-red-400 rounded-full active:bg-red-600 transition duration-200' onClick={() => hapusFavorit(favoriteId)}>
+                                            <FaHeart className='text-white md:text-sm text-xs' />
+                                        </button>
+                                    </Tooltip>
 
-                        </>) : (<>
-                            <Tooltip
-                                content="Tambah ke favorit"
-                                animation="duration-300"
-                                style='light'
-                            >
-                                <button className='p-1.5 shadow bg-white rounded-full active:bg-gray-200 transition duration-200' onClick={() => tambahFavorit(props.data.id)}>
-                                    <FaHeart className='text-gray-400 md:text-sm text-xs' />
-                                </button>
-                            </Tooltip>
+                                </>) : (<>
+                                    <Tooltip
+                                        content="Tambah ke favorit"
+                                        animation="duration-300"
+                                        style='light'
+                                    >
+                                        <button className='p-1.5 shadow bg-white rounded-full active:bg-gray-200 transition duration-200' onClick={() => tambahFavorit(props.data.id)}>
+                                            <FaHeart className='text-gray-400 md:text-sm text-xs' />
+                                        </button>
+                                    </Tooltip>
 
-                        </>)}
+                                </>)}
+                        </>
+                    )}
 
                 </div>
                 <Link to={'/view/' + props.data.id}>
