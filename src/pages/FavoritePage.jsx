@@ -41,25 +41,24 @@ function FavoritePage() {
                             <h2 className='font-bold md:text-4xl text-xl text-black'>Favorit Saya</h2>
                             <p className="text-sm font-medium text-gray-400">Barang nya jangan kelamaan di favoritin, nanti keduluan!</p>
                         </div>
-                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
-                            {data.length > 1 ? (
-                                <>
-                                    {isLoading ? (
-                                        <>
-                                            <SkeletonCard />
-                                        </>
-                                    ) : (
-                                        <>
-                                            {data.map((e, index) => {
-                                                return (
-                                                    <>
-                                                        <CardItem key={index} data={e.iklan} />
-                                                    </>
-                                                )
-                                            })}
-                                        </>
-                                    )}
+                        {isLoading ? (
+                            <>
+                                <SkeletonCard />
+                            </>
+                        ) : (
+                            ''
+                        )}
 
+                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
+                            {data ? (
+                                <>
+                                    {data.map((e, index) => {
+                                        return (
+                                            <>
+                                                <CardItem key={index} data={e.iklan} />
+                                            </>
+                                        )
+                                    })}
                                 </>
                             ) : (
                                 ''
