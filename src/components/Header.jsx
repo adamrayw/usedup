@@ -1,5 +1,5 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
-import { Navbar, Button, Dropdown, Avatar } from "flowbite-react"
+import { Navbar, Button, Dropdown, Avatar, Alert } from "flowbite-react"
 import logo from '../logo.png'
 import Categories from "./Categories"
 import Search from "./Search"
@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
 import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
 import { MdSell } from 'react-icons/md'
+import AvatarProfile from "./AvatarProfile"
 
 function Header() {
     const { user } = useSelector((state) => state.auth)
@@ -49,18 +50,33 @@ function Header() {
                             <Dropdown
                                 arrowIcon={true}
                                 inline={true}
-                                label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
+                                label={<AvatarProfile />}
                             >
                                 <Dropdown.Header>
+                                    {user.no_telp ? ('') : (
+                                        <div className="mb-2">
+                                            <Alert
+                                                color="failure"
+
+                                            >
+                                                <span className="text-xs">
+                                                    {' '}Lengkapi profil di edit profile
+                                                </span>
+                                            </Alert>
+                                        </div>
+                                    )}
                                     <div className="flex items-center space-x-2">
                                         <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />
                                         <div>
                                             <span className="block text-sm">
-                                                Hallo,
+                                                Halo,
                                             </span>
                                             <span className="block truncate text-sm font-medium">
                                                 {user.name}
                                             </span>
+                                            <Link to="/edit-profile" className="text-xs text-gray-500 underline">
+                                                Edit Profile
+                                            </Link>
                                         </div>
                                     </div>
                                 </Dropdown.Header>
