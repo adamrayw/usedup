@@ -15,6 +15,7 @@ import SuccessPages from './pages/form-jual/SuccessPages';
 import PrivateRoutes from './utils/PrivateRoutes';
 import FormJual from './pages/FormJual';
 import FavoritePage from './pages/FavoritePage'
+import EditProfile from './pages/EditProfile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/jual/:slug' element={<FormJual />} />
           <Route path='/success' element={<SuccessPages />} />
           <Route path='/favorit-saya' element={<FavoritePage />} />
+          <Route path='/edit-profile' element={<EditProfile />} />
         </Route>
         <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
