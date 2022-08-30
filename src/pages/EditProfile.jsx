@@ -51,7 +51,7 @@ function EditProfifle() {
                     const { id, name, email, tentang_saya, no_telp } = formData
 
                     setLoadingUpload(true)
-                    const res = await axios.post(api + '/update', {
+                    const res = await axios.post(api + 'update', {
                         id,
                         name,
                         email,
