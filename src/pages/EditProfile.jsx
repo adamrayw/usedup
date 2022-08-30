@@ -16,6 +16,7 @@ function EditProfifle() {
     const [loadingUpload, setLoadingUpload] = useState()
 
     const [formData, setFormData] = useState({
+        id: user.id,
         name: user.name,
         email: user.email,
         tentang_saya: user.tentang_saya,
@@ -47,10 +48,11 @@ function EditProfifle() {
 
                 setUploadedImage('')
                 try {
-                    const { name, email, tentang_saya, no_telp } = formData
+                    const { id, name, email, tentang_saya, no_telp } = formData
 
                     setLoadingUpload(true)
                     const res = await axios.post(api + '/update', {
+                        id,
                         name,
                         email,
                         tentang_saya,
@@ -58,7 +60,7 @@ function EditProfifle() {
                         foto_profile: user.foto_profile ?? ''
                     })
 
-                    dispatch(updateUser(res.data))
+                    dispatch(updateUser(res.data.data))
                     setLoadingUpload(false)
 
                     toast.success('Profile berhasil di update!', {
@@ -97,10 +99,11 @@ function EditProfifle() {
                 setLoadingUpload(false)
 
                 try {
-                    const { name, email, tentang_saya, no_telp } = formData
+                    const { id, name, email, tentang_saya, no_telp } = formData
 
                     setLoadingUpload(true)
                     const res = await axios.post(api + '/update', {
+                        id,
                         name,
                         email,
                         tentang_saya,
@@ -108,7 +111,7 @@ function EditProfifle() {
                         foto_profile: parsed
                     })
 
-                    dispatch(updateUser(res.data))
+                    dispatch(updateUser(res.data.data))
                     setLoadingUpload(false)
                     toast.success('Profile berhasil di update!', {
                         position: "top-right",
