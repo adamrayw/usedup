@@ -66,7 +66,11 @@ function Header() {
                                         </div>
                                     )}
                                     <div className="flex items-center space-x-2">
-                                        <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />
+                                        {user.foto_profile ? (
+                                            <Avatar alt="User settings" img={user.foto_profile.secure_url} rounded={true} />
+                                        ) : (
+                                            <Avatar alt="User settings" rounded={true} />
+                                        )}
                                         <div>
                                             <span className="block text-sm">
                                                 Halo,
