@@ -1,6 +1,5 @@
 import { TextInput, Label, Avatar, Textarea, Button, Spinner } from 'flowbite-react'
 import { useSelector } from 'react-redux'
-import { RiImageEditLine } from 'react-icons/ri'
 import { useState } from 'react'
 import axios from 'axios'
 import api from '../utils/api'
@@ -12,6 +11,7 @@ function EditProfifle() {
     const { user } = useSelector((state) => state.auth)
 
     const [imageUpload, setImageUpload] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [uploadedImage, setUploadedImage] = useState([])
     const [loadingUpload, setLoadingUpload] = useState()
 
@@ -154,18 +154,15 @@ function EditProfifle() {
             <div className="featured my-10">
                 <div className='text-left mb-4 space-y-2'>
                     <h2 className='font-bold md:text-4xl text-xl text-black'>Edit Profile</h2>
-                    <p className="text-sm font-medium text-gray-400">Lengkapi semua data demi kenyamanan bersama</p>
+                    <p className="text-sm font-medium text-gray-400">Lengkapi semua data</p>
                 </div>
 
                 <form onSubmit={onSubmit}>
                     <div className='form mt-4 md:space-y-0 space-y-4 text-left'>
                         <div className='space-y-4 md:w-1/2 w-full'>
                             <div>
-                                <div className='mb-2 w-fit relative'>
+                                <div className='mb-2 w-fit md:mx-0 mx-auto relative'>
                                     <label htmlFor='image'>
-                                        <div className='absolute z-10  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full items-center flex justify-center bg-opacity-20 hover:bg-opacity-25 bg-black rounded-full transition duration-200 cursor-pointer'>
-                                            <RiImageEditLine className='text-white' />
-                                        </div>
                                         {imageUpload.length === 0 ? (
                                             <>
                                                 {
@@ -182,6 +179,7 @@ function EditProfifle() {
                                     </label>
                                 </div>
                                 <input className="hidden" type="file" name="image" id="image" onChange={selectImage} />
+                                <p className='text-xs md:text-left text-center text-gray-400'>Klik gambar untuk menambahkan foto</p>
                             </div>
 
                             <div>
