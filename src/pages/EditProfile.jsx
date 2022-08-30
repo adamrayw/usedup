@@ -37,7 +37,6 @@ function EditProfifle() {
             [e.target.name]: e.target.value
         }))
 
-        console.log(formData)
     }
 
     const onSubmit = async (e) => {

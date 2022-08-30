@@ -39,7 +39,6 @@ export const formSlice = createSlice({
         removeFoto: (state, action) => {
             const findIndex = state.foto.findIndex(e => e.name === action.payload.name)
             state.foto.splice(findIndex, 1)
-            console.log(state.foto)
         }
     },
     extraReducers: (builder) => {

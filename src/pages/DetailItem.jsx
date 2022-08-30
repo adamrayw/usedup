@@ -24,7 +24,7 @@ function DetailItem() {
             setItemData(response.data)
             setLoading(false)
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 
@@ -126,7 +126,18 @@ function DetailItem() {
                         <Card>
                             <div className='flex items-start justify-start text-left'>
                                 <div>
-                                    <Avatar size="lg" />
+                                    {itemData.User ? (
+                                        <>
+                                            {itemData.User.foto_profile ? (
+
+                                                <Avatar img={itemData.User.foto_profile.secure_url} size="lg" />
+                                            ) : (
+                                                <Avatar size={'lg'} />
+                                            )}
+                                        </>
+                                    ) : (
+                                        <Avatar size={'lg'} />
+                                    )}
                                 </div>
                                 <div className='ml-4 space-y-2'>
                                     {loading ? (

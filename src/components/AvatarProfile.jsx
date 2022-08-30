@@ -2,7 +2,6 @@ import { Avatar } from 'flowbite-react'
 import { useSelector } from 'react-redux'
 function AvatarProfile() {
     const { user } = useSelector((state) => state.auth)
-    console.log(user)
     return (
         <>
             {user.foto_profile ? (

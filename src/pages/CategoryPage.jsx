@@ -21,7 +21,7 @@ function CategoryPage() {
             const response = await axios.get(api + 'kategori/' + slug)
             setData(response.data)
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 

@@ -18,7 +18,7 @@ function PilihKategori() {
 
             setCategories(response.data)
         } catch (error) {
-            console.log(error);
+            alert(error);
         }
     }
 
