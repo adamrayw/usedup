@@ -35,7 +35,7 @@ export default function Dropdown() {
                     leaveTo="transform opacity-0 scale-95"
                 >
                     <Menu.Items static className="absolute z-20 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div className="py-4 px-4">
+                        <div className="py-2 px-4">
                             {user.no_telp ? ('') : (
                                 <div className="mb-2">
                                     <Alert
@@ -50,7 +50,7 @@ export default function Dropdown() {
                             )}
                             <div className="flex items-center space-x-2 my-2">
                                 {user.foto_profile ? (
-                                    <img alt="User settings" src={user.foto_profile.secure_url} className='w-10 rounded-full' rounded={true} />
+                                    <img alt="User settings" src={user.foto_profile.secure_url} className='w-10 h-10 rounded-full' rounded={true} />
                                 ) : (
                                     <img alt="User settings" rounded={true} />
                                 )}
