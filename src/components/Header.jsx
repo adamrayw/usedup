@@ -1,5 +1,5 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
-import { Navbar, Button, Dropdown, Avatar, Alert } from "flowbite-react"
+import { Navbar, Button, Avatar, Alert } from "flowbite-react"
 import logo from '../logo.png'
 import Categories from "./Categories"
 import Search from "./Search"
@@ -9,6 +9,7 @@ import { logout, reset } from '../features/auth/authSlice'
 import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
 import { MdSell } from 'react-icons/md'
 import AvatarProfile from "./AvatarProfile"
+import Dropdown from './Dropdown'
 
 function Header() {
     const { user } = useSelector((state) => state.auth)
@@ -47,7 +48,9 @@ function Header() {
                                     </Button>
                                 </Link>
                             </div>
-                            <Dropdown
+                            <Dropdown />
+
+                            {/* <Dropdown
                                 arrowIcon={true}
                                 inline={true}
                                 label={<AvatarProfile />}
@@ -102,7 +105,7 @@ function Header() {
                                         <FaSignOutAlt className="mr-2" /> Logout
                                     </div>
                                 </Dropdown.Item>
-                            </Dropdown>
+                            </Dropdown> */}
                         </div>
                     ) : (
                         <div className="btn md:flex space-x-4 hidden">
