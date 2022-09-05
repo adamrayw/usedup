@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
     user: user ? user : null,
+    isVerified: user.isVerified,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -50,6 +51,9 @@ export const authSlice = createSlice({
         updateUser: (state, action) => {
             state.user = action.payload
             localStorage.setItem('user', JSON.stringify(action.payload))
+        },
+        updateVerified: (state) => {
+            state.isVerified = true
         }
     },
     extraReducers: (builder) => {
@@ -88,5 +92,5 @@ export const authSlice = createSlice({
     }
 })
 
-export const { reset, updateUser } = authSlice.actions
+export const { reset, updateUser, updateVerified } = authSlice.actions
 export default authSlice.reducer
