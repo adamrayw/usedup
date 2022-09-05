@@ -6,9 +6,10 @@ import api from '../utils/api'
 import { useDispatch } from 'react-redux'
 import { updateUser } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
+import { FaCheckCircle } from 'react-icons/fa'
 
 function EditProfifle() {
-    const { user } = useSelector((state) => state.auth)
+    const { user, isVerified } = useSelector((state) => state.auth)
 
     const [imageUpload, setImageUpload] = useState([])
     // eslint-disable-next-line no-unused-vars
@@ -149,6 +150,22 @@ function EditProfifle() {
 
     }
 
+    const sendEmailVerif = async () => {
+        const email = user.email
+        const id = user.id
+
+        try {
+            await axios.post(api + '/sendemailverif', {
+                data: {
+                    email,
+                    id
+                }
+            })
+        } catch (error) {
+            alert(error)
+        }
+    }
+
     return (
         <div className="container max-w-6xl mx-auto md:px-0 px-4">
             <div className="featured my-10">
@@ -213,7 +230,23 @@ function EditProfifle() {
                                     name='email'
                                     onChange={onChange}
                                     required={true}
+                                    disabled={true}
                                     value={formData.email}
+                                    helperText={
+                                        <div>
+                                            {user.isVerified || isVerified ? (
+                                                <div className='flex items-center space-x-1 text-green-500 font-semibold'>
+                                                    <p>Email kamu sudah ter-verifikasi</p>
+                                                    <FaCheckCircle />
+                                                </div>
+                                            ) : (
+                                                <div className='flex items-center space-x-1 text-red-500'>
+                                                    <p>Kamu belum verifikasi email,</p>
+                                                    <p className='font-bold underline hover:cursor-pointer hover:text-red-600 active:text-red-700 transition' onClick={() => sendEmailVerif()}>Kirim Link Verifikasi</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    }
                                 />
                             </div>
                             <div>
