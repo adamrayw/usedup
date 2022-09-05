@@ -4,7 +4,7 @@ import AvatarProfile from './AvatarProfile'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
-import { Alert, Avatar } from 'flowbite-react'
+import { Alert } from 'flowbite-react'
 import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
 
 export default function Dropdown() {
