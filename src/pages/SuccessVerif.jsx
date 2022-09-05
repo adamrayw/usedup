@@ -5,9 +5,13 @@ import { useParams } from 'react-router-dom'
 import { MdVerified } from 'react-icons/md'
 import { Spinner } from 'flowbite-react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { updateVerified } from '../features/auth/authSlice'
 
 function SuccessVerif() {
     const [status, setStatus] = useState(false)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         updateIsVerified()
@@ -20,6 +24,7 @@ function SuccessVerif() {
         try {
             const response = await axios.post(api + '/verification?id=' + id)
             setStatus(response.data.status)
+            dispatch(updateVerified())
         } catch (error) {
             console.error(error)
         }
