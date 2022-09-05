@@ -16,6 +16,7 @@ import PrivateRoutes from './utils/PrivateRoutes';
 import FormJual from './pages/FormJual';
 import FavoritePage from './pages/FavoritePage'
 import EditProfile from './pages/EditProfile';
+import SuccessVerif from './pages/SuccessVerif';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/success' element={<SuccessPages />} />
           <Route path='/favorit-saya' element={<FavoritePage />} />
           <Route path='/edit-profile' element={<EditProfile />} />
+          <Route path='/verification/:id' element={<SuccessVerif />} />
         </Route>
         <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
