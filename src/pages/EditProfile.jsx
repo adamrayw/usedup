@@ -1,6 +1,6 @@
 import { TextInput, Label, Avatar, Textarea, Button, Spinner } from 'flowbite-react'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import api from '../utils/api'
 import { useDispatch } from 'react-redux'
@@ -15,6 +15,25 @@ function EditProfifle() {
     // eslint-disable-next-line no-unused-vars
     const [uploadedImage, setUploadedImage] = useState([])
     const [loadingUpload, setLoadingUpload] = useState()
+    const [count, setCount] = useState(30)
+    const [waitSendEmail, setWaitSendEmail] = useState(false)
+
+    useEffect(() => {
+        if (waitSendEmail) {
+            interval()
+        }
+    }, [waitSendEmail, count])
+
+    const interval = () => {
+        if (count === 0) {
+            setWaitSendEmail(false)
+            setCount(30)
+        } else {
+            setTimeout(() => {
+                setCount(count - 1)
+            }, 1000);
+        }
+    }
 
     const [formData, setFormData] = useState({
         id: user.id,
@@ -151,6 +170,7 @@ function EditProfifle() {
     }
 
     const sendEmailVerif = async () => {
+        setWaitSendEmail(true)
         const email = user.email
         const id = user.id
 
@@ -240,9 +260,19 @@ function EditProfifle() {
                                                     <FaCheckCircle />
                                                 </div>
                                             ) : (
-                                                <div className='flex items-center space-x-1 text-red-500'>
-                                                    <p>Kamu belum verifikasi email,</p>
-                                                    <p className='font-bold underline hover:cursor-pointer hover:text-red-600 active:text-red-700 transition' onClick={() => sendEmailVerif()}>Kirim Link Verifikasi</p>
+                                                <div className='flex items-center space-x-1 text-gray-500'>
+                                                    <p className={waitSendEmail ? 'hidden' : 'block'}>Kamu belum verifikasi email,</p>
+                                                    {waitSendEmail ? (
+                                                        <>
+                                                            <p>Cek email kamu, kirim ulang link verifikasi dalam {count} detik</p>
+                                                        </>
+                                                    ) : (
+                                                        <p p className='font-bold underline hover:cursor-pointer hover:text-gray-600 active:text-gray-700 transition' onClick={() => {
+                                                            sendEmailVerif()
+                                                            interval()
+                                                        }}>Kirim Link Verifikasi
+                                                        </p>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
@@ -299,8 +329,8 @@ function EditProfifle() {
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
