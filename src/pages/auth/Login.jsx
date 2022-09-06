@@ -1,5 +1,5 @@
-import { Card, Label, TextInput, Button, Spinner } from 'flowbite-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Card, Label, TextInput, Button, Spinner, Alert } from 'flowbite-react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, reset } from '../../features/auth/authSlice'
@@ -16,7 +16,13 @@ function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const [searchParams] = useSearchParams()
+
+    const isResetSuccess = searchParams.get('reset') ?? false
+
     useEffect(() => {
+
+
         if (isError) {
             toast.error(message, {
                 position: "top-right",
@@ -35,6 +41,7 @@ function Login() {
 
         dispatch(reset())
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, isSuccess, message, message, navigate, dispatch])
 
     const onChange = (e) => {
@@ -71,6 +78,15 @@ function Login() {
                             </div>
                             <p className='font-normal text-gray-400 mt-2'>Ingin mencari sesuatu? banyak barang bagus loh!</p>
                         </div>
+                        {isResetSuccess ? (
+                            <Alert
+                                color="success"
+                            >
+                                <span>
+                                    Password berhasil diperbarui, silahkan login dengan password baru
+                                </span>
+                            </Alert>
+                        ) : ''}
                         <form className="flex flex-col gap-4" onSubmit={onSubmit}>
                             <div>
                                 <div className="mb-2 block">
@@ -104,6 +120,9 @@ function Login() {
                                     onChange={onChange}
                                     required={true}
                                 />
+                            </div>
+                            <div className='text-right'>
+                                <Link to='/forgot-password' className='text-blue-800 font-medium'>Lupa Password?</Link>
                             </div>
                             {isLoading ? (
                                 <Button color='dark' disabled={true}>
