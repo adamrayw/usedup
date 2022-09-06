@@ -17,6 +17,8 @@ import FormJual from './pages/FormJual';
 import FavoritePage from './pages/FavoritePage'
 import EditProfile from './pages/EditProfile';
 import SuccessVerif from './pages/SuccessVerif';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import ResetPassword from './pages/auth/ResetPassword';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
         <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
         <Route path='/view/:id' element={<DetailItem />} />
         <Route path='/:slug' element={<CategoryPage />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
       </Routes>
 
       <ToastContainer />
