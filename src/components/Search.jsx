@@ -38,7 +38,7 @@ function Search() {
                         <div className='absolute w-full mt-2 shadow h-48 overflow-y-scroll space-y-4 p-4 bg-white'>
                             {searchResult.map((e) => {
                                 return (
-                                    <Link to={`/view/${e.id}`} onClick={() => {
+                                    <Link key={e.id} to={`/view/${e.id}`} onClick={() => {
                                         setKeyword('')
                                         setSearchResult('')
                                     }}>
