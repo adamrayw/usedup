@@ -136,7 +136,7 @@ function Register() {
                                     Login <BsArrowRight className='ml-2' />
                                 </Link>
                             </div>
-                            <p className='font-normal text-gray-400 mt-2'>Register untuk menjual, menambahkan ke favorit, dan membeli.</p>
+                            <p className='font-normal text-gray-400 mt-2'>Register untuk menjual, menambahkan ke favorit.</p>
                         </div>
                         <form className="flex flex-col gap-4" onSubmit={onSubmit}>
                             <div>
