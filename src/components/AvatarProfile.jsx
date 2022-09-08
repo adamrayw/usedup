@@ -1,4 +1,3 @@
-import { Avatar } from 'flowbite-react'
 import { useSelector } from 'react-redux'
 function AvatarProfile() {
     const { user } = useSelector((state) => state.auth)
@@ -7,27 +6,26 @@ function AvatarProfile() {
             {user.foto_profile ? (
                 <>
                     {user.no_telp === null ? (
-                        <Avatar alt="User settings" img={user.foto_profile.secure_url} rounded={true}
-                            status='busy'
-                            statusPosition='top-right'
-                        />
-                    ) : (
-                        <Avatar alt="User settings" img={user.foto_profile.secure_url} rounded={true}
+                        <div className='relative'>
+                            <div className='w-3 h-3 right-0 border border-white absolute rounded-full bg-red-500'></div>
+                            <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
+                        </div>
 
-                        />
+                    ) : (
+                        // <Avatar alt="User settings" img={user.foto_profile.secure_url} rounded={true}
+                        <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
                     )}
                 </>
             ) : (
                 <>
                     {user.no_telp === null ? (
-                        <Avatar alt="User settings" rounded={true}
-                            status='busy'
-                            statusPosition='top-right'
-                        />
-                    ) : (
-                        <Avatar alt="User settings" rounded={true}
+                        <div className='relative'>
+                            <div className='w-4 h-4 rounded-full text-red-500'></div>
+                            <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
+                        </div>
 
-                        />
+                    ) : (
+                        <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
                     )
                     }
                 </>

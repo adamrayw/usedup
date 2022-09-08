@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Stargazer from '../assets/produk.jpg'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import api from '../utils/api'
@@ -56,7 +55,7 @@ function Search() {
                                 )
                             })}
                             {searchResult.length === 0 ? (
-                                <div className='flex items-center justify-center h-full h-full flex-col space-y-2'>
+                                <div className='flex items-center justify-center h-full flex-col space-y-2'>
                                     <VscWholeWord className='w-10 h-10 text-gray-800' />
                                     <p className='text-gray-400'>Gunakan keyword yang lebih spesifik</p>
                                 </div>

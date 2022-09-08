@@ -129,8 +129,8 @@ function DetailItem() {
                                     {itemData.User ? (
                                         <>
                                             {itemData.User.foto_profile ? (
-
-                                                <Avatar img={itemData.User.foto_profile.secure_url} size="lg" />
+                                                <img src={itemData.User.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-md w-20 h-20' />
+                                                // <Avatar img={itemData.User.foto_profile.secure_url} size="lg" />
                                             ) : (
                                                 <Avatar size={'lg'} />
                                             )}

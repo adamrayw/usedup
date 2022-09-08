@@ -22,6 +22,7 @@ function EditProfifle() {
         if (waitSendEmail) {
             interval()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [waitSendEmail, count])
 
     const interval = () => {
@@ -204,14 +205,14 @@ function EditProfifle() {
                                             <>
                                                 {
                                                     user.foto_profile ? (
-                                                        <Avatar rounded={true} img={user.foto_profile.secure_url} size="xl" />
+                                                        <img src={user.foto_profile.secure_url} alt="profile" className='w-48 h-48 object-cover rounded-full' />
                                                     ) : (
                                                         <Avatar rounded={true} size="xl" />
                                                     )
                                                 }
                                             </>
                                         ) : (
-                                            <Avatar img={URL.createObjectURL(imageUpload)} id="" size='xl' alt="foto_profile" rounded={true} />
+                                            <img src={URL.createObjectURL(imageUpload)} alt="profile" className='w-48 h-48 object-cover rounded-full' />
                                         )}
                                     </label>
                                 </div>
