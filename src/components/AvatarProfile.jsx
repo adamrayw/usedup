@@ -1,4 +1,6 @@
 import { useSelector } from 'react-redux'
+import { FaUserCircle } from 'react-icons/fa'
+
 function AvatarProfile() {
     const { user } = useSelector((state) => state.auth)
     return (
@@ -21,11 +23,11 @@ function AvatarProfile() {
                     {user.no_telp === null ? (
                         <div className='relative'>
                             <div className='w-4 h-4 rounded-full text-red-500'></div>
-                            <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
+                            <FaUserCircle className='object-cover rounded-full w-10 h-10' />
                         </div>
 
                     ) : (
-                        <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
+                        <FaUserCircle className='object-cover rounded-full w-10 h-10' />
                     )
                     }
                 </>
