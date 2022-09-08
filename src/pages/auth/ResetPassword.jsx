@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import api from '../../utils/api'
 import { useParams, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function ResetPassword() {
     const [isLoading, setIsLoading] = useState(false)
@@ -35,12 +36,26 @@ function ResetPassword() {
         e.preventDefault()
 
         if (e.target.password1.value !== e.target.password2.value) {
-            alert('password not same')
+            toast.warn('Password tidak sama', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            })
             return
         }
 
         if (e.target.password1.value.length < 6 || e.target.password2.value.length < 6) {
-            alert('Password harus 6 karakter atau lebih')
+            toast.warn('Password harus 6 karakter atau lebih ', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            })
             return
         }
 
@@ -100,7 +115,7 @@ function ResetPassword() {
                                         light={true}
                                     />
                                 </div>
-                                Loggin in ...
+                                Mohon Tunggu/..
                             </Button>
                         ) : (
                             <Button type="submit" color="dark">
