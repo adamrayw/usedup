@@ -22,12 +22,12 @@ function AvatarProfile() {
                 <>
                     {user.no_telp === null ? (
                         <div className='relative'>
-                            <div className='w-4 h-4 rounded-full text-red-500'></div>
-                            <FaUserCircle className='object-cover rounded-full w-10 h-10' />
+                            <div className='absolute right-0 w-2.5 h-2.5 rounded-full bg-red-500'></div>
+                            <FaUserCircle className=' text-gray-200 rounded-full w-10 h-10' />
                         </div>
 
                     ) : (
-                        <FaUserCircle className='object-cover rounded-full w-10 h-10' />
+                        <FaUserCircle className=' text-gray-200 rounded-full w-10 h-10' />
                     )
                     }
                 </>
