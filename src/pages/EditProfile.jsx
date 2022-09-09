@@ -1,4 +1,4 @@
-import { TextInput, Label, Avatar, Textarea, Button, Spinner } from 'flowbite-react'
+import { TextInput, Label, Textarea, Button, Spinner } from 'flowbite-react'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -6,7 +6,7 @@ import api from '../utils/api'
 import { useDispatch } from 'react-redux'
 import { updateUser } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
-import { FaCheckCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaUserCircle } from 'react-icons/fa'
 
 function EditProfifle() {
     const { user, isVerified } = useSelector((state) => state.auth)
@@ -207,7 +207,7 @@ function EditProfifle() {
                                                     user.foto_profile ? (
                                                         <img src={user.foto_profile.secure_url} alt="profile" className='w-48 h-48 object-cover rounded-full' />
                                                     ) : (
-                                                        <Avatar rounded={true} size="xl" />
+                                                        <FaUserCircle className=' text-gray-200 rounded-full w-32 h-32' />
                                                     )
                                                 }
                                             </>
