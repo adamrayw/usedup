@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
 import { Alert } from 'flowbite-react'
 import { FaBullhorn, FaHeart, FaSignOutAlt } from 'react-icons/fa'
+import { FaUserCircle } from 'react-icons/fa'
 
 export default function Dropdown() {
     const { user } = useSelector((state) => state.auth)
@@ -52,7 +53,7 @@ export default function Dropdown() {
                                 {user.foto_profile !== null && user.foto_profile !== '' ? (
                                     <img alt="User settings" src={user.foto_profile.secure_url} className='w-10 h-10 rounded-full object-cover' rounded={true} />
                                 ) : (
-                                    <svg class="h-10 bg-gray-100 rounded-full w-auto text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                    <FaUserCircle className=' text-gray-200 rounded-full w-10 h-10' />
                                     // <img alt="User settings" rounded={true} />
                                 )}
                                 <div>
