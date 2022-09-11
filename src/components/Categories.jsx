@@ -32,6 +32,11 @@ function Categories() {
                             <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
                             <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
                             <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
+                            <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
+                            <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
+                            <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
+                            <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
+                            <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
                         </>
                     ) : (
                         <>
