@@ -26,7 +26,7 @@ function Categories() {
     return (
         <>
             <div className='bg-white pt-4 pb-3 mb-1 shadow-sm w-full text-center'>
-                <div className='flex md:overflow-x-hidden px-4 overflow-x-scroll space-x-6 md:justify-center '>
+                <div className='flex md:overflow-x-hidden px-2 overflow-x-scroll space-x-6 md:justify-center '>
                     {categories.length === 0 ? (
                         <>
                             <div className="h-2 bg-gray-200 rounded-full animate-pulse w-10 dark:bg-gray-700"></div>
