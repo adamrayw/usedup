@@ -20,7 +20,7 @@ function Header() {
                 <Navbar.Brand href="/">
                     <img
                         src={logo}
-                        className="mr-3 h-8 sm:h-9 rounded-full"
+                        className="mr-20 h-8 sm:h-9 rounded-full"
                         alt="Flowbite Logo"
                     />
                     {/* <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
