@@ -2,6 +2,7 @@ import { Breadcrumb, Tabs, Carousel, Avatar, Card, Button } from 'flowbite-react
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsFillTelephoneFill } from 'react-icons/bs'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
+import { GoVerified } from 'react-icons/go'
 import { HiHome } from 'react-icons/hi'
 import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
@@ -124,7 +125,16 @@ function DetailItem() {
                     </div>
                     <div className='profil-penjual'>
                         <Card>
-                            <div className='flex items-start justify-start text-left'>
+                            {itemData.User ? (
+                                <>
+                                    {itemData.User.isVerified ? (
+                                        ''
+                                    ) : (
+                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p>
+                                    )}
+                                </>
+                            ) : ''}
+                            <div className='flex items-center justify-start text-left'>
                                 <div>
                                     {itemData.User ? (
                                         <>
@@ -145,22 +155,37 @@ function DetailItem() {
                                             <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
                                         </div>
                                     ) : (
+                                        <div className='flex items-center'>
+                                            <p className='font-bold text-lg'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
+                                            {itemData.User ? (
+                                                <>
+                                                    {itemData.User.isVerified ? (
+                                                        <p className='flex items-center rounded font-medium p-2 text-xs'><GoVerified className='text-blue-600' /></p>
+                                                    ) : (
+                                                        ''
+                                                    )}
+                                                </>
+                                            ) : ''}
+                                        </div>
 
-                                        <p className='font-bold text-lg'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
                                     )}
-                                    <p className='flex items-center rounded font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="flex flex-wrap items-center gap-2">
-                                    <Button>
-                                        <BsFillTelephoneFill className="mr-2 h-5 w-5" />
-                                        Kontak
-                                    </Button>
-                                    <Button color="success">
-                                        <IoLogoWhatsapp className="mr-2 h-5 w-5" />
-                                        Whatsapp
-                                    </Button>
+
+
+                                    <Link to='/' className='text-blue-500 underline text-sm'>
+                                        Lihat Profil
+                                    </Link>
+                                    <div>
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <Button size={'sm'}>
+                                                <BsFillTelephoneFill className="mr-2 h-5 w-5" />
+                                                Kontak
+                                            </Button>
+                                            {/* <Button color="success">
+                                                <IoLogoWhatsapp className="mr-2 h-5 w-5" />
+                                                Whatsapp
+                                            </Button> */}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Card>
