@@ -1,6 +1,5 @@
 import { Breadcrumb, Tabs, Carousel, Avatar, Card, Button } from 'flowbite-react'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsFillTelephoneFill } from 'react-icons/bs'
-import { IoLogoWhatsapp } from 'react-icons/io'
 import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
 import { GoVerified } from 'react-icons/go'
 import { HiHome } from 'react-icons/hi'
