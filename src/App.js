@@ -19,6 +19,7 @@ import EditProfile from './pages/EditProfile';
 import SuccessVerif from './pages/SuccessVerif';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
+import IklanSaya from './pages/IklanSaya';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path='/:slug' element={<CategoryPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
+        <Route path='/iklan-saya' element={<IklanSaya />} />
       </Routes>
 
       <ToastContainer />
