@@ -18,18 +18,29 @@ function DetailItem() {
     const getItemData = async () => {
         try {
             setLoading(true)
-            // const response = await axios.get('https://usedup.herokuapp.com/api/' + params.id)
             const response = await axios.get(api + params.id)
 
             setItemData(response.data)
+            updateDilihat(response.data.dilihat)
             setLoading(false)
         } catch (error) {
             alert(error)
         }
     }
 
+    const updateDilihat = async (dilihat) => {
+        try {
+            await axios.post(api + '/dilihat/' + params.id, {
+                dilihat: Number(dilihat) + 1
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         getItemData()
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
