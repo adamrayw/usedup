@@ -1,4 +1,4 @@
-import Banner from '../assets/banner.png'
+import Banner from '../assets/banner.webp'
 import CardItem from '../components/CardItem'
 import { Button } from 'flowbite-react'
 import axios from 'axios'
