@@ -75,7 +75,7 @@ export default function Dropdown() {
                             <hr />
                             <div className='mt-2'>
                                 <Menu.Item>
-                                    <Link to='/'>
+                                    <Link to='/iklan-saya'>
                                         <div
                                             className='flex items-center text-gray-600 hover:bg-gray-50 transition w-full text-left p-2'
                                         >
