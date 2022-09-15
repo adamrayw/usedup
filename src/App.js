@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SuccessPages from './pages/form-jual/SuccessPages';
 import PrivateRoutes from './utils/PrivateRoutes';
+import Maintenance from './utils/MaintanceMode';
 import FormJual from './pages/FormJual';
 import FavoritePage from './pages/FavoritePage'
 import EditProfile from './pages/EditProfile';
@@ -20,6 +21,7 @@ import SuccessVerif from './pages/SuccessVerif';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
 import IklanSaya from './pages/IklanSaya';
+import UnderContruct from './pages/UnderContruct';
 
 function App() {
   return (
@@ -27,22 +29,26 @@ function App() {
       <Header />
       <Routes>
         <Route element={<PrivateRoutes />}>
-          <Route path='/jual/:slug' element={<FormJual />} />
           <Route path='/success' element={<SuccessPages />} />
           <Route path='/favorit-saya' element={<FavoritePage />} />
           <Route path='/edit-profile' element={<EditProfile />} />
           <Route path='/verification/:id' element={<SuccessVerif />} />
         </Route>
+        {/* Maintenance Route */}
+        <Route element={<Maintenance />} >
+          <Route path='/jual/:slug' element={<FormJual />} />
+          <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
+        </Route>
         <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
         <Route path='/view/:id' element={<DetailItem />} />
         <Route path='/:slug' element={<CategoryPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
         <Route path='/iklan-saya' element={<IklanSaya />} />
+        <Route path='/maintenance' element={<UnderContruct />} />
       </Routes>
 
       <ToastContainer />
