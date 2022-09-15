@@ -144,7 +144,7 @@ function DetailItem() {
                                     )}
                                 </>
                             ) : ''}
-                            <div className='flex items-center justify-start text-left'>
+                            <div className='flex items-start justify-start text-left'>
                                 <div>
                                     {itemData.User ? (
                                         <>
