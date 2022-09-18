@@ -38,7 +38,8 @@ function IklanSaya() {
                     </div>
                     <Tabs.Group
                         aria-label="Tabs with underline"
-                        style="underline"
+                        // eslint-disable-next-line react/style-prop-object
+                        style={'underline'}
                     >
                         <Tabs.Item
                             active={true}
@@ -66,17 +67,19 @@ function IklanSaya() {
                                                         <img src={e.foto[0].url} className='w-18 h-10' alt="iklanimage" />
                                                         <div className='text-left'>
                                                             <h2 className='md:text-lg text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2'>{e.judul_iklan}</h2>
-                                                            <p className='md:text-sm text-xs mt-1 text-left font-bold text-blue-600 dark:text-white'>
-                                                                Rp {Intl.NumberFormat('id-ID').format(e.harga)}
-                                                            </p>
-                                                            <div className='mt-4 flex items-center space-x-4'>
-                                                                <div className='flex items-center space-x-1.5'>
-                                                                    <FaHeart className='text-sm text-red-400' />
-                                                                    <p className='text-xs text-gray-300 font-medium'>{e.Favorit.length} difavorit</p>
-                                                                </div>
-                                                                <div className='flex items-center space-x-1.5'>
-                                                                    <FaEye className='text-sm text-gray-400' />
-                                                                    <p className='text-xs text-gray-300 font-medium'>{e.dilihat}x dilihat</p>
+                                                            <div className='flex items-center space-x-4 mt-2'>
+                                                                <p className='md:text-sm text-xs mt-1 text-left font-bold text-blue-600 dark:text-white'>
+                                                                    Rp {Intl.NumberFormat('id-ID').format(e.harga)}
+                                                                </p>
+                                                                <div className='flex items-center space-x-4'>
+                                                                    <div className='flex items-center space-x-1.5'>
+                                                                        <FaHeart className='text-sm text-red-400' />
+                                                                        <p className='text-xs text-gray-300 font-medium'>{e.Favorit.length} difavorit</p>
+                                                                    </div>
+                                                                    <div className='flex items-center space-x-1.5'>
+                                                                        <FaEye className='text-sm text-gray-400' />
+                                                                        <p className='text-xs text-gray-300 font-medium'>{e.dilihat}x dilihat</p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
