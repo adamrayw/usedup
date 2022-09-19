@@ -65,7 +65,7 @@ function IklanSaya() {
                                                 <div key={index} className='container border border-gray-200 px-5 py-4'>
                                                     <div className='flex justify-between items-center md:flex-row flex-col'>
                                                         <div className='flex space-x-4 '>
-                                                            <img src={e.foto[0].url} className='w-24 h-auto' alt="iklanimage" />
+                                                            <img src={e.foto[0].url} className='object-cover w-24 h-auto' alt="iklanimage" />
                                                             <div className='text-left flex items-center justify-between'>
                                                                 <div>
                                                                     <h2 className='md:text-lg text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2'>{e.judul_iklan}</h2>
