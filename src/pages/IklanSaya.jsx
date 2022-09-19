@@ -89,7 +89,7 @@ function IklanSaya() {
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <div className='flex md:flex-row items-center space-x-2 flex-wrap md:mt-0 mt-3'>
+                                                            <div className='flex md:flex-row md:items-center items-start md:space-x-2 flex-wrap md:mt-0 mt-3'>
                                                                 <button className='flex items-center text-xs text-white px-2 py-2 bg-yellow-300'>
                                                                     <FaRegEdit className='md:block hidden mr-2' />
                                                                     Edit Iklan
