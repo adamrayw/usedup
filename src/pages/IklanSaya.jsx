@@ -14,12 +14,16 @@ function IklanSaya() {
     }, [])
 
 
-    const id = JSON.parse(localStorage.getItem('user')).id
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const getDataIklan = async () => {
         setLoading(true)
         try {
-            const response = await axios.get(api + '/iklan-saya/' + id)
+            const response = await axios.get(api + '/iklan-saya/' + user.id, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             setData(response.data.iklans);
             setLoading(false)
         } catch (error) {
@@ -33,7 +37,7 @@ function IklanSaya() {
             <div className="container max-w-6xl mx-auto px-4">
                 <div className="featured my-10">
                     <div className='text-left mb-4 space-y-2'>
-                        <h2 className='font-bold md:text-4xl text-xl text-black'>Iklan Kamu</h2>
+                        <h2 className='font-bold md:text-4xl text-2xl text-black'>Iklan Kamu</h2>
                         {/* <p className="text-sm font-medium text-gray-400"></p> */}
                     </div>
                     <Tabs.Group

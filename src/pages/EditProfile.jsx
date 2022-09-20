@@ -60,6 +60,8 @@ function EditProfifle() {
 
     }
 
+    const userLocal = JSON.parse(localStorage.getItem('user'))
+
     const onSubmit = async (e) => {
         e.preventDefault()
 
@@ -67,47 +69,53 @@ function EditProfifle() {
             if (imageUpload.length === 0) {
 
                 setUploadedImage('')
-                try {
-                    const { id, name, email, tentang_saya, no_telp } = formData
-
-                    setLoadingUpload(true)
-                    const res = await axios.post(api + 'update', {
-                        id,
-                        name,
-                        email,
-                        tentang_saya,
-                        no_telp,
-                        foto_profile: user.foto_profile ?? ''
-                    })
-
-                    dispatch(updateUser(res.data.data))
-                    setLoadingUpload(false)
-
-                    toast.success('Profile berhasil di update!', {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-
-                } catch (error) {
-
-                    toast.error('Something went wrong', {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-                    setLoadingUpload(false)
-                }
-
-            } else {
+                const { id, name, email, tentang_saya, no_telp } = formData
 
                 setLoadingUpload(true)
+
+                var postData = {
+                    id,
+                    name,
+                    email,
+                    tentang_saya,
+                    no_telp,
+                    foto_profile: user.foto_profile ?? ''
+                }
+
+                let axiosConfig = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userLocal.token}`
+                    }
+                }
+
+                await axios.post(api + 'update', postData, axiosConfig)
+                    .then((res) => {
+                        dispatch(updateUser(res.data.data))
+                        setLoadingUpload(false)
+                        toast.success('Profile berhasil di update!', {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    })
+                    .catch((err) => {
+                        toast.error('Something went wrong', {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                        setLoadingUpload(false)
+                    })
+            } else {
+                setLoadingUpload(true)
+
                 const formDatas = new FormData()
                 formDatas.append('file', imageUpload)
                 formDatas.append("upload_preset", "my_preset");
@@ -117,6 +125,13 @@ function EditProfifle() {
                 const parsed = response.data
                 setUploadedImage(parsed)
                 setLoadingUpload(false)
+
+                let axiosConfig = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userLocal.token}`
+                    }
+                }
 
                 try {
                     const { id, name, email, tentang_saya, no_telp } = formData
@@ -129,7 +144,7 @@ function EditProfifle() {
                         tentang_saya,
                         no_telp,
                         foto_profile: parsed
-                    })
+                    }, axiosConfig)
 
                     dispatch(updateUser(res.data.data))
                     setLoadingUpload(false)
