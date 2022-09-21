@@ -2,7 +2,8 @@ import { Tabs } from 'flowbite-react'
 import axios from 'axios'
 import api from '../utils/api'
 import { useEffect, useState } from 'react'
-import { FaHeart, FaEye, FaRegEdit, FaTrash, FaRegEyeSlash } from 'react-icons/fa'
+import { FaHeart, FaEye, FaRegEdit, FaTrash } from 'react-icons/fa'
+import { FiCheck } from 'react-icons/fi'
 
 function IklanSaya() {
     const [data, setData] = useState([])
@@ -102,9 +103,9 @@ function IklanSaya() {
                                                                     <FaTrash className='md:block hidden mr-2' />
                                                                     Hapus Iklan
                                                                 </button>
-                                                                <button className='flex items-center text-xs bg-gray-400 text-white px-2 py-2 '>
-                                                                    <FaRegEyeSlash className='md:block hidden mr-2' />
-                                                                    Nonaktifkan sementara
+                                                                <button className='flex items-center text-xs bg-green-400 text-white px-2 py-2 '>
+                                                                    <FiCheck className='md:block hidden mr-2' />
+                                                                    Tandai sudah terjual
                                                                 </button>
                                                             </div>
                                                         </div>
