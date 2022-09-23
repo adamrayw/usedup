@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { MdSell } from 'react-icons/md'
 import Dropdown from './Dropdown'
+import { MdChatBubble } from 'react-icons/md'
 
 function Header() {
     const { user } = useSelector((state) => state.auth)
@@ -29,7 +30,7 @@ function Header() {
                 </Navbar.Brand>
                 <div className="flex md:order-2">
                     {user ? (
-                        <div className="text-left flex">
+                        <div className="text-left flex items-center">
                             <div className="md:block hidden pr-4">
                                 <Link to="/jual/pilih-kategori">
                                     <Button color="light">
@@ -37,6 +38,10 @@ function Header() {
                                         Jual
                                     </Button>
                                 </Link>
+                            </div>
+                            <div className="relative hover:cursor-pointer ">
+                                <div className="absolute right-4 border border-white w-2.5 h-2.5 bg-blue-500 rounded-full "></div>
+                                <MdChatBubble className="ml-3 mr-4 text-3xl text-gray-800" />
                             </div>
                             <Dropdown />
                         </div>
