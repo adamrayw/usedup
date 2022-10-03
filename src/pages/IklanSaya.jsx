@@ -4,6 +4,9 @@ import api from '../utils/api'
 import { useEffect, useState } from 'react'
 import { FaHeart, FaEye, FaRegEdit, FaTrash } from 'react-icons/fa'
 import { FiCheck } from 'react-icons/fi'
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+import { BiDotsVertical } from 'react-icons/bi'
 
 function IklanSaya() {
     const [data, setData] = useState([])
@@ -68,9 +71,9 @@ function IklanSaya() {
                                         {data.map((e, index) => {
                                             return (
                                                 <div key={index} className='container border border-gray-200 px-5 py-4'>
-                                                    <div className='flex justify-between items-center md:flex-row flex-col'>
+                                                    <div className='flex justify-between items-start md:flex-row flex-col'>
                                                         <div className='flex space-x-4 '>
-                                                            <img src={e.foto[0].url} className='object-cover w-24 h-auto' alt="iklanimage" />
+                                                            <img src={e.foto[0].url} className='object-cover md:w-24 w-20 h-auto' alt="iklanimage" />
                                                             <div className='text-left flex items-center justify-between'>
                                                                 <div>
                                                                     <h2 className='md:text-lg text-sm font-bold tracking-tight text-gray-900 text-left dark:text-white line-clamp-2'>{e.judul_iklan}</h2>
@@ -93,22 +96,42 @@ function IklanSaya() {
 
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            <div className='flex md:flex-row md:items-center items-start md:space-x-2 flex-wrap md:mt-0 mt-3'>
-                                                                <button className='flex items-center text-xs text-white px-2 py-2 bg-yellow-300'>
-                                                                    <FaRegEdit className='md:block hidden mr-2' />
-                                                                    Edit Iklan
-                                                                </button>
-                                                                <button className='flex items-center text-xs bg-red-400 text-white  px-2 py-2 '>
-                                                                    <FaTrash className='md:block hidden mr-2' />
-                                                                    Hapus Iklan
-                                                                </button>
-                                                                <button className='flex items-center text-xs bg-green-400 text-white px-2 py-2 '>
-                                                                    <FiCheck className='md:block hidden mr-2' />
-                                                                    Tandai sudah terjual
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                                        <Menu as="div" className="relative inline-block text-left">
+                                                            <Menu.Button className="">
+                                                                <BiDotsVertical />
+                                                            </Menu.Button>
+                                                            <Transition
+                                                                as={Fragment}
+                                                                enter="transition ease-out duration-100"
+                                                                enterFrom="transform opacity-0 scale-95"
+                                                                enterTo="transform opacity-100 scale-100"
+                                                                leave="transition ease-in duration-75"
+                                                                leaveFrom="transform opacity-100 scale-100"
+                                                                leaveTo="transform opacity-0 scale-95"
+                                                            >
+                                                                <Menu.Items static className="absolute z-20 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                                    <div className="py-2 px-4">
+                                                                        <div>
+                                                                            <div className='md:space-y-2 md:mt-0 mt-3'>
+                                                                                <button className='flex items-center text-xs text-white px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                    <FaRegEdit className='md:block hidden mr-2' />
+                                                                                    Edit Iklan
+                                                                                </button>
+                                                                                <button className='flex items-center text-xs text-white  px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                    <FaTrash className='md:block hidden mr-2' />
+                                                                                    Hapus Iklan
+                                                                                </button>
+                                                                                <button className='flex items-center text-xs text-white px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                    <FiCheck className='md:block hidden mr-2' />
+                                                                                    Tandai sudah terjual
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </Menu.Items>
+                                                            </Transition>
+                                                        </Menu>
+
                                                     </div>
 
                                                 </div>
