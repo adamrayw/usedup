@@ -71,7 +71,7 @@ function IklanSaya() {
                                         {data.map((e, index) => {
                                             return (
                                                 <div key={index} className='container border border-gray-200 px-5 py-4'>
-                                                    <div className='flex justify-between md:items-start items-end md:flex-row flex-col'>
+                                                    <div className='flex justify-between items-start md:flex-row flex-col'>
                                                         <div className='flex space-x-4 '>
                                                             <img src={e.foto[0].url} className='object-cover md:w-24 w-20 h-auto' alt="iklanimage" />
                                                             <div className='text-left flex items-center justify-between'>
@@ -96,7 +96,7 @@ function IklanSaya() {
 
                                                             </div>
                                                         </div>
-                                                        <Menu as="div" className="relative inline-block text-left">
+                                                        <Menu as="div" className="relative inline-block ml-auto">
                                                             <Menu.Button className="">
                                                                 <BiDotsVertical />
                                                             </Menu.Button>
