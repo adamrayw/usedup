@@ -77,7 +77,7 @@ function CardItem(props) {
         try {
             setFavoriteLoading(true)
             await axios.delete(api + '/hapus/favorite', { data: { id: favoriteId } })
-            toast('Menghapus dari favorit!', {
+            toast('Dihapus dari favorit!', {
                 icon: <MdOutlineRemoveCircle className='text-red-400' />,
                 position: "top-right",
                 autoClose: 2000,
