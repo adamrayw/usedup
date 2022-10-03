@@ -71,7 +71,7 @@ function IklanSaya() {
                                         {data.map((e, index) => {
                                             return (
                                                 <div key={index} className='container border border-gray-200 px-5 py-4'>
-                                                    <div className='flex justify-between items-start md:flex-row flex-col'>
+                                                    <div className='flex justify-between md:items-start items-end md:flex-row flex-col'>
                                                         <div className='flex space-x-4 '>
                                                             <img src={e.foto[0].url} className='object-cover md:w-24 w-20 h-auto' alt="iklanimage" />
                                                             <div className='text-left flex items-center justify-between'>
@@ -113,16 +113,16 @@ function IklanSaya() {
                                                                     <div className="py-2 px-4">
                                                                         <div>
                                                                             <div className='md:space-y-2 md:mt-0 mt-3'>
-                                                                                <button className='flex items-center text-xs text-white px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
-                                                                                    <FaRegEdit className='md:block hidden mr-2' />
+                                                                                <button className='flex items-center text-xs px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                    <FaRegEdit className='md:block mr-2' />
                                                                                     Edit Iklan
                                                                                 </button>
-                                                                                <button className='flex items-center text-xs text-white  px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
-                                                                                    <FaTrash className='md:block hidden mr-2' />
+                                                                                <button className='flex items-center text-xs  px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                    <FaTrash className='md:block mr-2' />
                                                                                     Hapus Iklan
                                                                                 </button>
-                                                                                <button className='flex items-center text-xs text-white px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
-                                                                                    <FiCheck className='md:block hidden mr-2' />
+                                                                                <button className='flex items-center text-xs px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                    <FiCheck className='md:block mr-2' />
                                                                                     Tandai sudah terjual
                                                                                 </button>
                                                                             </div>
