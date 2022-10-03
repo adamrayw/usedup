@@ -34,21 +34,21 @@ function App() {
           <Route path='/edit-profile' element={<EditProfile />} />
           <Route path='/verification/:id' element={<SuccessVerif />} />
         </Route>
+        <Route path='/' element={<Home />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/view/:id' element={<DetailItem />} />
+        <Route path='/:slug' element={<CategoryPage />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
+        <Route path='/iklan-saya' element={<IklanSaya />} />
 
         <Route path='/maintenance' element={<UnderContruct />} />
         {/* Maintenance Route */}
         <Route element={<Maintenance />} >
           <Route path='/jual/:slug' element={<FormJual />} />
           <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
-          <Route path='/' element={<Home />} />
-          <Route path="*" element={<PageNotFound />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/view/:id' element={<DetailItem />} />
-          <Route path='/:slug' element={<CategoryPage />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
-          <Route path='/iklan-saya' element={<IklanSaya />} />
         </Route>
       </Routes>
 
