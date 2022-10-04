@@ -7,10 +7,16 @@ import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import api from '../utils/api'
+import { FaGhost, FaHeart } from 'react-icons/fa'
+import { MdFavorite, MdOutlineRemoveCircle } from 'react-icons/md'
+import { toast } from 'react-toastify'
 
 function DetailItem() {
     const [itemData, setItemData] = useState([])
     const [loading, setLoading] = useState(true)
+    const [favoriteId, setFavoriteId] = useState('')
+    const [favorited, setFavorited] = useState(false)
+    const userId = JSON.parse(localStorage.getItem('user'))
 
     const params = useParams()
 
@@ -19,6 +25,13 @@ function DetailItem() {
         try {
             setLoading(true)
             const response = await axios.get(api + params.id)
+            // eslint-disable-next-line array-callback-return
+            response.data.Favorit.map(e => {
+                if (e.userId === userId.id) {
+                    setFavorited(true)
+                    setFavoriteId(e.id)
+                }
+            })
 
             setItemData(response.data)
             updateDilihat(response.data.dilihat)
@@ -35,6 +48,63 @@ function DetailItem() {
             })
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const tambahFavorit = async (id) => {
+        if (!userId) {
+            toast('Eitss! login atau register dulu yaa', {
+                icon: <FaGhost className='text-red-400' />,
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return
+        } else {
+            try {
+                await axios.post(api + '/tambah/favorite', {
+                    userId: userId.id,
+                    iklanId: id
+                })
+
+                toast('Berhasil menambahkan ke favorit!', {
+                    icon: <FaHeart className='text-red-400' />,
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setFavorited(true)
+
+            } catch (error) {
+                alert(error)
+            }
+        }
+
+    }
+
+    const hapusFavorit = async () => {
+        try {
+            await axios.delete(api + '/hapus/favorite', { data: { id: favoriteId } })
+            toast('Dihapus dari favorit!', {
+                icon: <MdOutlineRemoveCircle className='text-red-400' />,
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            })
+
+            setFavorited(false)
+
+        } catch (error) {
+            toast.error(error)
         }
     }
 
@@ -200,10 +270,24 @@ function DetailItem() {
                             </div>
                         </Card>
                         <div>
-                            <button className='border border-gray-300 text-gray-400 hover:bg-gray-50 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'>
-                                <FaRegHeart className='mr-2' />
-                                Tambah ke Favorit
-                            </button>
+                            {favorited ? (
+                                <button
+                                    className='border border-red-300 bg-red-400 text-white hover:bg-red-200 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    onClick={() => hapusFavorit(itemData.id)}
+                                >
+                                    <MdFavorite className='mr-2' />
+                                    Hapus dari Favorit
+                                </button>
+                            ) : (
+
+                                <button
+                                    className='border border-gray-300 text-gray-400 hover:bg-gray-50 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    onClick={() => tambahFavorit(itemData.id)}
+                                >
+                                    <FaRegHeart className='mr-2' />
+                                    Tambah ke Favorit
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
