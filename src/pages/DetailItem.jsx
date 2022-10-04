@@ -272,7 +272,7 @@ function DetailItem() {
                         <div>
                             {favorited ? (
                                 <button
-                                    className='border border-red-300 bg-red-400 text-white hover:bg-red-200 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    className='border border-red-300 bg-red-400 text-white active:bg-red-200 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
                                     onClick={() => hapusFavorit(itemData.id)}
                                 >
                                     <MdFavorite className='mr-2' />
@@ -281,7 +281,7 @@ function DetailItem() {
                             ) : (
 
                                 <button
-                                    className='border border-gray-300 text-gray-400 hover:bg-gray-50 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    className='border border-gray-300 text-gray-400 active:bg-gray-100 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
                                     onClick={() => tambahFavorit(itemData.id)}
                                 >
                                     <FaRegHeart className='mr-2' />
