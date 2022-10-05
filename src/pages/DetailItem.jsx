@@ -197,7 +197,28 @@ function DetailItem() {
                                     </p>
                                 </Tabs.Item>
                                 <Tabs.Item title="Spesifikasi">
-                                    Spesifikasi content
+                                    <div className='text-center flex md:overflow-x-hidden md:px-0 px-2 overflow-x-scroll space-x-6 md:justify-between '>
+                                        <Card>
+                                            <img src="https://img.icons8.com/ios/48/000000/price-tag--v1.png" alt='brand' />
+                                            <p className='text-xs text-gray-800 font-medium'>{itemData.merk}</p>
+                                        </Card>
+                                        <Card>
+                                            <img src="https://img.icons8.com/fluency-systems-regular/48/000000/calendar--v1.png" alt='year' />
+                                            <p className='text-xs text-gray-800 font-medium'>{itemData.tahun}</p>
+                                        </Card>
+                                        <Card>
+                                            <img src="https://img.icons8.com/ios/48/000000/speedometer.png" alt='speedometre' />
+                                            <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.jarak_tempuh)}</p>
+                                        </Card>
+                                        <Card>
+                                            <img src="https://img.icons8.com/external-outline-lafs/48/000000/external-Gas-nft-and-gamefi-outline-lafs.png" alt='gas' />
+                                            <p className='text-xs text-gray-800 font-medium'>{itemData.tipe_bahan_bakar}</p>
+                                        </Card>
+                                        <Card>
+                                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/48/000000/external-engine-cars-components-those-icons-lineal-those-icons.png" alt='engine' />
+                                            <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.kapasitas_mesin)}</p>
+                                        </Card>
+                                    </div>
                                 </Tabs.Item>
 
                             </Tabs.Group>
