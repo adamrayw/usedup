@@ -16,7 +16,7 @@ function DetailItem() {
     const [loading, setLoading] = useState(true)
     const [favoriteId, setFavoriteId] = useState('')
     const [favorited, setFavorited] = useState(false)
-    const userId = JSON.parse(localStorage.getItem('user'))
+    const userId = JSON.parse(localStorage.getItem('user')) ?? null
 
     const params = useParams()
 
@@ -26,12 +26,16 @@ function DetailItem() {
             setLoading(true)
             const response = await axios.get(api + params.id)
             // eslint-disable-next-line array-callback-return
-            response.data.Favorit.map(e => {
-                if (e.userId === userId.id) {
-                    setFavorited(true)
-                    setFavoriteId(e.id)
-                }
-            })
+            if (userId !== null) {
+                response.data.Favorit.map(e => {
+                    if (e.userId === userId.id) {
+                        setFavorited(true)
+                        setFavoriteId(e.id)
+                    }
+                })
+            } else {
+                setFavorited(false)
+            }
 
             setItemData(response.data)
             updateDilihat(response.data.dilihat)
