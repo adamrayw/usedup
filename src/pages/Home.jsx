@@ -21,7 +21,7 @@ export default function Home() {
             // const response = await axios.get('https://usedup.herokuapp.com/api/home?result=' + result)
             const response = await axios.get(api + 'home?result=' + result)
 
-            setItems(response.data)
+            setItems(response.data.data)
         } catch (error) {
             alert(error)
         }

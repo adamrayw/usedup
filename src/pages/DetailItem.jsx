@@ -27,7 +27,7 @@ function DetailItem() {
             const response = await axios.get(api + params.id)
             // eslint-disable-next-line array-callback-return
             if (userId !== null) {
-                response.data.Favorit.map(e => {
+                response.data.data.Favorit.map(e => {
                     if (e.userId === userId.id) {
                         setFavorited(true)
                         setFavoriteId(e.id)
@@ -37,8 +37,8 @@ function DetailItem() {
                 setFavorited(false)
             }
 
-            setItemData(response.data)
-            updateDilihat(response.data.dilihat)
+            setItemData(response.data.data)
+            updateDilihat(response.data.data.dilihat)
             setLoading(false)
         } catch (error) {
             alert(error)
