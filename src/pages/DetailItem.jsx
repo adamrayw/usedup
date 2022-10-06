@@ -201,7 +201,7 @@ function DetailItem() {
                                     </p>
                                 </Tabs.Item>
                                 <Tabs.Item title="Spesifikasi">
-                                    <div className='text-center flex md:overflow-x-hidden md:px-0 px-2 overflow-x-scroll space-x-6 md:justify-between '>
+                                    <div className='text-center flex md:overflow-x-hidden pb-2 md:px-0 px-2 overflow-x-scroll space-x-6 md:justify-between '>
                                         <Card>
                                             <img src="https://img.icons8.com/ios/48/000000/price-tag--v1.png" alt='brand' />
                                             <p className='text-xs text-gray-800 font-medium'>{itemData.merk}</p>
