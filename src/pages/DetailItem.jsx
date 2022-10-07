@@ -307,7 +307,9 @@ function DetailItem() {
                                 ) : (
                                     <p className='mt-1'>*************</p>
                                 )}
-                                <button className='text-xs underline text-blue-600 active:text-blue-800' onClick={() => setHideNo(!hideNo)}>Tampilkan</button>
+                                <button className='text-xs underline text-blue-600 active:text-blue-800' onClick={() => setHideNo(!hideNo)}>
+                                    {hideNo ? 'Sembunyikan' : 'Tampilkan'}
+                                </button>
                             </div>
                         </div>
                         <div>
