@@ -16,6 +16,7 @@ function DetailItem() {
     const [loading, setLoading] = useState(true)
     const [favoriteId, setFavoriteId] = useState('')
     const [favorited, setFavorited] = useState(false)
+    const [hideNo, setHideNo] = useState(false)
     const userId = JSON.parse(localStorage.getItem('user')) ?? null
 
     const params = useParams()
@@ -230,15 +231,7 @@ function DetailItem() {
                     </div>
                     <div className='profil-penjual'>
                         <Card>
-                            {itemData.User ? (
-                                <>
-                                    {itemData.User.isVerified ? (
-                                        ''
-                                    ) : (
-                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p>
-                                    )}
-                                </>
-                            ) : ''}
+
                             <div className='flex items-start justify-start text-left'>
                                 <div>
                                     {itemData.User ? (
@@ -279,21 +272,44 @@ function DetailItem() {
                                     <Link to='/' className='text-blue-500 underline text-sm'>
                                         Lihat Profil
                                     </Link>
-                                    <div>
+
+                                    {/*<div>
                                         <div className="flex flex-wrap items-center gap-2">
                                             <Button size={'sm'}>
                                                 <BsFillTelephoneFill className="mr-2 h-5 w-5" />
                                                 Kontak
                                             </Button>
-                                            {/* <Button color="success">
+                                             <Button color="success">
                                                 <IoLogoWhatsapp className="mr-2 h-5 w-5" />
                                                 Whatsapp
-                                            </Button> */}
+                                            </Button> 
                                         </div>
-                                    </div>
+                                    </div>*/}
                                 </div>
+
                             </div>
+                            {itemData.User ? (
+                                <>
+                                    {itemData.User.isVerified ? (
+                                        ''
+                                    ) : (
+                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p>
+                                    )}
+                                </>
+                            ) : ''}
                         </Card>
+                        <div className="border border-gray-300 rounded-md shadow-md px-7 py-4 mt-4">
+                            <div className='text-left'>
+                                <h1 className='text-lg font-bold'>Kontak Penjual</h1>
+                                {hideNo ? (
+                                    <p className='mt-1'>{itemData.User.no_telp}</p>
+
+                                ) : (
+                                    <p className='mt-1'>*************</p>
+                                )}
+                                <button className='text-xs underline text-blue-600 active:text-blue-800' onClick={() => setHideNo(!hideNo)}>Tampilkan</button>
+                            </div>
+                        </div>
                         <div>
                             {favorited ? (
                                 <button
