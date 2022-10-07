@@ -8,12 +8,13 @@ import { useSelector } from 'react-redux'
 import { MdSell } from 'react-icons/md'
 import Dropdown from './Dropdown'
 import { MdChatBubble } from 'react-icons/md'
+import { HiOutlineSearch } from "react-icons/hi"
 
 function Header() {
     const { user } = useSelector((state) => state.auth)
 
     return (
-        <div className="px-2 pt-1.5">
+        <div className="px-2 py-2 shadow-sm mb-1">
             <Navbar
                 fluid={true}
                 rounded={true}
@@ -39,9 +40,12 @@ function Header() {
                                     </Button>
                                 </Link>
                             </div>
+                            <Link to='/'>
+                                <HiOutlineSearch className="text-xl" />
+                            </Link>
                             <div className="relative hover:cursor-pointer ">
                                 <div className="absolute right-4 border border-white w-2.5 h-2.5 bg-blue-500 rounded-full "></div>
-                                <MdChatBubble className="ml-3 mr-4 text-3xl text-gray-800" />
+                                <MdChatBubble className="mx-4 text-3xl text-gray-800" />
                             </div>
                             <Dropdown />
                         </div>
@@ -65,10 +69,15 @@ function Header() {
                     <Navbar.Toggle />
                 </div>
                 <Navbar.Collapse>
-                    <Search />
+                    {/* <Search /> */}
+                    <Categories />
+
                     <div className="btn mt-4 md:hidden flex space-x-4 justify-end ">
                         {user ? (
                             <>
+                                <Link to='/'>
+                                    <HiOutlineSearch />
+                                </Link>
                                 <Link to="/jual/pilih-kategori">
                                     <Button color="light">
                                         <MdSell className="mr-1 text-lg text-gray-800" />
@@ -92,7 +101,6 @@ function Header() {
                     </div>
                 </Navbar.Collapse>
             </Navbar>
-            <Categories />
         </div>
     )
 }
