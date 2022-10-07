@@ -25,7 +25,7 @@ function Categories() {
     }
     return (
         <>
-            <div className='bg-white pt-1.5 pb-3 mb-1 shadow-sm w-full text-center'>
+            <div className='w-full text-center'>
                 <div className='flex md:overflow-x-hidden md:px-0 px-2 overflow-x-scroll space-x-6 md:justify-center '>
                     {categories.length === 0 ? (
                         <>
@@ -42,7 +42,7 @@ function Categories() {
                         <>
                             {categories.map((e) => {
                                 return (
-                                    <Link key={e.id} to={e.slug} className='whitespace-nowrap hover:underline'>{e.name}</Link>
+                                    <Link key={e.id} to={e.slug} className='font-normal whitespace-nowrap hover:underline'>{e.name}</Link>
                                 )
                             })}
                         </>
