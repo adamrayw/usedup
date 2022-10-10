@@ -2,13 +2,13 @@
 import { Navbar, Button } from "flowbite-react"
 import logo from '../logo.png'
 import Categories from "./Categories"
-import Search from "./Search"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { MdSell } from 'react-icons/md'
 import Dropdown from './Dropdown'
 import { MdChatBubble } from 'react-icons/md'
 import { HiOutlineSearch } from "react-icons/hi"
+import Search from "./Search"
 
 function Header() {
     const { user } = useSelector((state) => state.auth)
@@ -40,9 +40,7 @@ function Header() {
                                     </Button>
                                 </Link>
                             </div>
-                            <Link to='/'>
-                                <HiOutlineSearch className="text-xl" />
-                            </Link>
+                            <Search />
                             <div className="relative hover:cursor-pointer ">
                                 <div className="absolute right-4 border border-white w-2.5 h-2.5 bg-blue-500 rounded-full "></div>
                                 <MdChatBubble className="mx-4 text-3xl text-gray-800" />
@@ -51,6 +49,7 @@ function Header() {
                         </div>
                     ) : (
                         <div className="btn md:flex space-x-4 hidden">
+                            <Search />
                             <Link to="/login">
                                 <Button color="dark">
                                     Login
@@ -69,7 +68,6 @@ function Header() {
                     <Navbar.Toggle />
                 </div>
                 <Navbar.Collapse>
-                    {/* <Search /> */}
                     <Categories />
 
                     <div className="btn mt-4 md:hidden flex space-x-4 justify-end ">
