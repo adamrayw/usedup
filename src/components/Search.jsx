@@ -1,71 +1,38 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import api from '../utils/api'
-import { VscWholeWord } from 'react-icons/vsc'
 
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+import { HiOutlineSearch } from "react-icons/hi"
 function Search() {
-    const [keyword, setKeyword] = useState('')
-    const [searchResult, setSearchResult] = useState([])
-
-    const onSearch = async (e) => {
-        setKeyword(e.target.value)
-
-        if (e.target.value === '') {
-            setKeyword('')
-            setSearchResult('')
-        }
-
-        try {
-            const res = await axios.get(api + 'item/search?keyword=' + e.target.value)
-            setSearchResult(res.data)
-        } catch (e) {
-            alert(e)
-        }
-    }
 
     return (
         <>
-            <form>
-                <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                <div className="relative">
-                    <input type="search" id="default-search" className="block p-3 pl-10 md:w-96 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari mobil, motor, handphone, dan lainnya..." required="" onChange={onSearch} />
-                    <div className="flex absolute inset-y-0 left-0 items-center px-3 pointer-events-none">
-                        <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <div className="flex items-center">
+                <Menu as="div" className="relative inline-block text-left">
+                    <div className="flex items-center">
+                        <Menu.Button className="hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                            <HiOutlineSearch className="text-xl" />
+                        </Menu.Button>
                     </div>
-                    {keyword ? (
-                        <div className='absolute w-full mt-2 shadow h-48 overflow-y-scroll space-y-4 p-4 bg-white'>
-                            {searchResult.map((e) => {
-                                return (
-                                    <Link key={e.id} to={`/view/${e.id}`} onClick={() => {
-                                        setKeyword('')
-                                        setSearchResult('')
-                                    }}>
-                                        <div className='flex items-center py-2 space-x-3 hover:bg-gray-50 transition'>
-                                            <div>
-                                                <img src={e.foto[0].secure_url} className='w-16 bg-cover' alt="produk" />
-                                            </div>
-                                            <div className='font-medium text-left space-y-1'>
-                                                <p className='line-clamp-1'>{e.judul_iklan}</p>
-                                                <p className='text-xs text-blue-600'>Rp {Intl.NumberFormat('id-ID').format(e.harga)}</p>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                    </Link>
-                                )
-                            })}
-                            {searchResult.length === 0 ? (
-                                <div className='flex items-center justify-center h-full flex-col space-y-2'>
-                                    <VscWholeWord className='w-10 h-10 text-gray-800' />
-                                    <p className='text-gray-400'>Gunakan keyword yang lebih spesifik</p>
+                    <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                    >
+                        <Menu.Items static className="absolute z-20 labsolute top-14 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-6 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <form action="">
+                                <div className='flex items-center pl-2 pr-4 py-1'>
+                                    <input className='border-0 focus:ring-0 text-sm' type="text" name="search" id="search" placeholder='Cari Mobil, Motor, Handphone' />
+                                    <button className='font-medium'>Cari</button>
                                 </div>
-                            ) : ('')}
-                        </div>
-                    ) : ''}
-
-                </div>
-
-            </form>
+                            </form>
+                        </Menu.Items>
+                    </Transition>
+                </Menu>
+            </div>
         </>
     )
 }
