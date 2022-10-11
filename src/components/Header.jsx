@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { MdSell } from 'react-icons/md'
 import Dropdown from './Dropdown'
 import { MdChatBubble } from 'react-icons/md'
-import { HiOutlineSearch } from "react-icons/hi"
 import Search from "./Search"
 
 function Header() {
@@ -40,7 +39,6 @@ function Header() {
                                     </Button>
                                 </Link>
                             </div>
-                            <Search />
                             <div className="relative hover:cursor-pointer ">
                                 <div className="absolute right-4 border border-white w-2.5 h-2.5 bg-blue-500 rounded-full "></div>
                                 <MdChatBubble className="mx-4 text-3xl text-gray-800" />
@@ -49,7 +47,6 @@ function Header() {
                         </div>
                     ) : (
                         <div className="btn md:flex space-x-4 hidden">
-                            <Search />
                             <Link to="/login">
                                 <Button color="dark">
                                     Login
@@ -68,14 +65,11 @@ function Header() {
                     <Navbar.Toggle />
                 </div>
                 <Navbar.Collapse>
-                    <Categories />
+                    <Search />
 
                     <div className="btn mt-4 md:hidden flex space-x-4 justify-end ">
                         {user ? (
                             <>
-                                <Link to='/'>
-                                    <HiOutlineSearch />
-                                </Link>
                                 <Link to="/jual/pilih-kategori">
                                     <Button color="light">
                                         <MdSell className="mr-1 text-lg text-gray-800" />
@@ -99,6 +93,7 @@ function Header() {
                     </div>
                 </Navbar.Collapse>
             </Navbar>
+            <Categories />
         </div>
     )
 }
