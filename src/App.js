@@ -22,6 +22,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
 import IklanSaya from './pages/IklanSaya';
 import UnderContruct from './pages/UnderContruct';
+import SearchResult from './pages/SearchResult';
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
         <Route path='/iklan-saya' element={<IklanSaya />} />
-
+        <Route path='/search/:keyword' element={<SearchResult />} />
         <Route path='/maintenance' element={<UnderContruct />} />
         {/* Maintenance Route */}
         <Route element={<Maintenance />} >
