@@ -1,5 +1,5 @@
-import { Breadcrumb, Tabs, Carousel, Avatar, Card, Button } from 'flowbite-react'
-import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsFillTelephoneFill } from 'react-icons/bs'
+import { Breadcrumb, Tabs, Carousel, Avatar, Card } from 'flowbite-react'
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
 import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
 import { GoVerified } from 'react-icons/go'
 import { HiHome } from 'react-icons/hi'
@@ -28,6 +28,7 @@ function DetailItem() {
             const response = await axios.get(api + params.id)
             // eslint-disable-next-line array-callback-return
             if (userId !== null) {
+                // eslint-disable-next-line array-callback-return
                 response.data.data.Favorit.map(e => {
                     if (e.userId === userId.id) {
                         setFavorited(true)
