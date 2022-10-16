@@ -57,9 +57,9 @@ export default function SearchResult() {
                 </div>
                 {isEmpty ? (
                     <div className="my-10 flex items-center flex-col">
-                        <HiEmojiSad size={'4em'} />
-                        <h2 className="text-lg text-center text-gray-800 font-bold">Iklan tidak ditemukan</h2>
-                        <p className="text-gray-400">Gunakan kata kunci yang lebih spesifik <br /> contoh: Kawasaki</p>
+                        <HiEmojiSad size={'4em'} className='text-gray-800' />
+                        <h2 className="text-lg text-center text-gray-800 font-bold mt-2">Barang tidak ditemukan</h2>
+                        <p className="text-gray-400">Gunakan kata kunci yang lebih spesifik <br /> contoh: <span className="underline font-bold">Kawasaki</span></p>
                     </div>
                 ) : ''}
             </div>
