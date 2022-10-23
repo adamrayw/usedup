@@ -47,9 +47,9 @@ function App() {
         <Route path='/search/:keyword' element={<SearchResult />} />
         <Route path='/maintenance' element={<UnderContruct />} />
         {/* Maintenance Route */}
+        <Route path='/jual/:slug' element={<FormJual />} />
+        <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
         <Route element={<Maintenance />} >
-          <Route path='/jual/:slug' element={<FormJual />} />
-          <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
         </Route>
       </Routes>
 

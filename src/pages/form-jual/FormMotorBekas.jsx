@@ -1,18 +1,21 @@
 import { Label, TextInput, Textarea, Button, Spinner } from 'flowbite-react'
-import { FaCloudUploadAlt, FaCheck, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaCloudUploadAlt, FaCheck, FaMapMarkerAlt, FaTimes, FaRegEye } from 'react-icons/fa'
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { formMobilBekas, reset, resetUpload } from '../../features/form/formSlice'
-import { useNavigate, useParams } from 'react-router-dom';
+import { formMobilBekas, reset, resetUpload, removeFoto } from '../../features/form/formSlice'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import UploadFoto from '../../components/UploadFoto';
 import NumberFormat from 'react-number-format';
 import api from '../../utils/api';
+import ImageFull from '../../components/ImageFull';
 
 function FormMotorBekas() {
     const [selectedImage, setSelectedImage] = useState([])
     const [imageClouded, setImageClouded] = useState([])
+    const [onPreview, setOnPreview] = useState(false)
+    const [ImagePreview, setImagePreview] = useState([])
     const [isLoadingUpload, setIsLoadingUpload] = useState(false)
     const [provinsiData, setProvinsiData] = useState([])
     const { user } = useSelector((state) => state.auth)
@@ -47,7 +50,6 @@ function FormMotorBekas() {
         }
 
         if (isSuccess) {
-            dispatch(resetUpload())
             navigate('/success')
         }
 
@@ -120,18 +122,20 @@ function FormMotorBekas() {
 
     }
 
+
     const onInput = (e) => {
+        const kategoriId = localStorage.getItem('kategoriId')
         e.preventDefault()
-        const id = localStorage.getItem('kategoriId')
 
         if (imageClouded.length < 1) {
             return
         } else {
             const data = {
-                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategori: id, kategoriId: id, foto: imageClouded
+                userId: user ? user.id : 0, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, kategoriId: kategoriId, foto: imageClouded
             }
 
             dispatch(formMobilBekas(data))
+            dispatch(resetUpload())
             setSelectedImage([])
             setImageClouded([])
             setFormData([])
@@ -188,7 +192,7 @@ function FormMotorBekas() {
                                     type="text"
                                     sizing="md"
                                     name='model'
-                                    placeholder='z800'
+                                    placeholder='ZX25R'
                                     onChange={onChange}
                                     required={true}
                                 />
@@ -222,7 +226,7 @@ function FormMotorBekas() {
                                     type="text"
                                     sizing="md"
                                     name='jarak_tempuh'
-                                    placeholder='12000'
+                                    placeholder='42000'
                                     required={true}
                                     onChange={onChange}
                                     value={formattedValue.jarakTempuh}
@@ -247,7 +251,6 @@ function FormMotorBekas() {
                                         Bensin
                                     </label>
                                 </div>
-
                                 <div className="flex items-center mb-4">
                                     <input id="tipe-bahan-bakar-listrik" type="radio" name="tipe_bahan_bakar" value="Listrik" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" onChange={onChange} required={true} />
                                     <label htmlFor="tipe-bahan-bakar-listrik" className="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -268,7 +271,7 @@ function FormMotorBekas() {
                                         type="text"
                                         sizing="md"
                                         name="kapasitas_mesin"
-                                        placeholder='800'
+                                        placeholder='1000'
                                         onChange={onChange}
                                         required={true}
                                         value={formattedValue.kapasitasMesin}
@@ -297,7 +300,7 @@ function FormMotorBekas() {
                                     type="text"
                                     sizing="md"
                                     name="judul_iklan"
-                                    placeholder='Dijual kawasaki z800 bekas rasa baru!'
+                                    placeholder='Dijual motor bekas baru!'
                                     onChange={onChange}
                                     required={true}
                                 />
@@ -335,7 +338,7 @@ function FormMotorBekas() {
                                     type="text"
                                     sizing="md"
                                     name='harga'
-                                    placeholder='200.000.000'
+                                    placeholder='300.000.000'
                                     addon='Rp'
                                     required={true}
                                     onChange={onChange}
@@ -363,10 +366,10 @@ function FormMotorBekas() {
                                     required={true}
                                     onChange={onChange}
                                 />
-                                <div className="flex items-center my-4">
+                                {/* <div className="flex items-center my-4">
                                     <input id="checkbox-1" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                     <label htmlFor="checkbox-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gunakan alamat sekarang.</label>
-                                </div>
+                                </div> */}
                             </div>
                             <div>
                                 <label htmlFor="provinsi" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Provinsi</label>
@@ -421,14 +424,41 @@ function FormMotorBekas() {
                             <div className='grid grid-cols-3 justify-between items-center gap-4'>
                                 {selectedImage.map((e, index) => {
                                     return (
-                                        <img
-                                            key={index}
-                                            className="w-28 h-24 mx-auto shadow-sm p-2 rounded"
-                                            src={URL.createObjectURL(e)}
-                                            alt="foto-item"
-                                        />
+                                        <>
+                                            <div className='relative'>
+                                                <div className='absolute z-10 bg-white pl-3 pt-2 pb-3 cursor-pointer hover:bg-gray-50 active:bg-gray-100 active:rounded-tr pr-1 shadow right-0 rounded-bl-full rounded-tr' onClick={() => dispatch(removeFoto(e))}>
+                                                    <FaTimes className='text-xs text-red-500' />
+                                                </div>
+                                                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded w-full h-full items-center flex justify-center hover:cursor-pointer hover:bg-black hover:opacity-40 active:opacity-20 transition'
+                                                    onClick={() => {
+                                                        setOnPreview(true)
+                                                        setImagePreview(e)
+                                                    }}
+                                                >
+                                                    <FaRegEye className='text-white z-10' />
+                                                </div>
+                                                <img
+                                                    key={index}
+                                                    className="w-full h-20 mx-auto shadow-md object-cover rounded"
+                                                    src={URL.createObjectURL(e)}
+                                                    alt="foto-item"
+                                                />
+                                            </div>
+                                            {onPreview ? (
+                                                <>
+                                                    <div className='fixed z-20 top-0 right-0 p-6'>
+                                                        <FaTimes className='text-white text-xl hover:cursor-pointer' onClick={() => {
+                                                            setOnPreview(false)
+                                                            setImagePreview([])
+                                                        }} />
+                                                    </div>
+                                                    <ImageFull image={ImagePreview} />
+                                                </>
+                                            ) : ''}
+                                        </>
                                     )
                                 })}
+
 
                                 {imageClouded.length > 0 ? '' : (
                                     <>
@@ -441,6 +471,7 @@ function FormMotorBekas() {
                                 )}
                             </div>
                             <div className='pt-4'>
+
                                 {isLoadingUpload ? (<>
                                     <Button color="dark" size='lg' disabled={true}>
                                         JUAL SEKARANG
