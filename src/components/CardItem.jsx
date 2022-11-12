@@ -135,8 +135,8 @@ function CardItem(props) {
 
                 </div>
                 <Link to={'/view/' + props.data.id}>
-                    <div className='shadow-md'>
-                        <div className='p-2'>
+                    <div className='border'>
+                        <div className='px-2 pt-3'>
                             <img src={props.data.foto[0].url} alt="item" className='max-w-full h-32 object-contain mx-auto ' />
                         </div>
                         <div className='md:p-4 p-3'>
