@@ -209,25 +209,25 @@ function DetailItem() {
                                     {kategori === 'mobil-bekas' ? (
                                         <>
                                             <div className='text-center grid grid-cols-2 pb-2 md:justify-between '>
-                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col md:space-y-0 space-y-1 justify-around'>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col md:space-y-0 space-y-1 justify-between'>
                                                     <img src="https://img.icons8.com/ios/42/000000/price-tag--v1.png" alt='brand' />
                                                     <p className='text-xs text-gray-800 font-medium truncate'>{itemData.merk}</p>
                                                 </div>
-                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-around'>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
                                                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/48/000000/external-calendar-interface-kiranshastry-lineal-kiranshastry-1.png" alt='year' />
                                                     <p className='text-xs text-gray-800 font-medium'>{itemData.tahun}</p>
                                                 </div>
-                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-around'>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
                                                     <img src="https://img.icons8.com/ios/42/000000/speedometer.png" alt='speedometre' />
-                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.jarak_tempuh)}</p>
+                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.jarak_tempuh)} (km)</p>
                                                 </div>
-                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-around'>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
                                                     <img src="https://img.icons8.com/external-outline-lafs/42/000000/external-Gas-nft-and-gamefi-outline-lafs.png" alt='gas' />
                                                     <p className='text-xs text-gray-800 font-medium'>{itemData.tipe_bahan_bakar}</p>
                                                 </div>
-                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-around'>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
                                                     <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/42/000000/external-engine-cars-components-those-icons-lineal-those-icons.png" alt='engine' />
-                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.kapasitas_mesin)}</p>
+                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.kapasitas_mesin)}cc</p>
                                                 </div>
                                             </div>
                                         </>
