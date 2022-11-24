@@ -237,28 +237,73 @@ function DetailItem() {
                                             <div className='text-center grid grid-cols-2 pb-2 gap-x-4 md:justify-between '>
                                                 <div className='w-18 p-4 shadow-sm border-b flex items-center flex-col md:space-y-0 space-y-1 justify-around'>
                                                     <h2 className='font-bold'>Fasilitas</h2>
-                                                    <p className='text-xs text-gray-800 font-medium truncate'>{itemData.fasilitas}</p>
+                                                    <p className='text-sm text-gray-500 font-medium truncate'>{itemData.fasilitas}</p>
                                                 </div>
                                                 <div className='w-18 p-4 shadow-sm border-b flex items-center flex-col space-y-1 justify-around'>
                                                     <h2 className='font-bold'>Kamar Tidur</h2>
-                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.kamar_tidur}</p>
+                                                    <p className='text-sm text-gray-500 font-medium'>{itemData.kamar_tidur}</p>
                                                 </div>
                                                 <div className='w-18 p-4 shadow-sm border-b flex items-center flex-col space-y-1 justify-around'>
                                                     <h2 className='font-bold'>Luas Bangunan</h2>
-                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.l_bangunan}</p>
+                                                    <p className='text-sm text-gray-500 font-medium'>{itemData.l_bangunan}</p>
                                                 </div>
                                                 <div className='w-18 p-4 shadow-sm border-b flex items-center flex-col space-y-1 justify-around'>
                                                     <h2 className='font-bold'>Luas Tanah</h2>
-                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.l_tanah}</p>
+                                                    <p className='text-sm text-gray-500 font-medium'>{itemData.l_tanah}</p>
                                                 </div>
                                                 <div className='w-18 p-4 shadow-sm border-b flex items-center flex-col space-y-1 justify-around'>
                                                     <h2 className='font-bold'>Lantai</h2>
-                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.lantai}</p>
+                                                    <p className='text-sm text-gray-500 font-medium'>{itemData.lantai}</p>
                                                 </div>
                                                 <div className='w-18 p-4 shadow-sm border-b flex items-center flex-col space-y-1 justify-around'>
                                                     <h2 className='font-bold'>Sertifikasi</h2>
-                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.sertifikasi}</p>
+                                                    <p className='text-sm text-gray-500 font-medium'>{itemData.sertifikasi}</p>
                                                 </div>
+                                            </div>
+                                        </>
+                                    ) : ''}
+                                    {kategori === 'motor-bekas' ? (
+                                        <>
+                                            <div className='text-center grid grid-cols-2 pb-2 md:justify-between '>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col md:space-y-0 space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/ios/42/000000/price-tag--v1.png" alt='brand' />
+                                                    <p className='text-xs text-gray-800 font-medium truncate'>{itemData.merk}</p>
+                                                </div>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/48/000000/external-calendar-interface-kiranshastry-lineal-kiranshastry-1.png" alt='year' />
+                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.tahun}</p>
+                                                </div>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/ios/42/000000/speedometer.png" alt='speedometre' />
+                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.jarak_tempuh)} (km)</p>
+                                                </div>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/external-outline-lafs/42/000000/external-Gas-nft-and-gamefi-outline-lafs.png" alt='gas' />
+                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.tipe_bahan_bakar}</p>
+                                                </div>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/42/000000/external-engine-cars-components-those-icons-lineal-those-icons.png" alt='engine' />
+                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.kapasitas_mesin)}cc</p>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : ''}
+                                    {kategori === 'elektronik-gadget' ? (
+                                        <>
+                                            <div className='text-center grid grid-cols-2 pb-2 md:justify-between '>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col md:space-y-0 space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/ios/42/000000/price-tag--v1.png" alt='brand' />
+                                                    <p className='text-xs text-gray-800 font-medium truncate'>{itemData.merk}</p>
+                                                </div>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/ios/48/null/storage--v1.png" alt='storage' />
+                                                    <p className='text-xs text-gray-800 font-medium'>{itemData.penyimpanan} GB</p>
+                                                </div>
+                                                <div className='w-18 p-4 shadow-sm flex items-center md:flex-row flex-col space-y-1 justify-between'>
+                                                    <img src="https://img.icons8.com/ios/50/null/smartphone-ram.png" alt='ram' />
+                                                    <p className='text-xs text-gray-800 font-medium'>{Intl.NumberFormat('id-ID').format(itemData.ram)} GB</p>
+                                                </div>
+
                                             </div>
                                         </>
                                     ) : ''}
