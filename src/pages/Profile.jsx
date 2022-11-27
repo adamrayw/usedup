@@ -1,4 +1,5 @@
 import { IoShareSocial } from 'react-icons/io5'
+import { BsBoxSeam } from 'react-icons/bs'
 import { MdOutlineReportProblem } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -12,6 +13,7 @@ function Profile() {
     const [profile, setProfile] = useState([])
     const [iklans, setIklans] = useState([])
     const [isDataNull, setIsDataNull] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
     const params = useParams()
 
@@ -22,18 +24,23 @@ function Profile() {
 
     const getProfileData = async () => {
         try {
+            setIsLoading(true)
             const dataProfile = await axios.get(api + 'profile/' + params.id)
 
             if (dataProfile.data.data === null) {
                 setIsDataNull(true)
+                setIsLoading(false)
             } else {
                 setIsDataNull(false)
                 setIklans(dataProfile.data.data.iklans)
                 setProfile(dataProfile.data.data)
-                console.log(dataProfile);
+                setIsLoading(false)
             }
+
+            setIsLoading(false)
         } catch (err) {
             console.log(err);
+            setIsLoading(false)
         }
     }
 
@@ -83,22 +90,36 @@ function Profile() {
                         <div className='text-left'>
                             <h2 className='font-medium mb-3'>Ada <span className='text-blue-600'>{iklans.length}</span> item yang dijual sama <span className='text-blue-600'>{profile.name}</span></h2>
                             <div>
-                                {iklans.length === 0 ? (
+                                {isLoading ? (
                                     <>
                                         <SkeletonCard />
                                     </>
                                 ) : (
                                     <>
-                                        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
-                                            {iklans.map((data, index) => {
-                                                return (
+                                        {
+                                            iklans.length === 0 ? (
+                                                <div className='flex justify-center flex-col space-y-4 items-center my-8'>
+                                                    <BsBoxSeam className='text-6xl' />
+                                                    <p>Tidak item yang dijual</p>
+                                                </div>
+                                            ) : (
+                                                <>
+                                                    <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
+                                                        {iklans.map((data, index) => {
+                                                            return (
 
-                                                    <CardItem key={index} data={data} />
-                                                )
-                                            })}
-                                        </div>
+                                                                <CardItem key={index} data={data} />
+                                                            )
+                                                        })}
+                                                    </div>
+                                                </>
+                                            )
+                                        }
                                     </>
-                                )}
+
+                                )
+
+                                }
                             </div>
                         </div>
                     </>
