@@ -10,12 +10,12 @@ function AvatarProfile() {
                     {user.no_telp === null ? (
                         <div className='relative'>
                             <div className='w-3 h-3 right-0 border border-white absolute rounded-full bg-red-500'></div>
-                            <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
+                            <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-xl w-10 h-10' />
                         </div>
 
                     ) : (
                         // <Avatar alt="User settings" img={user.foto_profile.secure_url} rounded={true}
-                        <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-full w-10 h-10' />
+                        <img src={user.foto_profile.secure_url} alt="profile_penjual" className='object-cover rounded-xl w-10 h-10' />
                     )}
                 </>
             ) : (
