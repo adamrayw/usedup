@@ -14,6 +14,7 @@ export default function Home() {
 
     useEffect(() => {
         getAllItems()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [result])
 
     const getAllItems = async () => {
