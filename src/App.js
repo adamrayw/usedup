@@ -23,6 +23,7 @@ import ResetPassword from './pages/auth/ResetPassword';
 import IklanSaya from './pages/IklanSaya';
 import UnderContruct from './pages/UnderContruct';
 import SearchResult from './pages/SearchResult';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/edit-profile' element={<EditProfile />} />
           <Route path='/verification/:id' element={<SuccessVerif />} />
           <Route path='/jual/:slug' element={<FormJual />} />
+          <Route path='/profile/:id' element={<Profile />} />
         </Route>
         <Route path='/' element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
