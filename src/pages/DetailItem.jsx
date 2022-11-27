@@ -19,6 +19,7 @@ function DetailItem() {
     const [hideNo, setHideNo] = useState(false)
     const [kategori, setKategori] = useState('')
     const userId = JSON.parse(localStorage.getItem('user')) ?? null
+    const [profileId, setProfileId] = useState('')
 
     const params = useParams()
 
@@ -40,9 +41,9 @@ function DetailItem() {
                 setFavorited(false)
             }
 
-            console.log(response.data.data)
             setKategori(response.data.data.Kategori.slug)
             setItemData(response.data.data)
+            setProfileId(response.data.data.User.id);
             updateDilihat(response.data.data.dilihat)
             setLoading(false)
         } catch (error) {
@@ -351,8 +352,7 @@ function DetailItem() {
 
                                     )}
 
-
-                                    <Link to='/' className='text-blue-500 underline text-sm'>
+                                    <Link to={'/profile/' + profileId} className='text-blue-500 underline text-sm'>
                                         Lihat Profil
                                     </Link>
 
