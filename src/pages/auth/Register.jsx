@@ -152,7 +152,7 @@ function Register() {
                                     name='name'
                                     disabled={isLoading ? true : false}
                                     onChange={onChangeName}
-                                    color={validation.name.length > 1 ? 'failure' : ''}
+                                    color={validation.name.length > 1 ? 'failure' : 'gray'}
                                     required={true}
                                 />
                                 {validation.name.length > 1 ? (<>
@@ -171,8 +171,8 @@ function Register() {
                                     type="email"
                                     name='email'
                                     disabled={isLoading ? true : false}
+                                    color='gray'
                                     placeholder="name@usedup.com"
-                                    color='light'
                                     onChange={onChangeEmail}
                                     required={true}
                                 />
@@ -191,7 +191,7 @@ function Register() {
                                     onChange={onChangePassword}
                                     name='password'
                                     disabled={isLoading ? true : false}
-                                    color={validation.password.length > 1 ? 'failure' : ''}
+                                    color={validation.password.length > 1 ? 'failure' : 'gray'}
                                     required={true}
                                 />
                                 {validation.password.length > 1 ? (<>
