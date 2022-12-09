@@ -61,6 +61,21 @@ function FormMobilBekas() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isError, isSuccess, message, foto])
 
+    const Toast = (removedSymbol) => {
+        if (isNaN(removedSymbol) || typeof removedSymbol === 'number') {
+            toast.warn('isi dengan angka', {
+                position: "top-right",
+                autoClose: 800,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+            return
+        }
+    }
+
     const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
@@ -70,18 +85,21 @@ function FormMobilBekas() {
         if (e.target.name === 'harga') {
             const value = e.target.value
             const removedSymbol = value.replace(/,/g, "").split("").join("")
+            Toast(removedSymbol)
             setFormData(prevState => ({ ...prevState, harga: removedSymbol }))
         }
 
         if (e.target.name === 'kapasitas_mesin') {
             const value = e.target.value
             const removedSymbol = value.replace(/,/g, "").split("").join("")
+            Toast(removedSymbol)
             setFormData(prevState => ({ ...prevState, kapasitas_mesin: removedSymbol }))
         }
 
         if (e.target.name === 'jarak_tempuh') {
             const value = e.target.value
             const removedSymbol = value.replace(/,/g, "").split("").join("")
+            Toast(removedSymbol)
             setFormData(prevState => ({ ...prevState, jarak_tempuh: removedSymbol }))
         }
     }
