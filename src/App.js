@@ -43,7 +43,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/view/:id' element={<DetailItem />} />
-        <Route path='/:slug' element={<CategoryPage />} />
+        <Route path='/category/:slug' element={<CategoryPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
         <Route path='/iklan-saya' element={<IklanSaya />} />
