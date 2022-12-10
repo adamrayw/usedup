@@ -67,8 +67,17 @@ function Profile() {
                                 )}
                                 <div className='flex flex-col md:items-start justify-between ml-0'>
                                     <div className='text-center md:text-left md:mb-2 mb-4 space-y-2'>
-                                        <h1 className="font-bold md:text-4xl text-xl text-black">{profile.name}</h1>
-                                        <p className='text-gray-400'>{profile.tentang_saya}</p>
+                                        {isLoading ? (
+                                            <>
+                                                <div className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
+                                                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-4"></div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <h1 className="font-bold md:text-4xl text-xl text-black">{profile.name}</h1>
+                                                <p className='text-gray-400'>{profile.tentang_saya}</p>
+                                            </>
+                                        )}
                                     </div>
                                     <div className="flex items-center space-x-6">
                                         <div>
