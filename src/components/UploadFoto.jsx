@@ -19,7 +19,7 @@ function UploadFoto() {
   }
 
   return (
-    <div id="fileUpload" className='flex flex-wrap justify-center items-center'>
+    <div id="fileUpload" className='flex flex-wrap '>
       <div>
         <label htmlFor="image">
           <div className='border cursor-pointer hover:bg-gray-100 active:bg-gray-300 transition duration-200 border-black p-4 inline-block'>

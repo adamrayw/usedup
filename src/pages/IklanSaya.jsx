@@ -60,12 +60,19 @@ function IklanSaya() {
                                         <div className='h-16 w-full bg-gray-200 animate-pulse'></div>
                                         <div className='h-16 w-full bg-gray-200 animate-pulse'></div>
                                     </>
-                                ) : ''}
+                                ) :
+                                    <>
+                                        {data.length < 1 ? (
+                                            <>
+                                                <p>Kamu belum memasang iklan</p>
+                                            </>
+                                        ) : ''
+                                        }
+                                    </>
+                                }
 
                                 {data.length < 1 ? (
-                                    <>
-                                        <p>Kamu belum memasang iklan</p>
-                                    </>
+                                    ''
                                 ) : (
                                     <>
                                         {data.map((e, index) => {

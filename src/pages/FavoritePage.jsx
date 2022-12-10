@@ -46,7 +46,16 @@ function FavoritePage() {
                                 <SkeletonCard />
                             </>
                         ) : (
-                            ''
+                            <>
+                                {data < 1 ? (
+                                    <>
+                                        <div className="flex flex-col items-center mt-10">
+                                            <GoPackage className="text-gray-800 text-6xl" />
+                                            <p className="text-gray-400">Kamu belum favoritin barang apapun</p>
+                                        </div>
+                                    </>
+                                ) : ''}
+                            </>
                         )}
 
                         <div className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
@@ -64,14 +73,7 @@ function FavoritePage() {
                                 ''
                             )}
                         </div>
-                        {data < 1 ? (
-                            <>
-                                <div className="flex flex-col items-center mt-10">
-                                    <GoPackage className="text-gray-800 text-6xl" />
-                                    <p className="text-gray-400">Kamu belum favoritin barang apapun</p>
-                                </div>
-                            </>
-                        ) : ''}
+
                     </div>
                 </div>
             </section>
