@@ -5,9 +5,10 @@ import api from '../utils/api'
 import CardItem from "../components/CardItem";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from 'react-icons/fa'
-import { HiEmojiSad } from 'react-icons/hi'
+import { Spinner } from "flowbite-react";
 
 export default function SearchResult() {
+    const [isLoading, setIsLoading] = useState(false)
     const [dataSearch, setDataSearch] = useState([])
     const [isEmpty, setIsEmpty] = useState(false)
 
@@ -15,6 +16,7 @@ export default function SearchResult() {
 
     const getKeywordData = async () => {
         try {
+            setIsLoading(true)
             // eslint-disable-next-line no-useless-concat
             setIsEmpty(false)
             const response = await axios.get(api + 'item/search?keyword=' + params.keyword)
@@ -25,14 +27,15 @@ export default function SearchResult() {
             } else {
                 setIsEmpty(false)
             }
+            setIsLoading(false)
         } catch (error) {
             console.log(error);
+            setIsLoading(false)
         }
     }
 
     useEffect(() => {
         getKeywordData()
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params])
 
@@ -57,10 +60,17 @@ export default function SearchResult() {
                 </div>
                 {isEmpty ? (
                     <div className="my-10 flex items-center flex-col">
-                        <HiEmojiSad size={'4em'} className='text-gray-800' />
-                        <h2 className="text-lg text-center text-gray-800 font-bold mt-2">Barang tidak ditemukan</h2>
-                        <p className="text-gray-400">Gunakan kata kunci yang lebih spesifik <br /> contoh: <span className="underline font-bold">Kawasaki</span></p>
+                        <img src="https://img.icons8.com/ios/100/null/empty-box.png" alt="empty-icon" />
+                        <h2 className="text-xl text-center text-gray-800 font-bold mt-2 mb-3">Item tidak ditemukan</h2>
+                        <p className="text-sm text-gray-400">Gunakan kata kunci yang lebih spesifik <br /> contoh: <span className="underline font-bold">Kawasaki</span></p>
                     </div>
+                ) : ''}
+
+                {isLoading ? (
+                    <Spinner
+                        aria-label="Large spinner example"
+                        size="lg"
+                    />
                 ) : ''}
             </div>
         </div>
