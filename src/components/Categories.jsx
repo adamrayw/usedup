@@ -42,7 +42,7 @@ function Categories() {
                         <>
                             {categories.map((e) => {
                                 return (
-                                    <Link key={e.id} to={e.slug} className='font-normal whitespace-nowrap hover:underline'>{e.name}</Link>
+                                    <Link key={e.id} to={'/category/' + e.slug} className='font-normal whitespace-nowrap hover:underline'>{e.name}</Link>
                                 )
                             })}
                         </>
