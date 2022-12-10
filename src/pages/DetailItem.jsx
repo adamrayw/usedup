@@ -133,7 +133,7 @@ function DetailItem() {
                         </Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        <Link to={itemData.Kategori ? '/' + itemData.Kategori.slug : '/'}>
+                        <Link to={itemData.Kategori ? '/category/' + itemData.Kategori.slug : '/'}>
                             <p className='text-xs'>{itemData.Kategori ? itemData.Kategori.name : ''}</p>
                         </Link>
                     </Breadcrumb.Item>
