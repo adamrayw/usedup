@@ -158,7 +158,7 @@ function DetailItem() {
                                     {itemData.foto.map(e => {
                                         return (
                                             <div className='px-8 bg-black h-full'>
-                                                <img key={e.asset_id} src={e.url} alt="dwa" className='max-w-full md:h-80 object-contain mx-auto' />
+                                                <img key={e.asset_id} src={e.url} alt="dwa" className='max-w-full h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain mx-auto' />
                                             </div>
                                         )
 
