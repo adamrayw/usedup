@@ -39,10 +39,10 @@ function Header() {
                                     </Button>
                                 </Link>
                             </div>
-                            <div className="relative hover:cursor-pointer ">
+                            <Link to='/chats' className="relative hover:cursor-pointer ">
                                 <div className="absolute right-4 border border-white w-2.5 h-2.5 bg-blue-500 rounded-full "></div>
                                 <MdChatBubble className="mx-4 text-3xl text-gray-800" />
-                            </div>
+                            </Link>
                             <Dropdown />
                         </div>
                     ) : (
