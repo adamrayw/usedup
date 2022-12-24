@@ -1,14 +1,15 @@
 import { Breadcrumb, Tabs, Carousel, Avatar, Card } from 'flowbite-react'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
 import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
+import { BsChatLeftFill } from 'react-icons/bs'
 import { GoVerified } from 'react-icons/go'
 import { HiHome } from 'react-icons/hi'
 import axios from 'axios'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import api from '../utils/api'
 import { FaGhost, FaHeart } from 'react-icons/fa'
-import { MdFavorite, MdOutlineRemoveCircle } from 'react-icons/md'
+import { MdFavorite, MdOutlineRemoveCircle, MdOutlineWarning } from 'react-icons/md'
 import { toast } from 'react-toastify'
 
 function DetailItem() {
@@ -20,8 +21,10 @@ function DetailItem() {
     const [kategori, setKategori] = useState('')
     const userId = JSON.parse(localStorage.getItem('user')) ?? null
     const [profileId, setProfileId] = useState('')
+    const [loadingChat, setLoadingChat] = useState(false)
 
     const params = useParams()
+    const navigate = useNavigate()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const getItemData = async () => {
@@ -115,6 +118,38 @@ function DetailItem() {
 
         } catch (error) {
             toast.error(error)
+        }
+    }
+
+    const chatKePenjual = async () => {
+        try {
+            setLoadingChat(true)
+            const response = await axios.post(api + '/chat/create/room', {
+                userId1: userId.id,
+                userId2: profileId,
+            })
+
+            console.log(response)
+
+            if (response.data.status === false) {
+                toast('Anda sudah memulai obrolan!', {
+                    icon: <MdOutlineWarning className='text-red-400' />,
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+                navigate('/chats')
+                setLoadingChat(false)
+            } else {
+                navigate('/chats')
+            }
+
+            setLoadingChat(false)
+        } catch (error) {
+            setLoadingChat(false)
         }
     }
 
@@ -414,6 +449,22 @@ function DetailItem() {
                                 >
                                     <FaRegHeart className='mr-2' />
                                     Tambah ke Favorit
+                                </button>
+                            )}
+                            {loadingChat ? (
+                                <button
+                                    className='border border-gray-300 text-blue-500 bg-white font-bold hover:cursor-not-allowed transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                >
+                                    Mohon tunggu...
+                                </button>
+
+                            ) : (
+                                <button
+                                    className='border border-gray-300 text-white bg-blue-500 active:bg-blue-300 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    onClick={() => chatKePenjual()}
+                                >
+                                    <BsChatLeftFill className='mr-2' />
+                                    Chat ke penjual
                                 </button>
                             )}
                         </div>
