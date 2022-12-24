@@ -24,6 +24,7 @@ import IklanSaya from './pages/IklanSaya';
 import UnderContruct from './pages/UnderContruct';
 import SearchResult from './pages/SearchResult';
 import Profile from './pages/Profile';
+import RoomChat from './pages/RoomChat';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path='/reset-password/:token/:id' element={<ResetPassword />} />
         <Route path='/iklan-saya' element={<IklanSaya />} />
         <Route path='/search/:keyword' element={<SearchResult />} />
+        <Route path='/chats' element={<RoomChat />} />
         <Route path='/maintenance' element={<UnderContruct />} />
         {/* Maintenance Route */}
         <Route path='/jual/pilih-kategori' element={<PilihKategori />} />
