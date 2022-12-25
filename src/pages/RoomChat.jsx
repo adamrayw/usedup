@@ -10,7 +10,9 @@ import { io } from 'socket.io-client'
 import { useSelector, useDispatch } from 'react-redux'
 import { triggerNow } from '../features/chat/chatSlice'
 
-const socket = io("https://usedup-backend.up.railway.app")
+const socket = io("https://usedup-backend.up.railway.app:3001", {
+    transports: ['websocket']
+})
 
 function RoomChat() {
     const [isChatting, setIsChatting] = useState(false)

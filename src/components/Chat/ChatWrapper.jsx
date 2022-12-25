@@ -9,7 +9,9 @@ import { triggerNow } from '../../features/chat/chatSlice'
 import { toast } from 'react-toastify'
 import { MdNotifications } from 'react-icons/md'
 
-const socket = io("https://usedup-backend.up.railway.app")
+const socket = io("https://usedup-backend.up.railway.app:3001", {
+    transports: ['websocket']
+})
 
 function ChatWrapper({ room }) {
     const [messageReceived, setMessageReceived] = useState([])
