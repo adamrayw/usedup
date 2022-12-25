@@ -9,9 +9,8 @@ import { triggerNow } from '../../features/chat/chatSlice'
 import { toast } from 'react-toastify'
 import { MdNotifications } from 'react-icons/md'
 
-const socket = io("https://usedup-backend.up.railway.app:3001", {
+const socket = io("https://usedup-backend.up.railway.app", {
     transports: ['websocket'],
-    autoConnect: true
 })
 
 function ChatWrapper({ room }) {

@@ -12,7 +12,6 @@ import { triggerNow } from '../features/chat/chatSlice'
 
 const socket = io("https://usedup-backend.up.railway.app", {
     transports: ['websocket'],
-    autoConnect: true
 })
 
 function RoomChat() {
