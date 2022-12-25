@@ -10,7 +10,8 @@ import { toast } from 'react-toastify'
 import { MdNotifications } from 'react-icons/md'
 
 const socket = io("https://usedup-backend.up.railway.app:3001", {
-    transports: ['websocket']
+    transports: ['websocket'],
+    autoConnect: true
 })
 
 function ChatWrapper({ room }) {
