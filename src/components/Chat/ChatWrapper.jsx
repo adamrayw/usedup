@@ -10,8 +10,9 @@ import { toast } from 'react-toastify'
 import { MdNotifications } from 'react-icons/md'
 
 const socket = io("https://usedup-backend.up.railway.app")
+// const socket = io("http://localhost:3001")
 
-function ChatWrapper({ room }) {
+function ChatWrapper({ room, chatTo }) {
     const [messageReceived, setMessageReceived] = useState([])
     const [message, setMessage] = useState("")
     const [roomChat, setRoomChat] = useState(room)
@@ -43,7 +44,7 @@ function ChatWrapper({ room }) {
             time: getHoursAndMinutes()
         }
         setMessageReceived((data) => [...data, user])
-
+        messageEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
         // post to api
         try {
             await axios.post(api + '/chat/send/msg', {
@@ -91,10 +92,6 @@ function ChatWrapper({ room }) {
         })
     }, [socket])
 
-    useEffect(() => {
-        messageEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
-    }, [message])
-
     function timeFormatter(timestamp) {
         const myTimestamp = new Date(timestamp)
         // return myTimestamp.getHours() + ":" + padTo2Digits(myTimestamp.getMinutes())
@@ -105,11 +102,15 @@ function ChatWrapper({ room }) {
 
     return (
         <>
+            <div className='shadow py-2 pr-2 pl-4 flex items-center space-x-2'>
+                <img src={chatTo.fotoProfile} alt="profile" className='p-0.5 border rounded-full object-cover w-10 h-10' />
+                <h2 className='font-bold'>{chatTo.name}</h2>
+            </div>
             <div className='w-full h-80 px-4 overflow-y-auto ' >
-                {messageReceived.map((user) =>
+                {messageReceived.map((user, index) =>
                     user.userId !== userId.id ? (
-                        <div className='my-4' key={user.id}>
-                            <div key={user.id} className='bg-blue-500 text-white w-44 break-words py-2 px-3 rounded-lg '>
+                        <div className='my-4' key={index}>
+                            <div className='bg-blue-500 text-white w-44 break-words py-2 px-3 rounded-lg '>
                                 <p className='text-sm'>{user.message}</p>
                             </div>
                             <div>
@@ -117,8 +118,8 @@ function ChatWrapper({ room }) {
                             </div>
                         </div>
                     ) : (
-                        <div className='my-4' key={user.id}>
-                            <div key={user.id} className='bg-black w-44 text-white ml-auto break-words py-3 px-4 rounded-lg '>
+                        <div className='my-4' key={index}>
+                            <div className='bg-black w-44 text-white ml-auto break-words py-3 px-4 rounded-lg '>
                                 <p className='text-sm'>{user.message}</p>
                             </div>
                             <div>
