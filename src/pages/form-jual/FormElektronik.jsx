@@ -119,7 +119,6 @@ function FormElektronik() {
                 userId: user ? user.id : 0, merk, penyimpanan, ram, judul_iklan, deskripsi, alamat, provinsiId, harga, kategoriId: kategoriId, foto: imageClouded
             }
 
-            console.log(data)
             dispatch(formMobilBekas(data))
             dispatch(resetUpload())
             setSelectedImage([])
