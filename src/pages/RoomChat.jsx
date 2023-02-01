@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { triggerNow } from '../features/chat/chatSlice'
 
 const socket = io("https://usedup-backend.up.railway.app")
+// const socket = io("http://localhost:3001")
 
 function RoomChat() {
     const [isChatting, setIsChatting] = useState(false)
@@ -24,7 +25,7 @@ function RoomChat() {
 
     const getChatData = async () => {
         try {
-            const getResponse = await axios.get(api + '/chat/index/' + userId.id)
+            const getResponse = await axios.get(api + 'chat/index/' + userId.id)
             setChatList(getResponse.data.message.Participant)
         } catch (error) {
             alert('Oopss! Seperti nya ada masalah, coba lagi nanti')
@@ -83,12 +84,12 @@ function RoomChat() {
                                         const filtering = e.Room.Participant.filter(id => id.userId !== userId.id)
                                         return (
                                             <div key={e.id} className='flex flex-row justify-between items-end hover:bg-gray-50 active:bg-gray-100  transition cursor-pointer border-b border-gray-50' onClick={() => {
-                                                setIsChatting(true)
                                                 setChatTo({
-                                                    fotoProfile: filtering[0].User.foto_profile.url,
+                                                    fotoProfile: filtering[0].User.foto_profile ?? '',
                                                     name: filtering[0].User.name,
                                                 })
                                                 setRoom(e.roomId)
+                                                setIsChatting(true)
                                             }}>
                                                 <div key={index} className=' flex items-center space-x-3 p-3'>
                                                     {filtering[0].User.foto_profile === null ? (
