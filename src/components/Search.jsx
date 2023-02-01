@@ -9,7 +9,6 @@ function Search() {
     function setKeywords(e) {
         e.preventDefault()
         setKeyword(e.target.value)
-        console.log(keyword);
     }
 
     function onSearch() {
