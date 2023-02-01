@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { triggerNow } from '../../features/chat/chatSlice'
 import { toast } from 'react-toastify'
 import { MdNotifications } from 'react-icons/md'
+import { FaUserCircle } from 'react-icons/fa'
 
 const socket = io("https://usedup-backend.up.railway.app")
 // const socket = io("http://localhost:3001")
@@ -28,8 +29,9 @@ function ChatWrapper({ room, chatTo }) {
     }
 
     const getChatMsg = async () => {
+        console.log(room)
         try {
-            const response = await axios.get(api + "/chat/msg/" + room)
+            const response = await axios.get(api + "chat/msg/" + room)
             setMessageReceived(response.data.response.Message);
         } catch (error) {
 
@@ -47,7 +49,7 @@ function ChatWrapper({ room, chatTo }) {
         messageEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
         // post to api
         try {
-            await axios.post(api + '/chat/send/msg', {
+            await axios.post(api + 'chat/send/msg', {
                 roomId: room,
                 userId: userId.id,
                 message
@@ -103,7 +105,11 @@ function ChatWrapper({ room, chatTo }) {
     return (
         <>
             <div className='shadow py-2 pr-2 pl-4 flex items-center space-x-2'>
-                <img src={chatTo.fotoProfile} alt="profile" className='p-0.5 border rounded-full object-cover w-10 h-10' />
+                {chatTo.fotoProfile ? (
+                    <img src={chatTo.fotoProfile.url} alt="profile" className='p-0.5 border rounded-full object-cover w-10 h-10' />
+                ) : (
+                    <FaUserCircle className='p-0.5 border rounded-full text-gray-300 w-12 h-12' />
+                )}
                 <h2 className='font-bold'>{chatTo.name}</h2>
             </div>
             <div className='w-full h-80 px-4 overflow-y-auto ' >
