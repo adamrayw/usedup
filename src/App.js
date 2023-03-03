@@ -9,7 +9,7 @@ import PageNotFound from './pages/PageNotFound';
 import DetailItem from './pages/DetailItem';
 import PilihKategori from './pages/PilihKategori';
 import CategoryPage from './pages/CategoryPage';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SuccessPages from './pages/form-jual/SuccessPages';
 import PrivateRoutes from './utils/PrivateRoutes';
@@ -25,8 +25,31 @@ import UnderContruct from './pages/UnderContruct';
 import SearchResult from './pages/SearchResult';
 import Profile from './pages/Profile';
 import RoomChat from './pages/RoomChat';
+import { useEffect } from 'react';
+import socket from './utils/socket';
+import { MdNotifications } from 'react-icons/md';
 
 function App() {
+
+  const userId = JSON.parse(localStorage.getItem('user')) ?? null
+
+  useEffect(() => {
+    console.log('connected')
+    socket.emit("notification", (data) => {
+      if (data !== null ? data.chatTo.id === userId.id : '') {
+        toast('Ada pesan baru! dari app.js', {
+          icon: <MdNotifications className='text-blue-500' />,
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+        })
+      }
+    })
+  }, [socket])
+
   return (
     <div className="App">
       <Header />
