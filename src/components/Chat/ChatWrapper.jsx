@@ -9,15 +9,15 @@ import { triggerNow } from '../../features/chat/chatSlice'
 import { toast } from 'react-toastify'
 import { MdNotifications } from 'react-icons/md'
 import { FaUserCircle } from 'react-icons/fa'
-
-const socket = io("https://usedup-backend.up.railway.app")
-// const socket = io("http://localhost:3001")
+import { current } from '@reduxjs/toolkit'
+import socket from '../../utils/socket'
 
 function ChatWrapper({ room, chatTo }) {
     const [messageReceived, setMessageReceived] = useState([])
     const [message, setMessage] = useState("")
     const [roomChat, setRoomChat] = useState(room)
     const messageEndRef = useRef(null)
+    const chatWindowRef = useRef(null)
     const userId = JSON.parse(localStorage.getItem('user')) ?? null
 
     const dispatch = useDispatch()
@@ -29,22 +29,24 @@ function ChatWrapper({ room, chatTo }) {
     }
 
     const getChatMsg = async () => {
-        console.log(room)
+
         try {
             const response = await axios.get(api + "chat/msg/" + room)
             setMessageReceived(response.data.response.Message);
         } catch (error) {
-
+            console.log(error)
         }
+
     }
 
     const sendMessage = async () => {
-        socket.emit("send_message", { message, roomChat })
         const user = {
             userId: userId.id,
             message,
             time: getHoursAndMinutes()
         }
+        socket.emit("send_message", { message, roomChat })
+        socket.emit("notification", { user, chatTo })
         setMessageReceived((data) => [...data, user])
         messageEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
         // post to api
@@ -59,6 +61,11 @@ function ChatWrapper({ room, chatTo }) {
         }
         setMessage("")
     }
+
+    useEffect(() => {
+        chatWindowRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }, [messageReceived])
+
 
     useEffect(() => {
         setMessage('')
@@ -79,7 +86,6 @@ function ChatWrapper({ room, chatTo }) {
                 message: data.message,
                 time: getHoursAndMinutes()
             }
-            messageEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
             dispatch(triggerNow())
             toast('Ada pesan baru!', {
                 icon: <MdNotifications className='text-blue-500' />,
@@ -92,6 +98,7 @@ function ChatWrapper({ room, chatTo }) {
             })
             setMessageReceived(mess => [...mess, user2])
         })
+        messageEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }, [socket])
 
     function timeFormatter(timestamp) {
@@ -112,7 +119,7 @@ function ChatWrapper({ room, chatTo }) {
                 )}
                 <h2 className='font-bold'>{chatTo.name}</h2>
             </div>
-            <div className='w-full h-80 px-4 overflow-y-auto ' >
+            <div className='w-full h-80 px-4 overflow-y-auto '>
                 {messageReceived.map((user, index) =>
                     user.userId !== userId.id ? (
                         <div className='my-4' key={index}>
@@ -135,7 +142,9 @@ function ChatWrapper({ room, chatTo }) {
                     )
 
                 )}
+
                 <div ref={messageEndRef} />
+                <div ref={chatWindowRef} />
             </div>
             <div className='relative'>
                 <div className='absolute w-full top-0 textField '>
