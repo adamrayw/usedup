@@ -122,35 +122,49 @@ function DetailItem() {
     }
 
     const chatKePenjual = async () => {
-        try {
-            setLoadingChat(true)
-            const response = await axios.post(api + '/chat/create/room', {
-                userId1: userId.id,
-                userId2: profileId,
+        if (userId.id === profileId) {
+            toast.error("Oopss! anda tidak bisa chat diri sendiri", {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
             })
+            return
+        } else {
 
-            console.log(response)
-
-            if (response.data.status === false) {
-                toast('Anda sudah memulai obrolan!', {
-                    icon: <MdOutlineWarning className='text-red-400' />,
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    draggable: true,
-                    progress: undefined,
+            try {
+                setLoadingChat(true)
+                const response = await axios.post(api + '/chat/create/room', {
+                    userId1: userId.id,
+                    userId2: profileId,
                 })
-                navigate('/chats')
-                setLoadingChat(false)
-            } else {
-                navigate('/chats')
-            }
 
-            setLoadingChat(false)
-        } catch (error) {
-            setLoadingChat(false)
+                console.log(response)
+
+                if (response.data.status === false) {
+                    toast('Anda sudah memulai obrolan!', {
+                        icon: <MdOutlineWarning className='text-red-400' />,
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                    navigate('/chats')
+                    setLoadingChat(false)
+                } else {
+                    navigate('/chats')
+                }
+
+                setLoadingChat(false)
+            } catch (error) {
+                setLoadingChat(false)
+            }
         }
+
     }
 
     useEffect(() => {
