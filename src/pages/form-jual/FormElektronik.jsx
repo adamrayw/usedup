@@ -136,7 +136,7 @@ function FormElektronik() {
         }
     }
 
-    const namaMerk = ['Acer', 'Advan', 'Apple', 'Asus', 'Blackberry', 'Cross', 'Evercross', 'HTC', 'Huawei', 'IMO', 'LG', 'Infinix', 'Lenovo', 'Mito', 'Motorola', 'Nexian', 'Nokia', 'Oppo', 'Samsung', 'Smartfren', 'Sony', 'Vivo', 'Xiaomi']
+    const namaMerk = ['Acer', 'Advan', 'Apple', 'Asus', 'Blackberry', 'Cross', 'Evercross', 'HTC', 'Huawei', 'IMO', 'LG', 'Infinix', 'Lenovo', 'Mito', 'Motorola', 'Nexian', 'Nokia', 'Oppo', 'Samsung', 'Smartfren', 'Sony', 'Vivo', 'Xiaomi', 'Realme']
 
     return (
         <>
