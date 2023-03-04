@@ -5,11 +5,13 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import api from '../utils/api'
 import SkeletonCard from '../components/SkeletonCard'
+import ModalError from '../components/ModalError'
 
 export default function Home() {
 
     const [items, setItems] = useState([])
     const [result, setResult] = useState(8)
+    const [isError, setIsError] = useState(false)
 
 
     useEffect(() => {
@@ -24,11 +26,14 @@ export default function Home() {
 
             setItems(response.data.data)
         } catch (error) {
-            alert(error)
+            setIsError(true)
         }
     }
+
+
     return (
         <>
+            {isError ? <ModalError /> : ""}
             <img className='md:block hidden' src={Banner} alt="Banner" />
             <section>
                 <div className="container max-w-6xl mx-auto px-4">
