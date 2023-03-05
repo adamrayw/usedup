@@ -51,7 +51,7 @@ function App() {
   }, [socket])
 
   return (
-    <div className="App">
+    <div className="App flex flex-col justify-between min-h-screen">
       <Header />
       <Routes>
         <Route element={<PrivateRoutes />}>
