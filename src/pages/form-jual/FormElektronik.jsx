@@ -185,7 +185,6 @@ function FormElektronik() {
                                     name='penyimpanan'
                                     placeholder='128'
                                     onChange={onChange}
-                                    required={true}
                                 />
                             </div>
                             <div>
@@ -201,7 +200,6 @@ function FormElektronik() {
                                     sizing="md"
                                     name='ram'
                                     placeholder='8'
-                                    required={true}
                                     onChange={onChange}
                                 />
 
