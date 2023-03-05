@@ -1,4 +1,4 @@
-import { Tabs } from 'flowbite-react'
+import { Button, Modal, Spinner, Tabs } from 'flowbite-react'
 import axios from 'axios'
 import api from '../utils/api'
 import { useEffect, useState } from 'react'
@@ -7,10 +7,18 @@ import { FiCheck } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { BiDotsVertical } from 'react-icons/bi'
+import { HiOutlineExclamationCircle } from 'react-icons/hi'
+import { toast } from 'react-toastify'
+import { IoMdTrash } from 'react-icons/io'
+
 
 function IklanSaya() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [loadingDelete, setLoadingDelete] = useState(false)
+    const [isOpenDeleteIklan, setIsOpenDeleteIklan] = useState(false)
+    const [iklanId, setIklanId] = useState()
+
 
     useEffect(() => {
         getDataIklan()
@@ -36,8 +44,95 @@ function IklanSaya() {
         }
     }
 
+    function isOpenDeleteIklanModal() {
+        setIsOpenDeleteIklan(!isOpenDeleteIklan)
+    }
+
+    const deleteIklan = async () => {
+        setLoadingDelete(true)
+        try {
+            const response = await axios.post(api + 'iklan/hapus', { id: iklanId })
+
+            if (response === true) {
+                toast.success("Iklan berhasil dihapus", {
+                    icon: <IoMdTrash className='text-red-500' />,
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+            }
+            const newData = data.filter((data) => data.id !== iklanId)
+            setData(newData)
+            setLoadingDelete(false)
+            setIklanId("")
+            isOpenDeleteIklanModal(false)
+
+        } catch (error) {
+            toast.error("Something went wrong!", {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            })
+            setLoadingDelete(false)
+            setIklanId(false)
+        }
+    }
+
     return (
         <section>
+
+            <Modal
+                show={isOpenDeleteIklan}
+                size="md"
+                popup={true}
+                onClose={isOpenDeleteIklanModal}
+            >
+                <Modal.Header />
+                <Modal.Body>
+                    <div className="text-center">
+                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                        <h3 className="mb-2 text-lg font-bold text-gray-500 dark:text-gray-400">
+                            Yakin ingin menghapus iklan ini?
+                        </h3>
+                        <p className='mb-5 text-sm text-gray-400'>iklan akan terhapus secara permanen dan tidak dapat dikembalikan</p>
+                        <div className="flex justify-center gap-4">
+                            {loadingDelete ? (
+                                <Button
+                                    color="failure"
+                                    onClick={deleteIklan}
+                                >
+                                    <Spinner
+                                        size="sm"
+                                        light={true}
+                                    />
+                                </Button>
+
+                            ) : (
+                                <Button
+                                    color="failure"
+                                    onClick={deleteIklan}
+                                >
+                                    Ya, saya yakin
+                                </Button>
+                            )}
+                            <Button
+                                color="gray"
+                                onClick={isOpenDeleteIklanModal}
+                            >
+                                Tidak, batal
+                            </Button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
+
             <div className="container max-w-6xl mx-auto px-4">
                 <div className="featured my-10">
                     <div className='text-left mb-4 space-y-2'>
@@ -117,27 +212,31 @@ function IklanSaya() {
                                                                 leaveTo="transform opacity-0 scale-95"
                                                             >
                                                                 <Menu.Items static className="absolute z-20 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                                    <div className="py-2 px-4">
+                                                                    <div className="p-4">
                                                                         <div>
                                                                             <div className='md:space-y-2 md:mt-0 mt-3'>
                                                                                 <button className='flex items-center text-xs px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
                                                                                     <FaRegEdit className='md:block mr-2' />
                                                                                     Edit Iklan
                                                                                 </button>
-                                                                                <button className='flex items-center text-xs  px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                <button className='flex items-center text-xs  px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 ' onClick={() => {
+                                                                                    isOpenDeleteIklanModal()
+                                                                                    setIklanId(e.id)
+                                                                                }}  >
                                                                                     <FaTrash className='md:block mr-2' />
                                                                                     Hapus Iklan
                                                                                 </button>
-                                                                                <button className='flex items-center text-xs px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
+                                                                                {/* <button className='flex items-center text-xs px-2 py-2 w-full rounded-sm text-black hover:bg-gray-100 '>
                                                                                     <FiCheck className='md:block mr-2' />
                                                                                     Tandai sudah terjual
-                                                                                </button>
+                                                                                </button> */}
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </Menu.Items>
                                                             </Transition>
                                                         </Menu>
+
 
                                                     </div>
 
