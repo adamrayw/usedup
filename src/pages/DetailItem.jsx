@@ -366,8 +366,8 @@ function DetailItem() {
                         </div>
                     </div>
                     <div className='profil-penjual'>
-                        <Card>
-                            <div className='flex items-start justify-start text-left w-full md:w-64'>
+                        <div className='shadow-sm border border-gray-100 p-6 rounded w-full md:w-80'>
+                            <div className='flex items-start justify-start text-left'>
                                 <div>
                                     {itemData.User ? (
                                         <>
@@ -389,7 +389,7 @@ function DetailItem() {
                                         </div>
                                     ) : (
                                         <div className='flex items-center'>
-                                            <p className='font-bold text-lg'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
+                                            <p className='font-bold text-lg text-ellipsis'>{itemData.User ? itemData.User.name : 'Penjual'}</p>
                                             {itemData.User ? (
                                                 <>
                                                     {itemData.User.isVerified ? (
@@ -427,12 +427,12 @@ function DetailItem() {
                                     {itemData.User.isVerified ? (
                                         ''
                                     ) : (
-                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 p-2 text-xs'>Penjual belum terverifikasi<FaTimesCircle className='ml-2 text-red-600' /></p>
+                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 p-2 text-xs mt-6'>Hati - hati dengan penjual yang belum terverifikasi</p>
                                     )}
                                 </>
                             ) : ''}
-                        </Card>
-                        <div className="border border-gray-300 rounded-md shadow-md px-7 py-4 mt-4">
+                        </div>
+                        <div className="border border-gray-100 rounded shadow-sm px-7 py-4 mt-4">
                             <div className='text-left'>
                                 <h1 className='text-lg font-bold'>Kontak Penjual</h1>
                                 {hideNo ? (
