@@ -1,6 +1,6 @@
-import { Breadcrumb, Tabs, Carousel, Avatar, Card } from 'flowbite-react'
+import { Breadcrumb, Tabs, Carousel, Avatar } from 'flowbite-react'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
-import { FaRegHeart, FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
+import { FaRegHeart, FaMapMarkerAlt } from 'react-icons/fa'
 import { BsChatLeftFill } from 'react-icons/bs'
 import { GoVerified } from 'react-icons/go'
 import { HiHome } from 'react-icons/hi'
@@ -11,6 +11,7 @@ import api from '../utils/api'
 import { FaGhost, FaHeart } from 'react-icons/fa'
 import { MdFavorite, MdOutlineRemoveCircle, MdOutlineWarning } from 'react-icons/md'
 import { toast } from 'react-toastify'
+import { AiFillWarning } from 'react-icons/ai'
 
 function DetailItem() {
     const [itemData, setItemData] = useState([])
@@ -368,7 +369,7 @@ function DetailItem() {
                         </div>
                     </div>
                     <div className='profil-penjual'>
-                        <Card>
+                        <div className='border border-gray-200 rounded shadow-sm px-7 py-5'>
                             <div className='flex items-start justify-start text-left w-full md:w-64'>
                                 <div>
                                     {itemData.User ? (
@@ -429,11 +430,11 @@ function DetailItem() {
                                     {itemData.User.isVerified ? (
                                         ''
                                     ) : (
-                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 p-2 text-xs mt-6'>Hati - hati dengan penjual yang belum terverifikasi</p>
+                                        <p className='flex items-center rounded w-fit font-medium bg-red-50 text-red-400 p-2 text-xs mt-6'><AiFillWarning className='mr-2' /> Hati - hati dengan penjual yang belum terverifikasi</p>
                                     )}
                                 </>
                             ) : ''}
-                        </Card>
+                        </div>
                         <div className="border border-gray-200 rounded shadow-sm px-7 py-4 mt-4">
                             <div className='text-left'>
                                 <h1 className='text-lg font-bold'>Kontak Penjual</h1>
