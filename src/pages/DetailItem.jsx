@@ -123,6 +123,18 @@ function DetailItem() {
     }
 
     const chatKePenjual = async () => {
+        if (userId === null || userId.id === [] || userId === "" || profileId === "") {
+            toast.error("Login atau register terlebih dahulu!", {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+            })
+            return
+        }
+
         if (userId.id === profileId) {
             toast.error("Oopss! anda tidak bisa chat diri sendiri", {
                 position: "top-right",
@@ -134,7 +146,6 @@ function DetailItem() {
             })
             return
         } else {
-
             try {
                 setLoadingChat(true)
                 const response = await axios.post(api + '/chat/create/room', {
