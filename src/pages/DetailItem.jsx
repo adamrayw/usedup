@@ -174,7 +174,7 @@ function DetailItem() {
     }, [])
     return (
         <>
-            <div className="max-w-6xl pb-10 pt-4 mx-auto px-4">
+            <div className="pb-10 pt-4 md:mx-40 mx-0 px-4">
                 <Breadcrumb aria-label="Default breadcrumb example">
                     <Breadcrumb.Item>
                         <Link to='/'>
@@ -187,12 +187,14 @@ function DetailItem() {
                         </Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        <p className='text-xs'>{itemData.judul_iklan}</p>
+                        <div className='w-16'>
+                            <p className='text-xs truncate'>{itemData.judul_iklan}</p>
+                        </div>
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <div className='flex md:flex-row flex-col justify-between md:space-y-0 space-y-4'>
+                <div className='flex flex-col md:flex-col sm:flex-row lg:flex-row xl:flex-row justify-between md:space-y-0 space-y-4'>
                     <div className='text-left md:w-3/5'>
-                        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 my-2 2xl:my-4">
+                        <div className="h-56 w-full sm:h-64 xl:h-80 2xl:h-96 my-2 2xl:my-4">
                             {itemData.foto ? (
                                 <Carousel
                                     leftControl={<>
@@ -243,7 +245,7 @@ function DetailItem() {
                             ) : (
                                 <>
                                     <p className='text-sm font-medium w-fit flex items-center text-gray-400 bg-white shadow p-2'><FaMapMarkerAlt className='mr-2' />{itemData.Provinsi ? itemData.Provinsi.name : ''}</p>
-                                    <h1 className='font-bold text-4xl'>{itemData.judul_iklan}</h1>
+                                    <h1 className='font-bold md:text-4xl text-2xl'>{itemData.judul_iklan}</h1>
                                     <h3 className='font-bold text-blue-600 text-xl'> Rp {Intl.NumberFormat('id-ID').format(itemData.harga)}</h3>
                                 </>
                             )}
@@ -366,8 +368,8 @@ function DetailItem() {
                         </div>
                     </div>
                     <div className='profil-penjual'>
-                        <div className='shadow-sm border border-gray-100 p-6 rounded w-full md:w-80'>
-                            <div className='flex items-start justify-start text-left'>
+                        <Card>
+                            <div className='flex items-start justify-start text-left w-full md:w-64'>
                                 <div>
                                     {itemData.User ? (
                                         <>
@@ -431,8 +433,8 @@ function DetailItem() {
                                     )}
                                 </>
                             ) : ''}
-                        </div>
-                        <div className="border border-gray-100 rounded shadow-sm px-7 py-4 mt-4">
+                        </Card>
+                        <div className="border border-gray-200 rounded shadow-sm px-7 py-4 mt-4">
                             <div className='text-left'>
                                 <h1 className='text-lg font-bold'>Kontak Penjual</h1>
                                 {hideNo ? (
@@ -449,7 +451,7 @@ function DetailItem() {
                         <div>
                             {favorited ? (
                                 <button
-                                    className='border border-red-300 bg-red-400 text-white active:bg-red-200 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    className='border border-red-300 bg-red-400 text-white active:bg-red-200 transition shadow-sm rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
                                     onClick={() => hapusFavorit(itemData.id)}
                                 >
                                     <MdFavorite className='mr-2' />
@@ -458,7 +460,7 @@ function DetailItem() {
                             ) : (
 
                                 <button
-                                    className='border border-gray-300 text-gray-400 active:bg-gray-100 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    className='border border-gray-200 text-gray-400 active:bg-gray-100 transition shadow-sm rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
                                     onClick={() => tambahFavorit(itemData.id)}
                                 >
                                     <FaRegHeart className='mr-2' />
@@ -467,14 +469,14 @@ function DetailItem() {
                             )}
                             {loadingChat ? (
                                 <button
-                                    className='border border-gray-300 text-blue-500 bg-white font-bold hover:cursor-not-allowed transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    className='border border-gray-300 text-blue-500 bg-white font-bold hover:cursor-not-allowed transition shadow-sm rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
                                 >
                                     Mohon tunggu...
                                 </button>
 
                             ) : (
                                 <button
-                                    className='border border-gray-300 text-white bg-blue-500 active:bg-blue-300 transition shadow-md rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
+                                    className='border border-gray-300 text-white bg-blue-500 active:bg-blue-300 transition shadow-sm rounded-md w-full text-center flex justify-center items-center mt-4 p-3'
                                     onClick={() => chatKePenjual()}
                                 >
                                     <BsChatLeftFill className='mr-2' />
